@@ -14,9 +14,10 @@ function testimonial_get_slider_posts_in_order($slider_id) {
 }
 function get_testimonial_slider_name($slider_id) {
     global $wpdb, $table_prefix;
+	$slider_name = '';
 	$table_name = $table_prefix.TESTIMONIAL_SLIDER_META;
 	$slider_obj = $wpdb->get_results("SELECT * FROM $table_name WHERE slider_id = '$slider_id'", OBJECT);
-	$slider_name = $slider_obj->slider_name;
+	if (isset ($slider_obj[0]))$slider_name = $slider_obj[0]->slider_name;
 	return $slider_name;
 }
 function testimonial_ss_get_post_sliders($post_id){
@@ -96,29 +97,24 @@ function get_testimonial_slider_for_the_post($post_id) {
 	return $slider_id;
 }
 function testimonial_slider_word_limiter( $text, $limit = 50 ) {
-    if($limit != 0){
-		$text = str_replace(']]>', ']]&gt;', $text);
-		//Not using strip_tags as to accomodate the 'retain html tags' feature
-		//$text = strip_tags($text);
-		
-		$explode = explode(' ',$text);
-		$string  = '';
+    $text = str_replace(']]>', ']]&gt;', $text);
+	//Not using strip_tags as to accomodate the 'retain html tags' feature
+	//$text = strip_tags($text);
+	
+    $explode = explode(' ',$text);
+    $string  = '';
 
-		$dots = '';
-		if(count($explode) <= $limit){
-			$dots = '';
-		}
-		for($i=0;$i<$limit;$i++){
-			$string .= $explode[$i]." ";
-		}
-		if ($dots) {
-			$string = substr($string, 0, strlen($string));
-		}
-		return $string.$dots;
-	}
-	else{
-		return $text;
-	}
+    $dots = '...';
+    if(count($explode) <= $limit){
+        $dots = '';
+    }
+    for($i=0;$i<$limit;$i++){
+        if (isset ($explode[$i]))  $string .= $explode[$i]." ";
+    }
+    if ($dots) {
+        $string = substr($string, 0, strlen($string));
+    }
+    return $string.$dots;
 }
 function testimonial_sslider_admin_url( $query = array() ) {
 	global $plugin_page;
@@ -143,6 +139,12 @@ function testimonial_slider_table_exists($table, $db) {
 		}
 	}
 	return FALSE;
+}
+function testimonial_get_google_font($font=''){
+	$font_a=explode(',',$font,2);
+	$font_b=explode(':',$font_a[0],2);
+	$font=str_replace("+", " ", $font_b[0]);
+	return $font;
 }
 /**
  * Retrieve testimonial_category object by category slug.

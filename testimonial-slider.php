@@ -3,7 +3,7 @@
 Plugin Name: Testimonial Slider
 Plugin URI: http://slidervilla.com/testimonial-slider/
 Description: Use Testimonial Slider to show the awesome testimonials you have received in a beautiful horizontal slider format.
-Version: 1.0	
+Version: 1.0.1	
 Author: SliderVilla
 Author URI: http://slidervilla.com/
 Wordpress version supported: 3.0 and above
@@ -65,7 +65,7 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 						   'content_fstyle'=>'italic',
 						   'content_fcolor'=>'#737373',
 						   'content_from'=>'content',
-						   'content_limit'=>'25',
+						   'content_limit'=>'100',
 						   'allowable_tags'=>'',
 						   'more'=>'',
 						   'a_attr'=>'',
@@ -94,12 +94,13 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 						   'responsive'=>'0',
 						   'setname'=>'Set',
 						   'disable_preview'=>'0',
+						   'active_tab'=>'0',
 						   'noscript'=>''
 			              );
 define('TESTIMONIAL_SLIDER_TABLE','testimonial_slider'); //Slider TABLE NAME
 define('TESTIMONIAL_SLIDER_META','testimonial_slider_meta'); //Meta TABLE NAME
 define('TESTIMONIAL_SLIDER_POST_META','testimonial_slider_postmeta'); //Meta TABLE NAME
-define("TESTIMONIAL_SLIDER_VER","1.0",false);//Current Version of Testimonial Slider
+define("TESTIMONIAL_SLIDER_VER","1.0.1",false);//Current Version of Testimonial Slider
 if ( ! defined( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME' ) )
 	define( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 if ( ! defined( 'TESTIMONIAL_SLIDER_CSS_DIR' ) ){
@@ -435,7 +436,7 @@ function testimonial_add_to_slider_checkbox() {
 				
 				<tr valign="top">
 				<th scope="row"><label for="_testimonial_sslider_nolink"><?php _e('Do not link this Testimonial to any "Read more" URL','testimonial-slider'); ?> </label></th>
-                <td><input type="checkbox" checked name="_testimonial_sslider_nolink" class="_testimonial_sslider_nolink" value="1" <?php if($_testimonial_sslider_nolink=='1'){echo "checked";}?>  /></td>
+                <td><input type="checkbox" name="_testimonial_sslider_nolink" class="_testimonial_sslider_nolink" value="1" <?php if($_testimonial_sslider_nolink=='1'){echo "checked";}?>  /></td>
 				</tr>
 				
 				<tr valign="top">
@@ -596,14 +597,6 @@ function testimonial_updated_messages( $messages ) {
 }
 
 require_once (dirname (__FILE__) . '/slider_versions/testimonial_1.php');
+require_once (dirname (__FILE__) . '/slider_versions/testimonials_list.php');
 require_once (dirname (__FILE__) . '/settings/settings.php');
-
-// Load the update-notification class
-add_action('init', 'testimonial_update_notification');
-function testimonial_update_notification()
-{
-    require_once (dirname (__FILE__) . '/includes/upgrade.php');
-    $testimonial_upgrade_remote_path = 'http://support.slidervilla.com/sv-updates/testimonial.php';
-    new testimonial_update_class ( TESTIMONIAL_SLIDER_VER, $testimonial_upgrade_remote_path, TESTIMONIAL_SLIDER_PLUGIN_BASENAME );
-}
 ?>

@@ -4,150 +4,173 @@ if ( is_admin() ){ // admin actions
   add_action( 'admin_init', 'register_testimonial_settings' ); 
 } 
 
+//Create Set & Export Settings
+function testimonial_process_set_requests(){
+	global $default_testimonial_slider_settings;
+	$scounter=get_option('testimonial_slider_scounter');
+	
+	$cntr='';
+	if(isset($_GET['scounter'])) $cntr = $_GET['scounter'];
+	
+	if(isset($_POST['create_set'])){
+		if ($_POST['create_set']=='Create New Settings Set') {
+		  $scounter++;
+		  update_option('testimonial_slider_scounter',$scounter);
+		  $options='testimonial_slider_options'.$scounter;
+		  update_option($options,$default_testimonial_slider_settings);
+		  $current_url = admin_url('admin.php?page=testimonial-slider-settings');
+		  $current_url = add_query_arg('scounter',$scounter,$current_url);
+		  wp_redirect( $current_url );
+		  exit;
+		}
+	}
+
+	//Export Settings
+	if(isset($_POST['export'])){
+		if ($_POST['export']=='Export') {
+			@ob_end_clean();
+			
+			// required for IE, otherwise Content-Disposition may be ignored
+			if(ini_get('zlib.output_compression'))
+			ini_set('zlib.output_compression', 'Off');
+			
+			header('Content-Type: ' . "text/x-csv");
+			header('Content-Disposition: attachment; filename="testimonial-settings-set-'.$cntr.'.csv"');
+			header("Content-Transfer-Encoding: binary");
+			header('Accept-Ranges: bytes');
+
+			/* The three lines below basically make the
+			download non-cacheable */
+			header("Cache-control: private");
+			header('Pragma: private');
+			header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+
+			$exportTXT='';$i=0;
+			$slider_options='testimonial_slider_options'.$cntr;
+			$slider_curr=get_option($slider_options);
+			foreach($slider_curr as $key=>$value){
+				if($i>0) $exportTXT.="\n";
+				if(!is_array($value)){
+					$exportTXT.=$key.",".$value;
+				}
+				else {
+					$exportTXT.=$key.',';
+					$j=0;
+					if($value) {
+						foreach($value as $v){
+							if($j>0) $exportTXT.="|";
+							$exportTXT.=$v;
+							$j++;
+						}
+					}
+				}
+				$i++;
+			}
+			$exportTXT.="\n";
+			$exportTXT.="slider_name,testimonial";
+			print($exportTXT); 
+			exit();
+		}
+	}	
+}
+add_action('load-testimonial-slider_page_testimonial-slider-settings','testimonial_process_set_requests');
+
 // function for adding settings page to wp-admin
 function testimonial_slider_settings() {
     // Add a new submenu under Options:
 	add_menu_page( 'Testimonial Slider', 'Testimonial Slider', 'manage_options','testimonial-slider-admin', 'testimonial_slider_create_multiple_sliders', testimonial_slider_plugin_url( 'images/testimonial_slider_icon.gif' ) );
 	add_submenu_page('testimonial-slider-admin', 'Testimonial Sliders', 'Sliders', 'manage_options', 'testimonial-slider-admin', 'testimonial_slider_create_multiple_sliders');
 	add_submenu_page('testimonial-slider-admin', 'Testimonial Slider Settings', 'Settings', 'manage_options', 'testimonial-slider-settings', 'testimonial_slider_settings_page');
-	add_submenu_page('testimonial-slider-admin', 'Import Testimonials', 'Import', 'manage_options', 'import-testimonials', 'testimonial_slider_import_testimonials');
 }
 require_once (dirname (__FILE__) . '/sliders.php');
-require_once (dirname (__FILE__) . '/import.php');
 // This function displays the page content for the Testimonial Slider Options submenu
 function testimonial_slider_settings_page() {
 global $testimonial_slider,$default_testimonial_slider_settings;
 $scounter=get_option('testimonial_slider_scounter');
-$cntr = $_GET['scounter'];
+if (isset($_GET['scounter']))$cntr = $_GET['scounter'];
+else $cntr = '';
 
-//Create Set
-$new_settings_msg='';
-if ($_POST['create_set'] and $_POST['create_set']=='Create New Settings Set') {
-  $scounter++;
-  update_option('testimonial_slider_scounter',$scounter);
-  $options='testimonial_slider_options'.$scounter;
-  update_option($options,$default_testimonial_slider_settings);
-  $current_url = admin_url('admin.php?page=testimonial-slider-settings');
-  $current_url = add_query_arg('scounter',$scounter,$current_url);
-  $new_settings_msg='<div id="message" class="updated fade" style="clear:left;"><h3>'.sprintf(__('Settings Set %s created successfully. ','testimonial-slider'),$scounter).'<a href="'.$current_url.'">'.__('Click here to edit the new Settings set =&gt;','testimonial-slider').'</a></h3></div>';
-}
+$new_settings_msg=$imported_settings_message='';
 
 //Reset Settings
-if ( $_POST['testimonial_reset_settings_submit'] and $_POST['testimonial_reset_settings']!='n' ) {
-  $testimonial_reset_settings=$_POST['testimonial_reset_settings'];
-  $options='testimonial_slider_options'.$cntr;
-  $optionsvalue=get_option($options);
-  if( $testimonial_reset_settings == 'g' ){
-	$new_settings_value=$default_testimonial_slider_settings;
-	$new_settings_value['setname']=$optionsvalue['setname'];
-	update_option($options,$new_settings_value);
-  }
-  else{
-	if( $testimonial_reset_settings == '1' ){
-		$new_settings_value=get_option('testimonial_slider_options');
+if (isset ($_POST['testimonial_reset_settings_submit'])) {
+	if ( $_POST['testimonial_reset_settings']!='n' ) {
+	  $testimonial_reset_settings=$_POST['testimonial_reset_settings'];
+	  $options='testimonial_slider_options'.$cntr;
+	  $optionsvalue=get_option($options);
+	  if( $testimonial_reset_settings == 'g' ){
+		$new_settings_value=$default_testimonial_slider_settings;
 		$new_settings_value['setname']=$optionsvalue['setname'];
-		update_option($options,	$new_settings_value );
-	}
-	else{
-		$new_option_name='testimonial_slider_options'.$testimonial_reset_settings;
-		$new_settings_value=get_option($new_option_name);
-		$new_settings_value['setname']=$optionsvalue['setname'];
-		update_option($options,	$new_settings_value );
-	}
-  }
-}
-
-//Export Settings
-if ($_POST['export'] and $_POST['export']=='Export') {
-	@ob_end_clean();
-	
-	// required for IE, otherwise Content-Disposition may be ignored
-	if(ini_get('zlib.output_compression'))
-	ini_set('zlib.output_compression', 'Off');
-	
-	header('Content-Type: ' . "text/x-csv");
-	header('Content-Disposition: attachment; filename="testimonial-settings-set-'.$cntr.'.csv"');
-	header("Content-Transfer-Encoding: binary");
-	header('Accept-Ranges: bytes');
-
-	/* The three lines below basically make the
-	download non-cacheable */
-	header("Cache-control: private");
-	header('Pragma: private');
-	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-
-	$exportTXT='';$i=0;
-		$slider_options='testimonial_slider_options'.$cntr;
-		$slider_curr=get_option($slider_options);
-		foreach($slider_curr as $key=>$value){
-			if($i>0) $exportTXT.="\n";
-			if(!is_array($value)){
-				$exportTXT.=$key.",".$value;
-			}
-			else {
-				$exportTXT.=$key.',';
-				$j=0;
-				if($value) {
-					foreach($value as $v){
-						if($j>0) $exportTXT.="|";
-						$exportTXT.=$v;
-						$j++;
-					}
-				}
-			}
-			$i++;
+		update_option($options,$new_settings_value);
+	  }
+	  else{
+		if( $testimonial_reset_settings == '1' ){
+			$new_settings_value=get_option('testimonial_slider_options');
+			$new_settings_value['setname']=$optionsvalue['setname'];
+			update_option($options,	$new_settings_value );
 		}
-	$exportTXT.="\n";
-	$exportTXT.="slider_name,testimonial";
-	print($exportTXT); 
-	exit();
+		else{
+			$new_option_name='testimonial_slider_options'.$testimonial_reset_settings;
+			$new_settings_value=get_option($new_option_name);
+			$new_settings_value['setname']=$optionsvalue['setname'];
+			update_option($options,	$new_settings_value );
+		}
+	  }
+	}
 }
 
 //Import Settings
-if ($_POST['import'] and $_POST['import']=='Import') {
-	global $wpdb;
-	$imported_settings_message='';
-	$csv_mimetypes = array('text/csv','text/plain','application/csv','text/comma-separated-values','application/excel',
-'application/vnd.ms-excel','application/vnd.msexcel','text/anytext','application/octet-stream','application/txt');
-	if ($_FILES['settings_file']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['settings_file']['tmp_name']) && in_array($_FILES['settings_file']['type'], $csv_mimetypes) ) { 
-		$imported_settings=file_get_contents($_FILES['settings_file']['tmp_name']); 
-		$settings_arr=explode("\n",$imported_settings);
-		$slider_settings=array();
-		foreach($settings_arr as $settings_field){
-			$s=explode(',',$settings_field);
-			$inner=explode('|',$s[1]);
-			if(count($inner)>1)	$slider_settings[$s[0]]=$inner;
-			else $slider_settings[$s[0]]=$s[1];
+if (isset ($_POST['import'])) {
+	if ($_POST['import']=='Import') {
+		global $wpdb;
+		$csv_mimetypes = array('text/csv','text/plain','application/csv','text/comma-separated-values','application/excel',
+	'application/vnd.ms-excel','application/vnd.msexcel','text/anytext','application/octet-stream','application/txt');
+		if ($_FILES['settings_file']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['settings_file']['tmp_name']) && in_array($_FILES['settings_file']['type'], $csv_mimetypes) ) { 
+			$imported_settings=file_get_contents($_FILES['settings_file']['tmp_name']); 
+			$settings_arr=explode("\n",$imported_settings);
+			$slider_settings=array();
+			foreach($settings_arr as $settings_field){
+				$s=explode(',',$settings_field);
+				$inner=explode('|',$s[1]);
+				if(count($inner)>1)	$slider_settings[$s[0]]=$inner;
+				else $slider_settings[$s[0]]=$s[1];
+			}
+			$options='testimonial_slider_options'.$cntr;
+			
+			if( $slider_settings['slider_name'] == 'testimonial' )	{
+				update_option($options,$slider_settings);
+				$new_settings_msg='<div id="message" class="updated fade" style="clear:left;"><h3>'.__('Settings imported successfully ','testimonial-slider').'</h3></div>';
+				$imported_settings_message='<div style="clear:left;color:#006E2E;"><h3>'.__('Settings imported successfully ','testimonial-slider').'</h3></div>';
+			}
+			else {
+				$new_settings_msg=$imported_settings_message='<div id="message" class="error fade" style="clear:left;"><h3>'.__('Settings imported do not match to Testimonial Slider Settings. Please check the file.','testimonial-slider').'</h3></div>';
+				$imported_settings_message='<div style="clear:left;color:#ff0000;"><h3>'.__('Settings imported do not match to Testimonial Slider Settings. Please check the file.','testimonial-slider').'</h3></div>';
+			}
 		}
-		$options='testimonial_slider_options'.$cntr;
-		
-		if( $slider_settings['slider_name'] == 'testimonial' )	{
-			update_option($options,$slider_settings);
-			$new_settings_msg='<div id="message" class="updated fade" style="clear:left;"><h3>'.__('Settings imported successfully ','testimonial-slider').'</h3></div>';
-			$imported_settings_message='<div style="clear:left;color:#006E2E;"><h3>'.__('Settings imported successfully ','testimonial-slider').'</h3></div>';
+		else{
+			$new_settings_msg=$imported_settings_message='<div id="message" class="error fade" style="clear:left;"><h3>'.__('Error in File, Settings not imported. Please check the file being imported. ','testimonial-slider').'</h3></div>';
+			$imported_settings_message='<div style="clear:left;color:#ff0000;"><h3>'.__('Error in File, Settings not imported. Please check the file being imported. ','testimonial-slider').'</h3></div>';
 		}
-		else {
-			$new_settings_msg=$imported_settings_message='<div id="message" class="error fade" style="clear:left;"><h3>'.__('Settings imported do not match to Testimonial Slider Settings. Please check the file.','testimonial-slider').'</h3></div>';
-			$imported_settings_message='<div style="clear:left;color:#ff0000;"><h3>'.__('Settings imported do not match to Testimonial Slider Settings. Please check the file.','testimonial-slider').'</h3></div>';
-		}
-	}
-	else{
-		$new_settings_msg=$imported_settings_message='<div id="message" class="error fade" style="clear:left;"><h3>'.__('Error in File, Settings not imported. Please check the file being imported. ','testimonial-slider').'</h3></div>';
-		$imported_settings_message='<div style="clear:left;color:#ff0000;"><h3>'.__('Error in File, Settings not imported. Please check the file being imported. ','testimonial-slider').'</h3></div>';
 	}
 }
 
 //Delete Set
-if ($_POST['delete_set'] and $_POST['delete_set']=='Delete this Set' and isset($cntr) and !empty($cntr)) {
-  $options='testimonial_slider_options'.$cntr;
-  delete_option($options);
-  $cntr='';
+if (isset ($_POST['delete_set'])) {
+	if ($_POST['delete_set']=='Delete this Set' and isset($cntr) and !empty($cntr)) {
+	  $options='testimonial_slider_options'.$cntr;
+	  delete_option($options);
+	  $cntr='';
+	}
 }
+
 $group='testimonial-slider-group'.$cntr;
 $testimonial_slider_options='testimonial_slider_options'.$cntr;
 $testimonial_slider_curr=get_option($testimonial_slider_options);
-if(!isset($cntr) or empty($cntr) or !$testimonial_slider_curr ){$curr = 'Default';}
+if(!isset($cntr) or empty($cntr)){$curr = 'Default';}
 else{$curr = $cntr;}
+foreach($default_testimonial_slider_settings as $key=>$value){
+	if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+}
 ?>
 
 <div class="wrap" style="clear:both;">
@@ -159,7 +182,9 @@ else{$curr = $cntr;}
 </form>
 <div class="svilla_cl"></div>
 <?php echo $new_settings_msg;?>
-<?php if($testimonial_slider_curr['disable_preview'] != '1'){?>
+<?php 
+if ($testimonial_slider_curr['disable_preview'] != '1'){
+?>
 <div id="settings_preview"><h2 style="clear:left;"><?php _e('Preview','testimonial-slider'); ?></h2> 
 <?php 
 if ($testimonial_slider_curr['preview'] == "0")
@@ -168,8 +193,10 @@ elseif($testimonial_slider_curr['preview'] == "1")
 	get_testimonial_slider_category($testimonial_slider_curr['catg_slug'],$cntr);
 else
 	get_testimonial_slider_recent($cntr);
-?> </div>
+?></div>
 <?php } ?>
+
+<?php echo $new_settings_msg;?>
 
 <div id="testimonial_settings" style="float:left;width:70%;">
 <form method="post" action="options.php" id="testimonial_slider_form">
@@ -186,7 +213,6 @@ else{?>
 	</table>
 <?php }
 ?>
-
 <div id="slider_tabs">
         <ul class="ui-tabs">
             <li style="font-weight:bold;font-size:12px;"><a href="#basic">Basic Settings</a></li>
@@ -864,8 +890,8 @@ if ($handle = opendir($directory)) {
 <tr valign="top">
 <th scope="row"><?php _e('Testimonial Template Tag for Preview','testimonial-slider'); ?></th>
 <td><select name="<?php echo $testimonial_slider_options;?>[preview]" >
-<option value="2" <?php if ($testimonial_slider_curr['preview'] == "2"){ echo "selected";}?> ><?php _e('Recent Posts Slider','testimonial-slider'); ?></option>
-<option value="1" <?php if ($testimonial_slider_curr['preview'] == "1"){ echo "selected";}?> ><?php _e('Category Slider','testimonial-slider'); ?></option>
+<option value="2" <?php if ($testimonial_slider_curr['preview'] == "2"){ echo "selected";}?> ><?php _e('Recent Testimonials Slider','testimonial-slider'); ?></option>
+<option value="1" <?php if ($testimonial_slider_curr['preview'] == "1"){ echo "selected";}?> ><?php _e('Category Testimonial Slider','testimonial-slider'); ?></option>
 <option value="0" <?php if ($testimonial_slider_curr['preview'] == "0"){ echo "selected";}?> ><?php _e('Custom Slider with Slider ID','testimonial-slider'); ?></option>
 </select>
 </td>
@@ -885,6 +911,45 @@ if ($handle = opendir($directory)) {
 </table>
 </div>
 
+<div style="border:1px solid #ccc;padding:10px;background:#fff;margin:3px 0">
+<h2><?php _e('Shortcode for Testimonial Slider','testimonial-slider'); ?></h2> 
+<p><?php _e('Paste the below shortcode on Page/Post Edit Panel to get the slider as shown in the above Preview','testimonial-slider'); ?></p><br />
+<?php if($cntr=='') $s_set='1'; else $s_set=$cntr;
+if ($testimonial_slider_curr['preview'] == "0")
+	echo '[testimonialslider id="'.$testimonial_slider_curr['slider_id'].'" set="'.$s_set.'"]';
+elseif($testimonial_slider_curr['preview'] == "1")
+	echo '[testimonialcategory catg_slug="'.$testimonial_slider_curr['catg_slug'].'" set="'.$s_set.'"]';
+else
+	echo '[testimonialrecent set="'.$s_set.'"]';
+?>
+</div>
+
+<div style="border:1px solid #ccc;padding:10px;background:#fff;margin:3px 0">
+<h2><?php _e('Template Tag for Testimonial Slider','testimonial-slider'); ?></h2> 
+<p><?php _e('Paste the below template tag in your theme template file like index.php or page.php at required location to get the slider as shown in the above Preview','testimonial-slider'); ?></p><br />
+<?php 
+if ($testimonial_slider_curr['preview'] == "0")
+	echo '<code>&lt;?php if(function_exists("get_testimonial_slider")){get_testimonial_slider($slider_id="'.$testimonial_slider_curr['slider_id'].'",$set="'.$s_set.'");}?&gt;</code>';
+elseif($testimonial_slider_curr['preview'] == "1")
+	echo '<code>&lt;?php if(function_exists("get_testimonial_slider_category")){get_testimonial_slider_category($catg_slug="'.$testimonial_slider_curr['catg_slug'].'",$set="'.$s_set.'");}?&gt;</code>';
+else
+	echo '<code>&lt;?php if(function_exists("get_testimonial_slider_recent")){get_testimonial_slider_recent($set="'.$s_set.'");}?&gt;</code>';
+?>
+</div>
+
+<div style="border:1px solid #ccc;padding:10px;background:#fff;margin:3px 0">
+<h2><?php _e('Shortcode for Testimonials List','testimonial-slider'); ?></h2> 
+<p><?php _e('Paste the below shortcode on Page/Post Edit Panel to get the list of Testimonials in the above Preview Testimonial Slider','testimonial-slider'); ?></p><br />
+<?php if($cntr=='') $s_set='1'; else $s_set=$cntr;
+if ($testimonial_slider_curr['preview'] == "0")
+	echo '[testimonialCustomList id="'.$testimonial_slider_curr['slider_id'].'" set="'.$s_set.'"]';
+elseif($testimonial_slider_curr['preview'] == "1")
+	echo '[testimonialListCategory catg_slug="'.$testimonial_slider_curr['catg_slug'].'" set="'.$s_set.'"]';
+else
+	echo '[testimonialList set="'.$s_set.'"]';
+?>
+</div>
+
 </div><!-- preview tab ends-->
 
 <div id="cssvalues">
@@ -895,9 +960,11 @@ if ($handle = opendir($directory)) {
 <div style="font-family:monospace;font-size:13px;background:#ddd;">
 .testimonial_slider_set<?php echo $cntr;?>{<?php echo $testimonial_slider_css['testimonial_slider'];?>} <br />
 .testimonial_slider_set<?php echo $cntr;?> .testimonial_slideri{<?php echo $testimonial_slider_css['testimonial_slideri'];?>} <br />
-.testimonial_slider_set<?php echo $cntr;?> .testimonial_content{<?php echo $testimonial_slider_css['testimonial_content'];?>} <br />
-.testimonial_slider_set<?php echo $cntr;?> .testimonial_title{<?php echo $testimonial_slider_css['testimonial_title'];?>} <br />
-.testimonial_slider_set<?php echo $cntr;?> .testimonial_control{<?php echo $testimonial_slider_css['testimonial_control'];?>} <br />
+.testimonial_slider_set<?php echo $cntr;?> .testimonial_avatar img{<?php echo $testimonial_slider_css['testimonial_avatar_img'] ;?>} <br />
+.testimonial_slider_set<?php echo $cntr;?> .testimonial_avatar{<?php echo $testimonial_slider_css['testimonial_by'] ;?>} <br />
+.testimonial_slider_set<?php echo $cntr;?> .testimonial_site, .testimonial_slider_set<?php echo $cntr;?> .testimonial_site a{<?php echo $testimonial_slider_css['testimonial_site_a'] ;?>} <br />
+.testimonial_slider_set<?php echo $cntr;?> .testimonial_quote{<?php echo $testimonial_slider_css['testimonial_quote'] ;?>} <br />
+.testimonial_slider_set<?php echo $cntr;?> .testimonial_nav a{<?php echo $testimonial_slider_css['testimonial_nav_a'] ;?>} <br />
 .testimonial_slider_set<?php echo $cntr;?> .testimonial_next{<?php echo $testimonial_slider_css['testimonial_next'];?>} <br />
 .testimonial_slider_set<?php echo $cntr;?> .testimonial_prev{<?php echo $testimonial_slider_css['testimonial_prev'];?>} 
 </div>
@@ -910,6 +977,7 @@ if ($handle = opendir($directory)) {
 <p class="submit">
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 </p>
+<input type="hidden" name="<?php echo $testimonial_slider_options;?>[active_tab]" id="testimonial_activetab" value="<?php echo $testimonial_slider_curr['active_tab']; ?>" />
 </form>
 
 <!--Form to reset Settings set-->
@@ -995,7 +1063,7 @@ for($i=1;$i<=$scounter;$i++){
      		<div class="postbox"> 
      		  <div class="inside">
 				<div style="margin:10px auto;">
-							<a href="http://slidervilla.com/" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/slidervilla-ad1.jpg');?>" alt="Premium WordPress Slider Plugins" /></a>
+							<a href="http://slidervilla.com/" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/slidervilla.jpg');?>" alt="Premium WordPress Slider Plugins" /></a>
 				</div>
             </div></div>
 			
@@ -1020,7 +1088,7 @@ for($i=1;$i<=$scounter;$i++){
 " ><?php _e('Support Forum','testimonial-slider'); ?></a></li>
 				<li><a href="http://guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
 " ><?php _e('Usage Guide','testimonial-slider'); ?></a></li>
-				<li><strong>Current Version: 1.0</strong></li>
+				<li><strong>Current Version: 1.0.1</strong></li>
                 </ul> 
               </div> 
 			</div> 

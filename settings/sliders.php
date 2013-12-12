@@ -7,53 +7,57 @@ global $testimonial_slider;
 
 <h2 style="float:left;"><?php _e('Sliders Created','testimonial-slider'); ?></h2>
 <?php 
-if ($_POST['remove_posts_slider']) {
-   if ( $_POST['slider_posts'] ) {
-       global $wpdb, $table_prefix;
-       $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
+if (isset ($_POST['remove_posts_slider'])) {
+   if ( isset($_POST['slider_posts'] ) ) {
+	   global $wpdb, $table_prefix;
+	   $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
 	   $current_slider = $_POST['current_slider_id'];
 	   foreach ( $_POST['slider_posts'] as $post_id=>$val ) {
 		   $sql = "DELETE FROM $table_name WHERE post_id = '$post_id' AND slider_id = '$current_slider' LIMIT 1";
 		   $wpdb->query($sql);
 	   }
    }
-   if ($_POST['remove_all'] == __('Remove All at Once','testimonial-slider')) {
-       global $wpdb, $table_prefix;
-       $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
-	   $current_slider = $_POST['current_slider_id'];
-	   if(is_testimonial_slider_on_slider_table($current_slider)) {
-		   $sql = "DELETE FROM $table_name WHERE slider_id = '$current_slider';";
-		   $wpdb->query($sql);
+   if (isset ($_POST['remove_all'])) {
+	   if ($_POST['remove_all'] == __('Remove All at Once','testimonial-slider')) {
+		   global $wpdb, $table_prefix;
+		   $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
+		   $current_slider = $_POST['current_slider_id'];
+		   if(is_testimonial_slider_on_slider_table($current_slider)) {
+			   $sql = "DELETE FROM $table_name WHERE slider_id = '$current_slider';";
+			   $wpdb->query($sql);
+		   }
 	   }
    }
-   if ($_POST['remove_all'] == __('Delete Slider','testimonial-slider')) {
-       $slider_id = $_POST['current_slider_id'];
-       global $wpdb, $table_prefix;
-       $slider_table = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
-       $slider_meta = $table_prefix.TESTIMONIAL_SLIDER_META;
-	   $slider_postmeta = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
-	   if(is_testimonial_slider_on_slider_table($slider_id)) {
-		   $sql = "DELETE FROM $slider_table WHERE slider_id = '$slider_id';";
-		   $wpdb->query($sql);
-	   }
-	   if(is_testimonial_slider_on_meta_table($slider_id)) {
-		   $sql = "DELETE FROM $slider_meta WHERE slider_id = '$slider_id';";
-		   $wpdb->query($sql);
-	   }
-	   if(is_testimonial_slider_on_postmeta_table($slider_id)) {
-		   $sql = "DELETE FROM $slider_postmeta WHERE slider_id = '$slider_id';";
-		   $wpdb->query($sql);
+   if (isset ($_POST['remove_all'])) {
+	   if ($_POST['remove_all'] == __('Delete Slider','testimonial-slider')) {
+		   $slider_id = $_POST['current_slider_id'];
+		   global $wpdb, $table_prefix;
+		   $slider_table = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
+		   $slider_meta = $table_prefix.TESTIMONIAL_SLIDER_META;
+		   $slider_postmeta = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
+		   if(is_testimonial_slider_on_slider_table($slider_id)) {
+			   $sql = "DELETE FROM $slider_table WHERE slider_id = '$slider_id';";
+			   $wpdb->query($sql);
+		   }
+		   if(is_testimonial_slider_on_meta_table($slider_id)) {
+			   $sql = "DELETE FROM $slider_meta WHERE slider_id = '$slider_id';";
+			   $wpdb->query($sql);
+		   }
+		   if(is_testimonial_slider_on_postmeta_table($slider_id)) {
+			   $sql = "DELETE FROM $slider_postmeta WHERE slider_id = '$slider_id';";
+			   $wpdb->query($sql);
+		   }
 	   }
    }
 }
-if ($_POST['create_new_slider']) {
+if (isset ($_POST['create_new_slider'])) {
    $slider_name = $_POST['new_slider_name'];
    global $wpdb,$table_prefix;
    $slider_meta = $table_prefix.TESTIMONIAL_SLIDER_META;
    $sql = "INSERT INTO $slider_meta (slider_name) VALUES('$slider_name');";
    $result = $wpdb->query($sql);
 }
-if ($_POST['reorder_posts_slider']) {
+if (isset ($_POST['reorder_posts_slider'])) {
    $i=1;
    global $wpdb, $table_prefix;
    $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
@@ -66,7 +70,7 @@ if ($_POST['reorder_posts_slider']) {
   }
 }
 
-if ($_POST['rename_slider'] == __('Rename','testimonial-slider')) {
+if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename','testimonial-slider'))) {
 	$slider_name = $_POST['rename_slider_to'];
 	$slider_id=$_POST['current_slider_id'];
 	if( !empty($slider_name) ) {
@@ -143,6 +147,9 @@ if ($_POST['rename_slider'] == __('Rename','testimonial-slider')) {
 	echo '</div>';
 ?>    
     </tbody></table>
+	
+	<input type="hidden" name="active_tab" class="testimonial_activetab" value="0" />
+	
  </form>
  
  
@@ -182,8 +189,10 @@ if ($_POST['rename_slider'] == __('Rename','testimonial-slider')) {
                 
         echo '</div>';
     ?>    
-       </div>       
-	   
+       </div>     
+
+		<input type="hidden" name="active_tab" class="testimonial_activetab" value="0" />
+		
   </form>
   
 <form action="" method="post"> 
@@ -195,6 +204,9 @@ if ($_POST['rename_slider'] == __('Rename','testimonial-slider')) {
 	</table>
 	<input type="hidden" name="current_slider_id" value="<?php echo $slider_id;?>" />
 	<input type="submit" value="<?php _e('Rename','testimonial-slider'); ?>"  name="<?php _e('rename_slider','testimonial-slider'); ?>" />
+	
+	<input type="hidden" name="active_tab" class="testimonial_activetab" value="0" />
+	
 </form>
   
 </div> 
@@ -211,6 +223,8 @@ if ($_POST['rename_slider'] == __('Rename','testimonial-slider')) {
     
     <div class="submit"><input type="submit" value="<?php _e('Create New','testimonial-slider'); ?>" name="create_new" /></div>
     
+	<input type="hidden" name="active_tab" class="testimonial_activetab" value="0" />
+	
     </form>
     </div>
 <?php }?> 

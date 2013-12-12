@@ -1,6 +1,6 @@
 <?php 
 function testimonial_global_posts_processor( $posts, $testimonial_slider_curr,$out_echo,$set,$data=array() ){
-	global $testimonial_slider;
+	global $testimonial_slider,$default_testimonial_slider_settings;
 	$testimonial_slider_css = testimonial_get_inline_css($set);
 	$html = '';
 	$testimonial_sldr_j = 0;
@@ -8,6 +8,10 @@ function testimonial_global_posts_processor( $posts, $testimonial_slider_curr,$o
 	$slider_handle='';
 	if ( is_array($data) and isset($data['slider_handle']) ) {
 		$slider_handle=$data['slider_handle'];
+	}
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
 	}
 	
 	foreach($posts as $post) {
@@ -53,13 +57,13 @@ function testimonial_global_posts_processor( $posts, $testimonial_slider_curr,$o
 		
 		$testimonial_by_wrap='<div class="testimonial_by_wrap" '.$testimonial_slider_css['testimonial_by_wrap'].'><span class="testimonial_avatar" '.$testimonial_slider_css['testimonial_avatar'].'><img src="'.$_testimonial_avatar.'" '.$testimonial_slider_css['testimonial_avatar_img'].' /></span><span class="testimonial_by" '.$testimonial_slider_css['testimonial_by'].'>'.$_testimonial_by.'</span><span class="testimonial_site" '.$testimonial_slider_css['testimonial_site_a'].'>'.$testimonial_company.'</span></div>';
 		
-		$slider_content = strip_shortcodes( $slider_content );
+		/*$slider_content = strip_shortcodes( $slider_content );
 
 		$slider_content = stripslashes($slider_content);
 		$slider_content = str_replace(']]>', ']]&gt;', $slider_content);
 
 		$slider_content = str_replace("\n","<br />",$slider_content);
-		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);
+		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);*/
 		if(!$testimonial_slider_curr['content_limit'] or $testimonial_slider_curr['content_limit'] == '' or $testimonial_slider_curr['content_limit'] == ' ') 
 		  $slider_excerpt = substr($slider_content,0,$testimonial_slider_curr['content_chars']);
 		else 
@@ -94,16 +98,20 @@ function testimonial_global_posts_processor( $posts, $testimonial_slider_curr,$o
 }
 
 function get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data=array()){
-	global $testimonial_slider; 
+	global $testimonial_slider,$default_testimonial_slider_settings;
 	$testimonial_sldr_j = $r_array[0];
 	$testimonial_slider_css = testimonial_get_inline_css($set); 
 	$slider_html='';
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
 	
 	$testimonial_media_queries='';
 	$o_visible=$testimonial_slider_curr['visible'];$o_responsive='';$o_width='';
 	$responsive_max_width=($testimonial_slider_curr['width']>0)?( $testimonial_slider_curr['width'].'px'  ) : ( '100%' );
     if( $testimonial_slider_curr['responsive'] == '1' ) {
-		$testimonial_media_queries='.testimonial_slider_set'.$set.'.testimonial_slider{width:100% !important;max-width:'.$responsive_max_width.';display:block;}.testimonial_slider_set'.$set.' img{max-width:90% !important;}.testimonial_side{width:100% !important;}.testimonial_slider_set'.$set.' .testimonial_control, .testimonial_slider_set'.$set.' .testimonial_title{padding-left:3% !important;padding-right:3% !important;width:94% !important;}';
+		$testimonial_media_queries='.testimonial_slider_set'.$set.'.testimonial_slider{width:100% !important;max-width:'.$responsive_max_width.';display:block;}.testimonial_slider_set'.$set.' img{max-width:90% !important;}.testimonial_side{width:100% !important;}';
 		//filter hook
 		$testimonial_media_queries=apply_filters('testimonial_media_queries',$testimonial_media_queries,$testimonial_slider_curr,$set);
 		$o_visible='{	min: 1,	max: '.$testimonial_slider_curr['visible'] .'}';
@@ -214,11 +222,15 @@ function get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slid
 }
 
 function testimonial_carousel_posts_on_slider($max_posts, $offset=0, $slider_id = '1',$out_echo = '1',$set='', $data=array() ) {
-    global $testimonial_slider;
+    global $testimonial_slider,$default_testimonial_slider_settings;
 	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
-		
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
+	
 	global $wpdb, $table_prefix;
 	$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
 	$post_table = $table_prefix."posts";
@@ -241,10 +253,14 @@ function testimonial_carousel_posts_on_slider($max_posts, $offset=0, $slider_id 
 }
 
 function get_testimonial_slider($slider_id='',$set='',$offset=0, $data=array() ) {
-    global $testimonial_slider; 
+    global $testimonial_slider,$default_testimonial_slider_settings; 
  	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
 	
 	if( !$offset or empty($offset) or !is_numeric($offset)  ) {
 		$offset=0;
@@ -268,11 +284,15 @@ function get_testimonial_slider($slider_id='',$set='',$offset=0, $data=array() )
 
 //For displaying category specific posts in chronologically reverse order
 function testimonial_carousel_posts_on_slider_category($max_posts='5', $catg_slug='', $offset=0, $out_echo = '1', $set='') {
-    global $testimonial_slider;
+    global $testimonial_slider,$default_testimonial_slider_settings;
 	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
-
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
+	
 	global $wpdb, $table_prefix;
 	
 	$rand = $testimonial_slider_curr['rand'];
@@ -304,10 +324,14 @@ function testimonial_carousel_posts_on_slider_category($max_posts='5', $catg_slu
 }
 
 function get_testimonial_slider_category($catg_slug='', $set='', $offset=0, $data=array() ) {
-    global $testimonial_slider; 
+    global $testimonial_slider,$default_testimonial_slider_settings; 
  	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
 	
 	if( !$offset or empty($offset) or !is_numeric($offset)  ) {
 		$offset=0;
@@ -321,10 +345,14 @@ function get_testimonial_slider_category($catg_slug='', $set='', $offset=0, $dat
 
 //For displaying recent posts in chronologically reverse order
 function testimonial_carousel_posts_on_slider_recent($max_posts='5', $offset=0, $out_echo = '1', $set='', $data=array() ) {
-    global $testimonial_slider;
+    global $testimonial_slider,$default_testimonial_slider_settings;
 	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
 	
 	$posts = get_posts( array(
 	'numberposts'     => $max_posts,
@@ -344,10 +372,15 @@ function testimonial_carousel_posts_on_slider_recent($max_posts='5', $offset=0, 
 }
 
 function get_testimonial_slider_recent($set='', $offset=0, $data=array() ) {
-	global $testimonial_slider; 
+	global $testimonial_slider,$default_testimonial_slider_settings; 
  	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
+	
 	if( !$offset or empty($offset) or !is_numeric($offset)  ) {
 		$offset=0;
 	}
@@ -428,16 +461,26 @@ function testimonial_slider_admin_head() {
 global $testimonial_slider;
 if ( is_admin() ){ // admin actions
    
-  // Sliders & Settings page only
+// Sliders & Settings page only
     if ( isset($_GET['page']) && ('testimonial-slider-admin' == $_GET['page'] or 'testimonial-slider-settings' == $_GET['page']) ) {
 	  $sliders = testimonial_ss_get_sliders(); 
+		global $testimonial_slider;
+		$cntr='';
+		if(isset($_GET['scounter'])) $cntr = $_GET['scounter'];
+		$testimonial_slider_options='testimonial_slider_options'.$cntr;
+		$testimonial_slider_curr=get_option($testimonial_slider_options);
+		$active_tab=(isset($testimonial_slider_curr['active_tab']))?$testimonial_slider_curr['active_tab']:0;
+		if ( isset($_GET['page']) && ('testimonial-slider-admin' == $_GET['page']) && isset($_POST['active_tab']) ) $active_tab=$_POST['active_tab'];
 	?>
 		<script type="text/javascript">
             // <![CDATA[
-         jQuery(document).ready(function() {
+        jQuery(document).ready(function() {
                 jQuery(function() {
-				 jQuery("#slider_tabs").tabs({fx: { opacity: "toggle", duration: 300}}).addClass( "ui-tabs-vertical-left ui-helper-clearfix" );jQuery( "#slider_tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
-				<?php foreach($sliders as $slider){?>
+					jQuery("#slider_tabs").tabs({fx: { opacity: "toggle", duration: 300}, active: <?php echo $active_tab;?> }).addClass( "ui-tabs-vertical-left ui-helper-clearfix" );jQuery( "#slider_tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+				<?php 	if ( isset($_GET['page']) && (( 'testimonial-slider-settings' == $_GET['page']) or ('testimonial-slider-admin' == $_GET['page']) ) ) { ?>
+					jQuery( "#slider_tabs" ).on( "tabsactivate", function( event, ui ) { jQuery( "#testimonial_activetab, .testimonial_activetab" ).val( jQuery( "#slider_tabs" ).tabs( "option", "active" ) ); });
+				<?php 	}
+				foreach($sliders as $slider){ ?>
                     jQuery("#sslider_sortable_<?php echo $slider['slider_id'];?>").sortable();
                     jQuery("#sslider_sortable_<?php echo $slider['slider_id'];?>").disableSelection();
 			    <?php } ?>
@@ -646,10 +689,14 @@ add_action('admin_head', 'testimonial_slider_admin_head');
 
 //get inline css with style attribute attached
 function testimonial_get_inline_css($set='',$echo='0'){
-    global $testimonial_slider;
+    global $testimonial_slider,$default_testimonial_slider_settings;
 	$testimonial_slider_options='testimonial_slider_options'.$set;
     $testimonial_slider_curr=get_option($testimonial_slider_options);
 	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+	
+	foreach($default_testimonial_slider_settings as $key=>$value){
+		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+	}
 	
 	$testimonial_slider_css=array();
 	
@@ -694,6 +741,12 @@ function testimonial_get_inline_css($set='',$echo='0'){
 	//testimonial_prev
 	$prevurl='css/skins/'.$testimonial_slider['stylesheet'].'/buttons/'.$testimonial_slider_curr['buttons'].'/prev.png';
 	$testimonial_slider_css['testimonial_prev']=$style_start.'background: transparent url('.testimonial_slider_plugin_url( $prevurl ) .') no-repeat 0 0;'.$style_end;
+	
+	//currently empty values
+	$testimonial_slider_css['testimonial_by_wrap']='';
+	$testimonial_slider_css['testimonial_avatar']='';
+	$testimonial_slider_css['testimonial_slider_span']='';
+	$testimonial_slider_css['testimonial_nav']='';
 
 	return $testimonial_slider_css;
 }

@@ -11,7 +11,7 @@ Wordpress version supported: 3.0 and above
 
 /*basic styles*/
 .testimonial_slider_fouc .testimonial_slider__default {display: none;} /* Keep this as it is*/
-.testimonial_slider__default div,.testimonial_slider__default p,.testimonial_slider__default li,.testimonial_slider__default span,.testimonial_slider__default img,.testimonial_slider__default h2,.testimonial_slider__default ul{list-style:none;vertical-align:baseline;}
+.testimonial_slider__default div,.testimonial_slider__default p,.testimonial_slider__default li,.testimonial_slider__default span,.testimonial_slider__default img,.testimonial_slider__default h2,.testimonial_slider__default ul{vertical-align:baseline;}
 .testimonial_slider{overflow:hidden;margin: 0 0 0 0;line-height:18px;position:relative}
 .testimonial_slider__default .testimonial_slider_instance { margin: 0 auto; padding: 0; clear: left; }
 .testimonial_slider__default .testimonial_slide { margin: 0; padding: 0 }

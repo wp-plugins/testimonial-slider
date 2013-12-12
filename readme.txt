@@ -3,11 +3,11 @@ Contributors: slidervilla
 Tags: testimonial, slider, slideshow, feedback, content slider, responsive, widget, content, jquery, gallery, custom post type, sidebar, wpmu
 Donate link: http://www.clickonf5.org/go/donate-wp-plugins/
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 1.0
+Tested up to: 3.8
+Stable tag: 1.0.1
 License: GPLv2 or later
 
-Display your happy customers' Testimonials in a Neat Responsive Slider 
+Display your happy customers' Testimonials in a neat Responsive Slider 
 
 == Description ==
 
@@ -18,6 +18,7 @@ Testimonial Slider is a plugin for WordPress that will help you show the Testimo
 * Add only specific "Testimonials" to Custom Slider
 * Show "Category" specific Testimonials
 * Show "Recent" testimonials
+* Show the Testimonials List using Template tag or Shortcode
 * Shortcodes and Widgets available
 * Multiple Sliders, Multiple Settings and Multiple transition effects supported.
 
@@ -69,6 +70,10 @@ There's 3 ways to install this plugin:
 
 `[testimonialrecent]`
 
+* Testimonials List
+
+`[testimonialList]`
+
 **Please refer the [Testimonial Slider Documentation](http://guides.slidervilla.com/testimonial-slider/) for more details.**
 
 == Screenshots ==
@@ -84,8 +89,11 @@ Visit the plugin page (http://slidervilla.com/testimonial-slider/) for recent FA
 
 == Upgrade Notice ==
 
-The very first release!!
+No major issues!
 
 == Changelog ==
 
-No changelog as it is the first release!
+* 1.0.1 (12/12/2013)
+1. New: Template tag and Shortcodes to display Testimonials in list (one below/beside another).
+2. New: HTML tags and shortcodes will be retained in the Testimonials content
+3. Fix: WP Debug error fixes
