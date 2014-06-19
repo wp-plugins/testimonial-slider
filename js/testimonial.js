@@ -4235,8 +4235,6 @@
 		return false;
 	}
 
-
-
 	//	EASING FUNCTIONS
 	$.extend($.easing, {
 		'quadratic': function(t) {

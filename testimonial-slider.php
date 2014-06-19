@@ -3,13 +3,13 @@
 Plugin Name: Testimonial Slider
 Plugin URI: http://slidervilla.com/testimonial-slider/
 Description: Use Testimonial Slider to show the awesome testimonials you have received in a beautiful horizontal slider format.
-Version: 1.0.1	
+Version: 1.1	
 Author: SliderVilla
 Author URI: http://slidervilla.com/
-Wordpress version supported: 3.0 and above
+Wordpress version supported: 3.5 and above
 License: GPL2
 
-	Copyright 2013  SliderVilla (email : tedeshpa@gmail.com)
+	Copyright 2014  SliderVilla (email : tedeshpa@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -25,7 +25,8 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 //defined global variables and constants here
-global $testimonial_slider,$default_testimonial_slider_settings;
+global $testimonial_slider,$default_testimonial_slider_settings,$testimonial_db_version;
+$testimonial_db_version='1.1'; //current version of testimonial slider database 
 $testimonial_slider = get_option('testimonial_slider_options');
 $default_testimonial_slider_settings = array('speed'=>'6', 
                            'time'=>'20',
@@ -91,16 +92,21 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 						   'navimg_w'=>'16',
 						   'navimg_h'=>'16',
 						   'css'=>'',
-						   'responsive'=>'0',
+						   'new'=>'1',
+						   'popup'=>'1',
 						   'setname'=>'Set',
 						   'disable_preview'=>'0',
+						   'nav_color'=>'#999',
 						   'active_tab'=>'0',
+						   'show_avatar'=> '1',
+						   'avatar_shape'=> 'square',
+						   'avatar_radius'=>'0',
 						   'noscript'=>''
 			              );
 define('TESTIMONIAL_SLIDER_TABLE','testimonial_slider'); //Slider TABLE NAME
 define('TESTIMONIAL_SLIDER_META','testimonial_slider_meta'); //Meta TABLE NAME
 define('TESTIMONIAL_SLIDER_POST_META','testimonial_slider_postmeta'); //Meta TABLE NAME
-define("TESTIMONIAL_SLIDER_VER","1.0.1",false);//Current Version of Testimonial Slider
+define("TESTIMONIAL_SLIDER_VER","1.1",false);//Current Version of Testimonial Slider
 if ( ! defined( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME' ) )
 	define( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 if ( ! defined( 'TESTIMONIAL_SLIDER_CSS_DIR' ) ){
@@ -110,79 +116,92 @@ if ( ! defined( 'TESTIMONIAL_SLIDER_CSS_DIR' ) ){
 load_plugin_textdomain('testimonial-slider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
 
 function install_testimonial_slider() {
-	global $wpdb, $table_prefix;
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
-	if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-		$sql = "CREATE TABLE $table_name (
-					id int(5) NOT NULL AUTO_INCREMENT,
-					post_id int(11) NOT NULL,
-					date datetime NOT NULL,
-					slider_id int(5) NOT NULL DEFAULT '1',
-					slide_order int(5) NOT NULL DEFAULT '0',
-					UNIQUE KEY id(id)
-				);";
-		$rs = $wpdb->query($sql);
-	}
+	global $wpdb, $table_prefix,$testimonial_db_version;
+	$installed_ver = get_site_option( "testimonial_db_version" );
+	if( $installed_ver != $testimonial_db_version ) {
+		$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
+		if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+			$sql = "CREATE TABLE $table_name (
+						id int(5) NOT NULL AUTO_INCREMENT,
+						post_id int(11) NOT NULL,
+						date datetime NOT NULL,
+						slider_id int(5) NOT NULL DEFAULT '1',
+						slide_order int(5) NOT NULL DEFAULT '0',
+						UNIQUE KEY id(id)
+					);";
+			$rs = $wpdb->query($sql);
+		}
 
-   	$meta_table_name = $table_prefix.TESTIMONIAL_SLIDER_META;
-	if($wpdb->get_var("show tables like '$meta_table_name'") != $meta_table_name) {
-		$sql = "CREATE TABLE $meta_table_name (
-					slider_id int(5) NOT NULL AUTO_INCREMENT,
-					slider_name varchar(100) NOT NULL default '',
-					UNIQUE KEY slider_id(slider_id)
-				);";
-		$rs2 = $wpdb->query($sql);
+	   	$meta_table_name = $table_prefix.TESTIMONIAL_SLIDER_META;
+		if($wpdb->get_var("show tables like '$meta_table_name'") != $meta_table_name) {
+			$sql = "CREATE TABLE $meta_table_name (
+						slider_id int(5) NOT NULL AUTO_INCREMENT,
+						slider_name varchar(100) NOT NULL default '',
+						UNIQUE KEY slider_id(slider_id)
+					);";
+			$rs2 = $wpdb->query($sql);
 		
-		$sql = "INSERT INTO $meta_table_name (slider_id,slider_name) VALUES('1','Testimonial Slider');";
-		$rs3 = $wpdb->query($sql);
-	}
+			$sql = "INSERT INTO $meta_table_name (slider_id,slider_name) VALUES('1','Testimonial Slider');";
+			$rs3 = $wpdb->query($sql);
+		}
 	
-	$slider_postmeta = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
-	if($wpdb->get_var("show tables like '$slider_postmeta'") != $slider_postmeta) {
-		$sql = "CREATE TABLE $slider_postmeta (
-					post_id int(11) NOT NULL,
-					slider_id int(5) NOT NULL default '1',
-					UNIQUE KEY post_id(post_id)
-				);";
-		$rs4 = $wpdb->query($sql);
-	}
-   // Testimonial Slider Settings and Options
-   $default_slider = array();
-   global $default_testimonial_slider_settings;
-   $default_slider = $default_testimonial_slider_settings;
-   
-   	      	   $default_scounter='1';
-	   $scounter=get_option('testimonial_slider_scounter');
-	   if(!isset($scounter) or $scounter=='' or empty($scounter)){
-	      update_option('testimonial_slider_scounter',$default_scounter);
-		  $scounter=$default_scounter;
-	   }
+		$slider_postmeta = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
+		if($wpdb->get_var("show tables like '$slider_postmeta'") != $slider_postmeta) {
+			$sql = "CREATE TABLE $slider_postmeta (
+						post_id int(11) NOT NULL,
+						slider_id int(5) NOT NULL default '1',
+						UNIQUE KEY post_id(post_id)
+					);";
+			$rs4 = $wpdb->query($sql);
+		}
+	   // Testimonial Slider Settings and Options
+	   $default_slider = array();
+	   global $default_testimonial_slider_settings;
+	   $default_slider = $default_testimonial_slider_settings;
 	   
-	   for($i=1;$i<=$scounter;$i++){
-	       if ($i==1){
-		    $testimonial_slider_options='testimonial_slider_options';
+	   	      	   $default_scounter='1';
+		   $scounter=get_option('testimonial_slider_scounter');
+		   if(!isset($scounter) or $scounter=='' or empty($scounter)){
+		      update_option('testimonial_slider_scounter',$default_scounter);
+			  $scounter=$default_scounter;
 		   }
-		   else{
-		    $testimonial_slider_options='testimonial_slider_options'.$i;
-		   }
-		   $testimonial_slider_curr=get_option($testimonial_slider_options);
-	   				 
-		   if(!$testimonial_slider_curr and $i==1) {
-			 $testimonial_slider_curr = array();
-		   }
-		
-		   if($testimonial_slider_curr or $i==1) {
-			   foreach($default_slider as $key=>$value) {
-				  if(!isset($testimonial_slider_curr[$key])) {
-					 $testimonial_slider_curr[$key] = $value;
-				  }
+		   
+		   for($i=1;$i<=$scounter;$i++){
+		       if ($i==1){
+			    $testimonial_slider_options='testimonial_slider_options';
 			   }
-			   delete_option($testimonial_slider_options);	  
-			   update_option($testimonial_slider_options,$testimonial_slider_curr);
-		   }
-	   } //end for loop
+			   else{
+			    $testimonial_slider_options='testimonial_slider_options'.$i;
+			   }
+			   $testimonial_slider_curr=get_option($testimonial_slider_options);
+		   				 
+			   if(!$testimonial_slider_curr and $i==1) {
+				 $testimonial_slider_curr = array();
+			   }
+		
+			   if($testimonial_slider_curr or $i==1) {
+				   foreach($default_slider as $key=>$value) {
+					  if(!isset($testimonial_slider_curr[$key])) {
+						 $testimonial_slider_curr[$key] = $value;
+					  }
+				   }
+				   delete_option($testimonial_slider_options);	  
+				   update_option($testimonial_slider_options,$testimonial_slider_curr);
+				   update_site_option( "testimonial_db_version", $testimonial_db_version );
+			   }
+		   } //end for loop
+	}
 }
 register_activation_hook( __FILE__, 'install_testimonial_slider' );
+/* Added for auto update - start */
+function testimonial_update_db_check() {
+    global $testimonial_db_version;
+    if (get_site_option('testimonial_db_version') != $testimonial_db_version) {
+        install_testimonial_slider();
+    }
+}
+add_action('plugins_loaded', 'testimonial_update_db_check');
+
 require_once (dirname (__FILE__) . '/includes/testimonial-slider-functions.php');
 
 //This adds the post to the slider

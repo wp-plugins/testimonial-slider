@@ -11,11 +11,11 @@ function get_global_testimonial_list($slider_handle,$r_array,$testimonial_slider
 	
 	$testimonial_media_queries='';
 	$responsive_max_width=($testimonial_slider_curr['width']>0)?( $testimonial_slider_curr['width'].'px'  ) : ( '100%' );
-    if( $testimonial_slider_curr['responsive'] == '1' ) {
+    
 		$testimonial_media_queries='.testimonial_slider_set'.$set.'.testimonial_slider{width:100% !important;max-width:'.$responsive_max_width.';display:block;}.testimonial_slider_set'.$set.' .testimonial_slideri{max-width:90% !important;}.testimonial_slider_set'.$set.' img{max-width:90% !important;}';
 		//filter hook
 		$testimonial_media_queries=apply_filters('testimonial_media_queries',$testimonial_media_queries,$testimonial_slider_curr,$set);
-	}
+	
 	
 	$script='<script type="text/javascript"> ';
 	if(!empty($testimonial_media_queries)){
@@ -25,7 +25,8 @@ function get_global_testimonial_list($slider_handle,$r_array,$testimonial_slider
 	do_action('testimonial_global_list_script',$slider_handle,$testimonial_slider_curr);
 	$script.='</script>';
 	
-	$stylesheet=$testimonial_slider['stylesheet'];
+	//Added for skins $stylesheet=$testimonial_slider['stylesheet'];
+	$stylesheet=$testimonial_slider_curr['stylesheet'];
 	if(empty($stylesheet)) $stylesheet = 'default';
 	
 	$slider_html.='<div id="'.$slider_handle.'_wrap" class="testimonial_slider testimonial_slider_set'. $set .' testimonial_slider__'.$stylesheet.'" '.$testimonial_slider_css['testimonial_slider'].'>
@@ -228,6 +229,11 @@ function return_testimonial_list($max_posts='',$set='',$offset=0, $data=array())
 	//get slider 
 	$slider_html=return_global_testimonial_list($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='0');
 	
+	// Added For skin specific Stylesheets 
+	if(isset($testimonial_slider_curr['stylesheet'])) $skin=$testimonial_slider_curr['stylesheet'];
+	if(empty($skin))$skin='default';
+	wp_enqueue_style( 'testimonial_'.$skin, testimonial_slider_plugin_url( 'css/skins/'.$skin.'/style.css' ),false,TESTIMONIAL_SLIDER_VER, 'all');
+	
 	return $slider_html;
 }
 
@@ -239,5 +245,6 @@ function testimonial_list_shortcode($atts) {
 	), $atts));
 	return return_testimonial_list($count,$set,$offset);
 }
+
 add_shortcode('testimonialList', 'testimonial_list_shortcode');
 ?>

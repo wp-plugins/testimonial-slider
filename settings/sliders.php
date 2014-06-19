@@ -3,9 +3,9 @@ function testimonial_slider_create_multiple_sliders() {
 global $testimonial_slider;
 ?>
 
-<div class="wrap" style="clear:both;">
+<div class="wrap testimonial_sliders_create" id="testimonial_sliders_create" style="clear:both;">
 
-<h2 style="float:left;"><?php _e('Sliders Created','testimonial-slider'); ?></h2>
+<h2 class="top_heading"><span><?php _e('Sliders Created','testimonial-slider'); ?></span></h2>
 <?php 
 if (isset ($_POST['remove_posts_slider'])) {
    if ( isset($_POST['slider_posts'] ) ) {
@@ -82,23 +82,28 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 }
 
 ?>
-<div style="clear:both"></div>
+<div style="clear:left"></div>
 <?php $url = testimonial_sslider_admin_url( array( 'page' => 'testimonial-slider-settings' ) );?>
-<a href="<?php echo $url; ?>" title="<?php _e('Settings Page for Testimonial Slider where you can change the color, font etc. for the sliders','testimonial-slider'); ?>"><?php _e('Go to Testimonial Slider Settings page','testimonial-slider'); ?></a>
+<a class="svorangebutton" href="<?php echo $url; ?>" title="<?php _e('Settings Page for Testimonial Slider where you can change the color, font etc. for the sliders','testimonial-slider'); ?>"><?php _e('Go to Testimonial Slider Settings page','testimonial-slider'); ?></a>
+<div style="clear:right"></div>
 <?php $sliders = testimonial_ss_get_sliders(); ?>
 
 <div id="slider_tabs">
-        <ul class="ui-tabs" style="width:15%;margin-right:2%;">
+        <ul class="ui-tabs" >
         <?php foreach($sliders as $slider){?>
-            <li><a href="#tabs-<?php echo $slider['slider_id'];?>"><?php echo $slider['slider_name'];?></a></li>
+            <li class="yellow"><a href="#tabs-<?php echo $slider['slider_id'];?>"><?php echo $slider['slider_name'];?></a></li>
         <?php } ?>
         <?php if($testimonial_slider['multiple_sliders'] == '1') {?>
-            <li><a href="#new_slider"><?php _e('Create New Slider','testimonial-slider'); ?></a></li>
+            <li class="green"><a href="#new_slider"><?php _e('Create New Slider','testimonial-slider'); ?></a></li>
         <?php } ?>
         </ul>
 
 <?php foreach($sliders as $slider){?>
-<div id="tabs-<?php echo $slider['slider_id'];?>">
+<div id="tabs-<?php echo $slider['slider_id'];?>" class="tabsid">
+<strong>Quick Embed Shortcode:</strong>
+<div class="admin_shortcode">
+<pre style="padding: 10px 0;">[testimonialslider id='<?php echo $slider['slider_id'];?>']</pre>
+</div>
 <form action="" method="post">
 <?php settings_fields('testimonial-slider-group'); ?>
 
@@ -108,7 +113,7 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 <p><em><?php _e('Check the Post/Page and Press "Remove Selected" to remove them From','testimonial-slider'); ?> <?php echo $slider['slider_name'];?>. <?php _e('Press "Remove All at Once" to remove all the posts from the','testimonial-slider'); ?> <?php echo $slider['slider_name'];?>.</em></p>
 
     <table class="widefat">
-    <thead><tr><th><?php _e('Post/Page Title','testimonial-slider'); ?></th><th><?php _e('Author','testimonial-slider'); ?></th><th><?php _e('Post Date','testimonial-slider'); ?></th><th><?php _e('Remove Post','testimonial-slider'); ?></th></tr></thead><tbody>
+    <thead class="blue"><tr><th><?php _e('Post/Page Title','testimonial-slider'); ?></th><th><?php _e('Author','testimonial-slider'); ?></th><th><?php _e('Post Date','testimonial-slider'); ?></th><th><?php _e('Remove Post','testimonial-slider'); ?></th></tr></thead><tbody>
 
 <?php  
 	/*global $wpdb, $table_prefix;
@@ -134,7 +139,7 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 	if ($count == 0) {
 		echo '<tr><td colspan="4">'.__( 'No posts/pages have been added to the Slider - You can add respective post/page to slider on the Edit screen for that Post/Page', 'testimonial-slider' ).'</td></tr>';
 	}
-	echo '</tbody><tfoot><tr><th>'.__( 'Post/Page Title', 'testimonial-slider' ).'</th><th>'.__( 'Author', 'testimonial-slider' ).'</th><th>'.__( 'Post Date', 'testimonial-slider' ).'</th><th>'.__( 'Remove Post', 'testimonial-slider' ).'</th></tr></tfoot></table>'; 
+	echo '</tbody><tfoot class="blue"><tr><th>'.__( 'Post/Page Title', 'testimonial-slider' ).'</th><th>'.__( 'Author', 'testimonial-slider' ).'</th><th>'.__( 'Post Date', 'testimonial-slider' ).'</th><th>'.__( 'Remove Post', 'testimonial-slider' ).'</th></tr></tfoot></table>'; 
     
 	echo '<div class="submit">';
 	
@@ -214,7 +219,7 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 <?php } ?>
 
 <?php if($testimonial_slider['multiple_sliders'] == '1') {?>
-    <div id="new_slider">
+    <div id="new_slider" style="width: 56%;">
     <form action="" method="post" onsubmit="return slider_checkform(this);" >
     <h3><?php _e('Enter New Slider Name','testimonial-slider'); ?></h3>
     <input type="hidden" name="create_new_slider" value="1" />
@@ -228,16 +233,32 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
     </form>
     </div>
 <?php }?> 
-<div style="clear:left;"></div>
+
 </div>
 
-<div id="poststuff" class="metabox-holder has-right-sidebar"> 
+<div id="poststuff" class="metabox-holder has-right-sidebar poststuffSliders"> 
 <?php if ($testimonial_slider['support'] == "1"){ ?>
-<h2 style="text-align:left;margin:0 0 10px 0">Recommendations</h3>
-     <div>
-         <a href="http://slidervilla.com/" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/slidervilla-728.jpg');?>" alt="Premium WordPress Slider Plugins" style="width:100%;max-width:728px;" /></a>
-     </div>
-
+<div class="postbox"> 
+	<h3 class="hndle"><span><?php _e('About this Plugin:','testimonial-slider'); ?></span></h3> 
+		  <div class="inside">
+		  <ul>
+		        <li><a href="http://slidervilla.com/testimonial-slider/" title="<?php _e('Testimonial Slider Homepage','testimonial-slider'); ?>
+	" ><?php _e('Plugin Homepage','testimonial-slider'); ?></a></li>
+			<li><a href="http://support.slidervilla.com/" title="<?php _e('Support Forum','testimonial-slider'); ?>
+	" ><?php _e('Support Forum','testimonial-slider'); ?></a></li>
+			<li><a href="http://guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
+	" ><?php _e('Usage Guide','testimonial-slider'); ?></a></li>
+			<li><strong>Current Version: <?php echo TESTIMONIAL_SLIDER_VER;?></strong></li>
+		   </ul> 
+		   </div> 
+	</div>  
+	<div class="postbox" style="margin:10px 0;"> 
+		<div class="inside">
+			<div style="margin:10px auto;">
+				<a href="http://slidervilla.com" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/banner-premium.png');?>" alt="Premium WordPress Slider Plugins" width="100%" /></a>
+			</div>
+		</div>
+	</div>
 <?php } ?>
      <div style="clear:left;"></div>
  </div> <!--end of poststuff --> 
