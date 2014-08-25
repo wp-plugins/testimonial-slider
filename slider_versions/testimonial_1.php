@@ -212,14 +212,7 @@ require_once (dirname (__FILE__) . '/shortcodes_1.php');
 require_once (dirname (__FILE__) . '/widgets_1.php');
 
 function testimonial_slider_enqueue_scripts() {
-	wp_enqueue_script( 'testimonial', testimonial_slider_plugin_url( 'js/testimonial.js' ),
-		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
-	wp_enqueue_script( 'jquery.cycle', testimonial_slider_plugin_url( 'js/jquery.cycle.js' ),
-		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
-	wp_enqueue_script( 'easing', testimonial_slider_plugin_url( 'js/jquery.easing.js' ),
-		false, TESTIMONIAL_SLIDER_VER, false);
-	wp_enqueue_script( 'jquery.touchwipe', testimonial_slider_plugin_url( 'js/jquery.touchwipe.js' ),
-		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
+	wp_enqueue_script( 'jquery');
 }
 
 add_action( 'init', 'testimonial_slider_enqueue_scripts' );

@@ -127,6 +127,16 @@ function testimonial_slider_get_oval($slider_handle,$r_array,$testimonial_slider
 	  $sldr_title = '<div class="sldr_title" '.$testimonial_slider_css['sldr_title'].'>'. $sldr_title .'</div>';
 	}
 	/*---- End Slider Title----*/
+	// Scripts
+	wp_enqueue_script( 'testimonial', testimonial_slider_plugin_url( 'js/testimonial.js' ),
+		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
+	wp_enqueue_script( 'jquery.cycle', testimonial_slider_plugin_url( 'js/jquery.cycle.js' ),
+		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
+	wp_enqueue_script( 'easing', testimonial_slider_plugin_url( 'js/jquery.easing.js' ),
+		false, TESTIMONIAL_SLIDER_VER, false);
+	wp_enqueue_script( 'jquery.touchwipe', testimonial_slider_plugin_url( 'js/jquery.touchwipe.js' ),
+		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
+	
 	$testimonial_media_queries='';
 	$o_visible=$testimonial_slider_curr['visible'];$o_responsive='';$o_width='';
 	$responsive_max_width=($testimonial_slider_curr['width']>0)?( $testimonial_slider_curr['width'].'px'  ) : ( '100%' );

@@ -29,6 +29,11 @@ function get_global_testimonial_list($slider_handle,$r_array,$testimonial_slider
 	$stylesheet=$testimonial_slider_curr['stylesheet'];
 	if(empty($stylesheet)) $stylesheet = 'default';
 	
+	// Added For skin specific Stylesheets
+	if(isset($testimonial_slider_curr['stylesheet'])) $skin=$testimonial_slider_curr['stylesheet'];
+	if(empty($skin))$skin='default';
+	wp_enqueue_style( 'testimonial_'.$skin, testimonial_slider_plugin_url( 'css/skins/'.$skin.'/style.css' ),false,TESTIMONIAL_SLIDER_VER, 'all');
+
 	$slider_html.='<div id="'.$slider_handle.'_wrap" class="testimonial_slider testimonial_slider_set'. $set .' testimonial_slider__'.$stylesheet.'" '.$testimonial_slider_css['testimonial_slider'].'>
 		<div id="'.$slider_handle.'" class="testimonial_slider_instance">
 			'. $r_array[1] .'
@@ -197,6 +202,8 @@ function return_testimonial_list_category($catg_slug='',$set='',$offset=0) {
 	//get slider 
 	$slider_html=return_global_testimonial_list($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='0');
 	
+	
+
 	return $slider_html;
 }
 
@@ -228,12 +235,7 @@ function return_testimonial_list($max_posts='',$set='',$offset=0, $data=array())
 	
 	//get slider 
 	$slider_html=return_global_testimonial_list($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='0');
-	
-	// Added For skin specific Stylesheets 
-	if(isset($testimonial_slider_curr['stylesheet'])) $skin=$testimonial_slider_curr['stylesheet'];
-	if(empty($skin))$skin='default';
-	wp_enqueue_style( 'testimonial_'.$skin, testimonial_slider_plugin_url( 'css/skins/'.$skin.'/style.css' ),false,TESTIMONIAL_SLIDER_VER, 'all');
-	
+		
 	return $slider_html;
 }
 

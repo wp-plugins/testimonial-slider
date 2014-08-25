@@ -841,8 +841,6 @@ if ($handle = opendir($directory)) {
 <tr valign="top">
 <th scope="row"><?php _e('Pick content From','testimonial-slider'); ?></th>
 <td><select name="<?php echo $testimonial_slider_options;?>[content_from]" id="testimonial_slider_content_from" >
-<option value="slider_content" <?php if ($testimonial_slider_curr['content_from'] == "slider_content"){ echo "selected";}?> ><?php _e('Slider Content Custom field','testimonial-slider'); ?></option>
-<option value="excerpt" <?php if ($testimonial_slider_curr['content_from'] == "excerpt"){ echo "selected";}?> ><?php _e('Post Excerpt','testimonial-slider'); ?></option>
 <option value="content" <?php if ($testimonial_slider_curr['content_from'] == "content"){ echo "selected";}?> ><?php _e('From Content','testimonial-slider'); ?></option>
 </select>
 </td>
