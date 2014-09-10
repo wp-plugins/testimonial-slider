@@ -65,11 +65,18 @@ function testimonial_post_processor_default( $posts, $testimonial_slider_curr,$o
 
 		$slider_content = str_replace("\n","<br />",$slider_content);
 		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);*/
-		if(!$testimonial_slider_curr['content_limit'] or $testimonial_slider_curr['content_limit'] == '' or $testimonial_slider_curr['content_limit'] == ' ') 
+		/*if(!$testimonial_slider_curr['content_limit'] or $testimonial_slider_curr['content_limit'] == '' or $testimonial_slider_curr['content_limit'] == ' ') 
 		  $slider_excerpt = substr($slider_content,0,$testimonial_slider_curr['content_chars']);
 		else 
 		  $slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $testimonial_slider_curr['content_limit'] );
-		//filter hook
+*/
+			$content_limit=$testimonial_slider_curr['content_limit'];
+			if(!empty($content_limit)){ 
+				$slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $content_limit);
+			}
+			else { $slider_excerpt=$slider_content; }
+
+//filter hook
 		$slider_excerpt=apply_filters('testimonial_slide_excerpt',$slider_excerpt,$post_id,$testimonial_slider_curr,$testimonial_slider_css,$skin);
 		$slider_excerpt='<span '.$testimonial_slider_css['testimonial_slider_span'].'> '.$slider_excerpt.'</span>';
 
@@ -188,16 +195,20 @@ function testimonial_slider_get_default($slider_handle,$r_array,$testimonial_sli
 
 	// Navigation Arrows
 		
-	if ($testimonial_slider_curr['prev_next'] != 1){ 
+	//if ($testimonial_slider_curr['prev_next'] != 1){ 
 			if($testimonial_slider_curr['navnum'] == "2"){
 				$nav_buttons_bottom='';
 				$nav_buttons_top='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
 			}
-			if($testimonial_slider_curr['navnum'] == "1"){
+			else if($testimonial_slider_curr['navnum'] == "1"){
 				$nav_buttons_top='';
 				$nav_buttons_bottom='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
 			}
-		} 
+			else {
+				$nav_buttons_bottom='';	
+				$nav_buttons_top='';
+			}
+		//} 
 
 	if ($testimonial_slider_curr['bg'] == '1') { $testimonial_slideri_bg = "transparent";} else { $testimonial_slideri_bg = $testimonial_slider_curr['bg_color']; }
 	$nav_color=$testimonial_slider_curr['nav_color'];

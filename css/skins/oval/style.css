@@ -7,7 +7,7 @@
 .testimonial_slider__oval.testimonial_slider_set{width:500px;}
 .testimonial_slider__oval .testimonial_by_wrap{width:100%;float:left;-webkit-box-sizing: border-box;	-moz-box-sizing:border-box;-ms-box-sizing:border-box;padding: 10px 10px 10px 30%;}
 .testimonial_slider__oval .testimonial_content_wrap{width:100%;height: 70%;float:left;-webkit-box-sizing: border-box;	-moz-box-sizing:border-box;-ms-box-sizing:border-box;border: 1px dashed #999;-moz-border-radius: 50%;-webkit-border-radius: 50%;border-radius: 50%;overflow: hidden; box-sizing: border-box;}
-.testimonial_slider__oval .testimonial_content{width:80%;padding-top: 15%;padding-bottom: 15%;margin: 5px auto 5px auto;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:14px;font-weight:normal;font-style:italic;color:#737373;line-height: 1.7;}
+.testimonial_slider__oval .testimonial_content{width:80%;padding-top: 15%;padding-bottom: 15%;margin: 5px auto 5px auto;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:14px;font-weight:normal;font-style:italic;color:#737373;line-height: 1.7;height: 78%;overflow: hidden;}
 .testimonial_slider__oval .testimonial_quote{width:60%;min-height:32px;float:right;padding-left: 40px;margin-left: 5px;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;background:url(../images/quote.png) left top no-repeat;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:12px;font-weight:normal;font-style:italic;color:#737373;}
 
 .testimonial_slider__oval .testimonial_by_wrap span{display:inline-block;width:100%;}
@@ -17,7 +17,7 @@
 .testimonial_slider__oval .testimonial_by_wrap .testimonial_site a{text-decoration:none;}
 .testimonial_slider__oval .testimonial_by_wrap .testimonial_by{line-height:16px;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:18px;font-weight:normal;font-style:normal;color:#222;float: left;width: 90%;padding: 5px;}
 .testimonial_slider__oval .testimonial_by_wrap .testimonial_by_text {float:left;width:70%;}
-.testimonial_slider__oval p.more a{text-decoration:underline;float:right;}
+.testimonial_slider__oval p.more a{text-decoration:underline;float:right;line-height: 0;padding: 0;margin-right: 30px;}
 .testimonial_slider__oval p.more a:hover{text-decoration:none;}
 
 /* CSS Navigation Buttons */

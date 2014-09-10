@@ -13,7 +13,7 @@
 .testimonial_slider__default .testimonial_by_wrap .testimonial_avatar img{max-width:100%;-webkit-box-sizing: border-box;	-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;padding:3px;margin:0;}
 .testimonial_slider__default .testimonial_by_wrap .testimonial_site a{text-decoration:none;}
 
-.testimonial_slider__default p.more a{text-decoration:underline;float:right;}
+.testimonial_slider__default p.more a{text-decoration:underline;float:right;line-height: 0;padding: 0;}
 .testimonial_slider__default p.more a:hover{text-decoration:none;}
 
 /*Navigation buttons*/

@@ -65,10 +65,11 @@ function testimonial_post_processor_oval( $posts, $testimonial_slider_curr,$out_
 
 		$slider_content = str_replace("\n","<br />",$slider_content);
 		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);*/
-		if(!$testimonial_slider_curr['content_limit'] or $testimonial_slider_curr['content_limit'] == '' or $testimonial_slider_curr['content_limit'] == ' ') 
-		  $slider_excerpt = substr($slider_content,0,$testimonial_slider_curr['content_chars']);
-		else 
-		  $slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $testimonial_slider_curr['content_limit'] );
+		$content_limit=$testimonial_slider_curr['content_limit'];
+		if(!empty($content_limit)){ 
+			$slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $content_limit);
+		}
+		else { $slider_excerpt=$slider_content; }
 		//filter hook
 		$slider_excerpt=apply_filters('testimonial_slide_excerpt',$slider_excerpt,$post_id,$testimonial_slider_curr,$testimonial_slider_css,$skin);
 		$slider_excerpt='<span '.$testimonial_slider_css['testimonial_slider_span'].'> '.$slider_excerpt.'</span>';

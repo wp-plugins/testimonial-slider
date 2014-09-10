@@ -400,7 +400,14 @@ function testimonial_get_inline_css($set='',$echo='0'){
 	if($testimonial_slider_curr['stylesheet'] == 'round')
 	{
 		// For outer div css
-		$testimonial_slider_css['testimonial_outer_wrap'] = $style_start.'background-color:'.$testimonial_slideri_bg.';border:'.$testimonial_slider_curr['border'].'px solid '.$testimonial_slider_curr['brcolor'].';'.$style_end;
+		if($testimonial_slider_curr['img_width'] !='' && $testimonial_slider_curr['img_width'] > 0 ) {
+			$margin = $testimonial_slider_curr['img_width']/2;
+			$outer_wrap_margin = 'margin-left:'.$margin.'px;';
+		} else $outer_wrap_margin= '';
+		if($testimonial_slider_curr["border"]!='' && $testimonial_slider_curr["border"] > 0) {
+			$outer_wrap_border = 'border:'.$testimonial_slider_curr["border"].'px solid '.$testimonial_slider_curr["brcolor"].';';
+		} else $outer_wrap_border ='border:0;';
+		$testimonial_slider_css['testimonial_outer_wrap'] = $style_start.'background-color:'.$testimonial_slideri_bg.';'.$outer_wrap_border.$outer_wrap_margin.$style_end;
 		 
 		// For slideri
 		$testimonial_slider_css['testimonial_slideri'] = $style_start.'width:'. $testimonial_slider_curr['iwidth'].'px;height:'. $testimonial_slider_curr['height'].'px;'.$style_end;

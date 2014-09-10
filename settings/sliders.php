@@ -93,7 +93,7 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
         <?php foreach($sliders as $slider){?>
             <li class="yellow"><a href="#tabs-<?php echo $slider['slider_id'];?>"><?php echo $slider['slider_name'];?></a></li>
         <?php } ?>
-        <?php if($testimonial_slider['multiple_sliders'] == '1') {?>
+        <?php if(isset($testimonial_slider['multiple_sliders']) && $testimonial_slider['multiple_sliders'] == '1') {?>
             <li class="green"><a href="#new_slider"><?php _e('Create New Slider','testimonial-slider'); ?></a></li>
         <?php } ?>
         </ul>
@@ -218,7 +218,7 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
  
 <?php } ?>
 
-<?php if($testimonial_slider['multiple_sliders'] == '1') {?>
+<?php if(isset($testimonial_slider['multiple_sliders']) && $testimonial_slider['multiple_sliders'] == '1') {?>
     <div id="new_slider" style="width: 56%;">
     <form action="" method="post" onsubmit="return slider_checkform(this);" >
     <h3><?php _e('Enter New Slider Name','testimonial-slider'); ?></h3>

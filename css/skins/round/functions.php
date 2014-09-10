@@ -65,10 +65,11 @@ function testimonial_post_processor_round( $posts, $testimonial_slider_curr,$out
 
 		$slider_content = str_replace("\n","<br />",$slider_content);
 		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);*/
-		if(!$testimonial_slider_curr['content_limit'] or $testimonial_slider_curr['content_limit'] == '' or $testimonial_slider_curr['content_limit'] == ' ') 
-		  $slider_excerpt = substr($slider_content,0,$testimonial_slider_curr['content_chars']);
-		else 
-		  $slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $testimonial_slider_curr['content_limit'] );
+		$content_limit=$testimonial_slider_curr['content_limit'];
+		if(!empty($content_limit)){ 
+			$slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $content_limit);
+		}
+		else { $slider_excerpt=$slider_content; }
 		//filter hook
 		$slider_excerpt=apply_filters('testimonial_slide_excerpt',$slider_excerpt,$post_id,$testimonial_slider_curr,$testimonial_slider_css,$skin);
 		$slider_excerpt='<span '.$testimonial_slider_css['testimonial_slider_span'].'> '.$slider_excerpt.'</span>';
@@ -191,18 +192,25 @@ function testimonial_slider_get_round($slider_handle,$r_array,$testimonial_slide
 
 	// Navigation Arrows
 		
-	if ($testimonial_slider_curr['prev_next'] != 1){ 
+	//if ($testimonial_slider_curr['prev_next'] != 1){ 
 			if($testimonial_slider_curr['navnum'] == "2"){
 				$nav_buttons_bottom='';
 				$nav_buttons_top='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
 			}
-			if($testimonial_slider_curr['navnum'] == "1"){
+			else if($testimonial_slider_curr['navnum'] == "1"){
 				$nav_buttons_top='';
 				$nav_buttons_bottom='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
 			}
-		} 
+			else {
+				$nav_buttons_bottom='';	
+				$nav_buttons_top='';
+			}
+		//} 
 	
 	if ($testimonial_slider_curr['bg'] == '1') { $testimonial_slideri_bg = "transparent";} else { $testimonial_slideri_bg = $testimonial_slider_curr['bg_color']; }
+	if($testimonial_slider_curr["border"] == 0) {
+	$border_top_color = '.testimonial_slider__round .testimonial_outer_wrap:before {border-top-color: transparent !important;}';
+	} else $border_top_color ='';
 	$nav_color=$testimonial_slider_curr['nav_color'];	
 	$script='<script type="text/javascript"> '.$fouc_ready;
 	if(!empty($testimonial_media_queries)){
@@ -225,7 +233,7 @@ function testimonial_slider_get_round($slider_handle,$r_array,$testimonial_slide
 						pauseOnHover: true
 					}
 			});
-			jQuery("head").append("<style type=\"text/css\">#'.$slider_handle.'_nav a.selected{background-position:-'.$testimonial_slider_curr['navimg_w'].'px 0 !important;}.testimonial_slider__round .testimonial_outer_wrap:after {border-top-color: '.$testimonial_slideri_bg.'!important;} .testimonial_slider__round .testimonial_nav-fillup .inner_nav a { border: 2px solid '.$nav_color.' !important;}.testimonial_slider__round .testimonial_nav-fillup .inner_nav.selected a:after { background-color: '.$nav_color.' !important; }</style>");
+			jQuery("head").append("<style type=\"text/css\">#'.$slider_handle.'_nav a.selected{background-position:-'.$testimonial_slider_curr['navimg_w'].'px 0 !important;}.testimonial_slider__round .testimonial_outer_wrap:after {border-top-color: '.$testimonial_slideri_bg.'!important;}'.$border_top_color.' .testimonial_slider__round .testimonial_nav-fillup .inner_nav a { border: 2px solid '.$nav_color.' !important;}.testimonial_slider__round .testimonial_nav-fillup .inner_nav.selected a:after { background-color: '.$nav_color.' !important; }</style>");
 			jQuery("#'.$slider_handle.'_wrap").hover( 
 				function() { jQuery(this).find(".testimonial_nav_arrow_wrap").show();}, 
 				function() { jQuery(this).find(".testimonial_nav_arrow_wrap").hide();} );

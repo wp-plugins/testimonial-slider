@@ -102,8 +102,6 @@ if ($handle = opendir($directory)) {
 	} }
     closedir($handle);
 }
-
-
 //Reset Settings
 if (isset ($_POST['testimonial_reset_settings_submit'])) {
 	if ( $_POST['testimonial_reset_settings']!='n' ) {
@@ -112,7 +110,7 @@ if (isset ($_POST['testimonial_reset_settings_submit'])) {
 	  $optionsvalue=get_option($options);
 	  if( $testimonial_reset_settings == 'g' ){
 		$new_settings_value=$default_testimonial_slider_settings;
-		$new_settings_value['setname']=$optionsvalue['setname'];
+		$new_settings_value['setname']=isset($optionsvalue['setname'])?$optionsvalue['setname']:'Set';
 		update_option($options,$new_settings_value);
 	  }
 	  elseif(!is_numeric($testimonial_reset_settings)){
@@ -354,11 +352,11 @@ if ($handle = opendir($directory)) {
 
 <tr valign="top">
 <th scope="row"><?php _e('Time between Transitions','testimonial-slider'); ?></th>
-<td><input type="text" name="<?php echo $testimonial_slider_options;?>[time]" id="testimonial_slider_time" class="small-text" value="<?php echo $testimonial_slider_curr['time']; ?>" />
+<td><input type="number" name="<?php echo $testimonial_slider_options;?>[time]" id="testimonial_slider_time" class="small-text" value="<?php echo $testimonial_slider_curr['time']; ?>" MIN="10" />
 <span class="moreInfo">
 	&nbsp; <span class="trigger"> ? </span>
 	<div class="tooltip">
-	<?php _e('Enter number of secs you want the slider to stop before sliding to next slide. Valid only in case auto-sliding is enabled','testimonial-slider'); ?>
+	<?php _e('Enter number that you want the slider to stop before sliding to next slide like 10, 20, 30. Valid only in case auto-sliding is enabled','testimonial-slider'); ?>
 	</div>
 </span>
 </td>
@@ -910,7 +908,7 @@ if ($handle = opendir($directory)) {
 <th scope="row"><?php _e('Hide Prev/Next navigation arrows','testimonial-slider'); ?></th> 
 <td>
 <div class="onoffswitch">
-    <input type="hidden" name="<?php echo $testimonial_slider_options;?>[prev_next]" class="onoffswitch-checkbox" id="showHideArrow" value="0"  >
+    <input type="hidden" name="<?php echo $testimonial_slider_options;?>[prev_next]" class="onoffswitch-checkbox" id="showHideArrow" value="<?php echo $testimonial_slider_curr['prev_next'];?>"  >
     <lable class="lable_on <?php echo $hideArrowchk;?>" id="hideArrow">Hide</lable><lable  class="lable_off <?php echo $showArrowchk;?>" id="showArrow">Show</lable>
 </div>
 </td>

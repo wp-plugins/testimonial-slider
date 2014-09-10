@@ -3,12 +3,13 @@
 .testimonial_slider{overflow:hidden;margin: 0 0 0 0;line-height:18px;position:relative}
 .testimonial_slider__round .testimonial_slider_instance { margin: 0 auto; padding: 0; clear: left; }
 .testimonial_slider__round .testimonial_slide { margin: 0; padding: 0 }
-.testimonial_slider__round .testimonial_slideri{float:left;margin:0;background-color: transparent;border:0px solid #dddddd;width:100%;height:auto;margin-bottom: 5%;overflow: visible;}
+.testimonial_slider__round .testimonial_slideri{float:left;margin:0;background-color: transparent;border:0px solid #dddddd;width:100%;height:auto;overflow: visible;}
 .testimonial_slider__round.testimonial_slider_set{width: 500px;}
-.testimonial_slider__round .testimonial_outer_wrap {border: 1px solid #ddd;width: 80%;height: 90%;margin-left: 10%;position: relative;}
+.testimonial_slider__round .testimonial_outer_wrap {border: 1px solid #ddd;width: 80%;height: 90%;margin-left: 13%;position: relative;}
 .testimonial_slider__round .testimonial_by_wrap{width:100%;float:left;-webkit-box-sizing: border-box;	-moz-box-sizing:border-box;-ms-box-sizing:border-box;}
 .testimonial_slider__round .testimonial_content_wrap{width:100%;height: 65%;float:left;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;margin-bottom: 5%;overflow: hidden; }
 .testimonial_slider__round .testimonial_content{width: 80%;padding: .5em 10px 10px 1em;margin: 5px 10px 10px 15%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;font-family: 'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size: 14px;font-weight: normal;font-style: italic;color: #54495C;line-height: 1.7;}
+.testimonial_slider__round .testimonial_content span {display: inline-block;height:100%;}
 .testimonial_slider__round .testimonial_quote{width:60%;min-height:32px;float:right;padding-left: 40px;margin-left: 5px;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;background:url(../images/quote.png) left top no-repeat;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:12px;font-weight:normal;font-style:italic;color:#737373;}
 .testimonial_slider__round  .testimonial_avatar_wrap {width: 90px;position: absolute;}
 .testimonial_slider__round  .testimonial_avatar_wrap img {width:100%;height: 70px;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;margin-left: -40px;position: absolute;top: 25px;}
@@ -18,7 +19,7 @@
 .testimonial_slider__round .testimonial_by_wrap .testimonial_site a{text-decoration:none;}
 .testimonial_slider__round .testimonial_by_wrap .testimonial_by{line-height:16px;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:18px;font-weight:normal;font-style:normal;color:#070000;float: left;width: 100%;padding: 5px;}
 .testimonial_slider__round .testimonial_by_wrap .testimonial_by_text {float:left;width: 84%;margin: 5% 1% 0 18%;}
-.testimonial_slider__round p.more a{text-decoration:underline;float:right;}
+.testimonial_slider__round p.more a{text-decoration:underline;float:right;line-height: 0;padding: 0;}
 .testimonial_slider__round p.more a:hover{text-decoration:none;}
 
 /* Required for Down Triangle */
