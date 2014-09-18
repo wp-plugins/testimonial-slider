@@ -58,5 +58,38 @@ jQuery(function () {
         });
       }, hideDelay);
     });
-  });
+  });		
+		/* Added for preview - start */
+		var selpreview=jQuery("#testimonial_slider_preview").val();
+		if(selpreview=='2')
+			jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","none");
+		else if(selpreview=='1'){
+			jQuery("#testimonial_slider_form .testimonial_sid").css("display","none");
+			jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","table-row");
+			jQuery("#testimonial_slider_form .testimonial_catslug").css("display","block");
+		}
+		else if(selpreview=='0'){
+			jQuery("#testimonial_slider_form .testimonial_catslug").css("display","none");
+			jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","table-row");
+			jQuery("#testimonial_slider_form .testimonial_sid").css("display","block");
+	 	}
+		/* Added for preview - end */
+		
 });
+/* Added for preview */
+function checkpreview(curr_preview){
+	if(curr_preview=='2')
+		jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","none");
+	else if(curr_preview=='1'){
+		jQuery("#testimonial_slider_form .testimonial_sid").css("display","none");
+		jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","table-row");
+		jQuery("#testimonial_slider_form .testimonial_catslug").css("display","block");
+	}
+	else if(curr_preview=='0'){
+		jQuery("#testimonial_slider_form .testimonial_catslug").css("display","none");
+		jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","table-row");
+		jQuery("#testimonial_slider_form .testimonial_sid").css("display","block");
+	}
+}
+/* End Of preview */
+

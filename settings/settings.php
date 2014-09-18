@@ -960,7 +960,7 @@ if ($handle = opendir($directory)) {
 
 <tr valign="top">
 <th scope="row"><?php _e('Testimonial Template Tag for Preview','testimonial-slider'); ?></th>
-<td><select name="<?php echo $testimonial_slider_options;?>[preview]" id="testimonial_slider_preview" onchange="return checkpreview(this.value);">
+<td><select name="<?php echo $testimonial_slider_options;?>[preview]" id="testimonial_slider_preview" onchange="checkpreview(this.value);">
 <option value="2" <?php if ($testimonial_slider_curr['preview'] == "2"){ echo "selected";}?> ><?php _e('Recent Testimonials Slider','testimonial-slider'); ?></option>
 <option value="1" <?php if ($testimonial_slider_curr['preview'] == "1"){ echo "selected";}?> ><?php _e('Category Testimonial Slider','testimonial-slider'); ?></option>
 <option value="0" <?php if ($testimonial_slider_curr['preview'] == "0"){ echo "selected";}?> ><?php _e('Custom Slider with Slider ID','testimonial-slider'); ?></option>
@@ -983,7 +983,7 @@ $args=array(
 <?php
 //slider names Select Option
 global $testimonial_slider;
-if($testimonial_slider['multiple_sliders'] == '1') {	
+if(isset($testimonial_slider['multiple_sliders']) && $testimonial_slider['multiple_sliders']== '1') {	
 			$slider_id = $testimonial_slider_curr['slider_id'];	
 			$sliders = testimonial_ss_get_sliders();
 			$sname_html='<option value="0" selected >Select the Slider</option>';
@@ -1154,35 +1154,6 @@ function resetSkin(skin){
 		var html_element='testimonial_slider_'+key;
 		document.getElementById(html_element).value = skin_array[key];
 	}		
-}
-
-/* Added for preview */
-function checkpreview(curr_preview){
-	if(curr_preview=='2')
-		jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css({"display":"none",'opacity':'0'});
-	else if(curr_preview=='1'){
-		jQuery("#testimonial_slider_form .testimonial_sid").css({"display":"none",'opacity':'0'});
-		jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").animate({"display":"table-row",'opacity':'1.0'},500);
-		jQuery("#testimonial_slider_form .testimonial_catslug").animate({"display":"block",'opacity':'1.0'},1000);
-	}
-	else if(curr_preview=='0'){
-		jQuery("#testimonial_slider_form .testimonial_catslug").css({"display":"none",'opacity':'0'});
-		jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").animate({"display":"table-row",'opacity':'1.0'},500);
-		jQuery("#testimonial_slider_form .testimonial_sid").animate({"display":"block",'opacity':'1.0'},1000);
-	}
-}
-var selpreview=jQuery("#testimonial_slider_preview").val();
-if(selpreview=='2')
-	jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","none");
-else if(selpreview=='1'){
-	jQuery("#testimonial_slider_form .testimonial_sid").css("display","none");
-	jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","table-row");
-	jQuery("#testimonial_slider_form .testimonial_catslug").css("display","block");
-}
-else if(selpreview=='0'){
-	jQuery("#testimonial_slider_form .testimonial_catslug").css("display","none");
-	jQuery("#testimonial_slider_form .form-table tr.testimonial_slider_params").css("display","table-row");
-	jQuery("#testimonial_slider_form .testimonial_sid").css("display","block");
 }
 /* Radius Show/Hide */
 function show_radius() {

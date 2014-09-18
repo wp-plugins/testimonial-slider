@@ -4,7 +4,7 @@ Tags: testimonial, slider, slideshow, feedback, content slider, responsive, widg
 Donate link: http://www.clickonf5.org/go/donate-wp-plugins/
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 
 Display your happy customers' Testimonials in a neat Responsive Slider 
@@ -95,6 +95,12 @@ Visit the plugin page (http://slidervilla.com/testimonial-slider/) for recent FA
 No major issues!
 
 == Changelog ==
+
+* 1.1.3 (09/18/2014)
+
+1. Fix: On Preview settings page Preview on Settings Panel fields for selecting category and custom slider was not appearing in WordPress4.0
+2. Fix: Settings tab extra padding was outsite the block in WordPress 4.0
+3. Fix: Responsiveness for navigation arrows
 
 * 1.1.2 (09/10/2014)
 

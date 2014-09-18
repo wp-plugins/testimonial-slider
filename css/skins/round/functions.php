@@ -104,7 +104,8 @@ function testimonial_slider_get_round($slider_handle,$r_array,$testimonial_slide
 	$testimonial_sldr_j = $r_array[0];
 	$testimonial_slider_css = testimonial_get_inline_css($set); 
 	$slider_html='';
-	
+	$navwidth = ($testimonial_sldr_j*$testimonial_slider_curr['navimg_w']) + ($testimonial_sldr_j * 5) ;
+	$testimonial_slider_css['testimonial_nav'] = 'style="width:'.$navwidth.'px;margin: 0 auto;"';
 	foreach($default_testimonial_slider_settings as $key=>$value){
 		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
 	}
@@ -263,7 +264,7 @@ function testimonial_slider_get_round($slider_handle,$r_array,$testimonial_slide
 		<div id="'.$slider_handle.'" class="testimonial_slider_instance">
 			'. $r_array[1] .'
 		</div>
-		'.$nav_buttons_bottom.$nav_bottom.'
+		'.$nav_buttons_bottom.'<div style="clear:left;"></div>'.$nav_bottom.'
 		
 	</div>';
 	$slider_html.='<script type="text/javascript">'.$fouc_dom.'</script>';

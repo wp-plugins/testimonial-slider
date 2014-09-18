@@ -104,7 +104,8 @@ function testimonial_slider_get_oval($slider_handle,$r_array,$testimonial_slider
 	$testimonial_sldr_j = $r_array[0];
 	$testimonial_slider_css = testimonial_get_inline_css($set); 
 	$slider_html='';
-	
+	$navwidth = ($testimonial_sldr_j*$testimonial_slider_curr['navimg_w']) + ($testimonial_sldr_j * 5) ;
+	$testimonial_slider_css['testimonial_nav'] = 'style="width:'.$navwidth.'px;margin: 0 auto;"';
 	foreach($default_testimonial_slider_settings as $key=>$value){
 		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
 	}
