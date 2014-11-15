@@ -4,7 +4,7 @@ Tags: testimonial, slider, slideshow, feedback, content slider, responsive, widg
 Donate link: http://www.clickonf5.org/go/donate-wp-plugins/
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 
 Display your happy customers' Testimonials in a neat Responsive Slider 
@@ -95,6 +95,10 @@ Visit the plugin page (http://slidervilla.com/testimonial-slider/) for recent FA
 No major issues!
 
 == Changelog ==
+
+* 1.1.4 (11/15/2014)
+
+1. Fix: Excluded cycle script
 
 * 1.1.3 (09/18/2014)
 

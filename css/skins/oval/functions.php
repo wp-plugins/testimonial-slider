@@ -132,8 +132,6 @@ function testimonial_slider_get_oval($slider_handle,$r_array,$testimonial_slider
 	// Scripts
 	wp_enqueue_script( 'testimonial', testimonial_slider_plugin_url( 'js/testimonial.js' ),
 		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
-	wp_enqueue_script( 'jquery.cycle', testimonial_slider_plugin_url( 'js/jquery.cycle.js' ),
-		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
 	wp_enqueue_script( 'easing', testimonial_slider_plugin_url( 'js/jquery.easing.js' ),
 		false, TESTIMONIAL_SLIDER_VER, false);
 	wp_enqueue_script( 'jquery.touchwipe', testimonial_slider_plugin_url( 'js/jquery.touchwipe.js' ),

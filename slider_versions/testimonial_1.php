@@ -233,8 +233,6 @@ global $testimonial_slider;
 		false, TESTIMONIAL_SLIDER_VER, 'all');
 	wp_enqueue_script( 'testimonial', testimonial_slider_plugin_url( 'js/testimonial.js' ),
 		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
-	wp_enqueue_script( 'jquery.cycle', testimonial_slider_plugin_url( 'js/jquery.cycle.js' ),
-		array('jquery'), TESTIMONIAL_SLIDER_VER, false);
 	wp_enqueue_script( 'easing', testimonial_slider_plugin_url( 'js/jquery.easing.js' ),
 		false, TESTIMONIAL_SLIDER_VER, false);  
 	wp_enqueue_script( 'jquery.bpopup.min', testimonial_slider_plugin_url( 'js/jquery.bpopup.min.js' ),'', TESTIMONIAL_SLIDER_VER, false);
