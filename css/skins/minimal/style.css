@@ -7,7 +7,8 @@
 .testimonial_slider__minimal.testimonial_slider_set{width: 400px;}
 .testimonial_slider__minimal .testimonial_by_wrap{width:30%;float:left;-webkit-box-sizing: border-box;	-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;}
 .testimonial_slider__minimal .testimonial_quote{width:68%;min-height:32px;float:right;padding-left: 40px;margin-left: 5px;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;background:url(../images/quote.png) left top no-repeat;font-family:'Lucida Sans Unicode', 'Lucida Grand', sans-serif;font-size:14px;font-weight:normal;font-style:italic;color:#444;line-height: 1.5;}
-
+.testimonial_slider__minimal .testimonial_quote span {display:block;}
+.testimonial_slider__minimal .testimonial-star-outer {float:right;}
 .testimonial_slider__minimal .testimonial_by_wrap span{display:inline-block;width:100%;}
 .testimonial_slider__minimal .testimonial_by_wrap .testimonial_avatar{margin:0;}
 .testimonial_slider__minimal .testimonial_by_wrap .testimonial_avatar img{max-width:100%;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;margin:0;width:80px;border:3px solid #cccccc;-webkit-border-radius: 50%;

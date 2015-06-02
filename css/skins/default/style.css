@@ -7,6 +7,7 @@
 
 .testimonial_slider__default .testimonial_by_wrap{width:30%;float:left;-webkit-box-sizing: border-box;	-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;}
 .testimonial_slider__default .testimonial_quote{width:60%;min-height:32px;float:right;padding-left: 40px;margin-left: 5px;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box; background: url(buttons/black/quote.png) left top no-repeat;}
+.testimonial_slider__default .testimonial-star-outer{float:right;}
 
 .testimonial_slider__default .testimonial_by_wrap span{display:inline-block;width:100%;}
 .testimonial_slider__default .testimonial_by_wrap .testimonial_avatar{margin:0;}

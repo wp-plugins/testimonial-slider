@@ -2703,15 +2703,15 @@
 
 	$.fn.testiMonial.serialNumber = 1;
 	$.fn.testiMonial.defaults = {
-		'synchronise'	: false,
-		'infinite'		: true,
-		'circular'		: true,
-		'responsive'	: false,
-		'direction'		: 'left',
-		'items'			: {
+			'synchronise'	: false,
+			'infinite'		: true,
+			'circular'		: true,
+			'responsive'	: false,
+			'direction'		: 'left',
+			'items'			: {
 			'start'			: 0
 		},
-		'scroll'		: {
+			'scroll'		: {
 			'easing'		: 'swing',
 			'duration'		: 500,
 			'pauseOnHover'	: false,
@@ -2720,18 +2720,18 @@
 		}
 	};
 	$.fn.testiMonial.configs = {
-		'debug'			: false,
-		'transition'	: false,
-		'onWindowResize': 'throttle',
-		'events'		: {
+			'debug'			: false,
+			'transition'	: false,
+			'onWindowResize': 'throttle',
+			'events'		: {
 			'prefix'		: '',
 			'namespace'		: 'cfs'
 		},
-		'wrapper'		: {
+			'wrapper'		: {
 			'element'		: 'div',
 			'classname'		: 'testimonial_wrapper'
 		},
-		'classnames'	: {}
+			'classnames'	: {}
 	};
 	$.fn.testiMonial.pageAnchorBuilder = function(nr) {
 		return '<a href="#"><span>'+nr+'</span></a>';

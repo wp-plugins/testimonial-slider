@@ -116,15 +116,11 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
     <thead class="blue"><tr><th><?php _e('Post/Page Title','testimonial-slider'); ?></th><th><?php _e('Author','testimonial-slider'); ?></th><th><?php _e('Post Date','testimonial-slider'); ?></th><th><?php _e('Remove Post','testimonial-slider'); ?></th></tr></thead><tbody>
 
 <?php  
-	/*global $wpdb, $table_prefix;
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;*/
 	$slider_id = $slider['slider_id'];
-	//$slider_posts = $wpdb->get_results("SELECT post_id FROM $table_name WHERE slider_id = '$slider_id'", OBJECT); 
-    $slider_posts=testimonial_get_slider_posts_in_order($slider_id); ?>
-	
-    <input type="hidden" name="current_slider_id" value="<?php echo $slider_id;?>" />
+	$slider_posts=testimonial_get_slider_posts_in_order($slider_id); ?>
+	<input type="hidden" name="current_slider_id" value="<?php echo $slider_id;?>" />
     
-<?php    $count = 0;	
+<?php   $count = 0;	
 	foreach($slider_posts as $slider_post) {
 	  $slider_arr[] = $slider_post->post_id;
 	  $post = get_post($slider_post->post_id);	  
@@ -164,15 +160,12 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
     <p><em><?php _e('Click on and drag the post/page title to a new spot within the list, and the other items will adjust to fit.','testimonial-slider'); ?> </em></p>
     <ul id="sslider_sortable_<?php echo $slider['slider_id'];?>" style="color:#326078">    
     <?php  
-    /*global $wpdb, $table_prefix;
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;*/
-	$slider_id = $slider['slider_id'];
-	//$slider_posts = $wpdb->get_results("SELECT post_id FROM $table_name WHERE slider_id = '$slider_id'", OBJECT); 
-    $slider_posts=testimonial_get_slider_posts_in_order($slider_id);?>
+   $slider_id = $slider['slider_id'];
+   $slider_posts=testimonial_get_slider_posts_in_order($slider_id);?>
+   <input type="hidden" name="current_slider_id" value="<?php echo $slider_id;?>" />
         
-        <input type="hidden" name="current_slider_id" value="<?php echo $slider_id;?>" />
-        
-    <?php    $count = 0;	
+    <?php    
+    	$count = 0;	
         foreach($slider_posts as $slider_post) {
           $slider_arr[] = $slider_post->post_id;
           $post = get_post($slider_post->post_id);	  
@@ -248,7 +241,7 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 	" ><?php _e('Support Forum','testimonial-slider'); ?></a></li>
 			<li><a href="http://guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
 	" ><?php _e('Usage Guide','testimonial-slider'); ?></a></li>
-			<li><strong>Current Version: <?php echo TESTIMONIAL_SLIDER_VER;?></strong></li>
+			<li><strong><?php _e('Current Version:','testimonial-slider'); ?> <?php echo TESTIMONIAL_SLIDER_VER;?></strong></li>
 		   </ul> 
 		   </div> 
 	</div>  

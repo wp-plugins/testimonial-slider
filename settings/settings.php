@@ -242,10 +242,10 @@ else{?>
 ?>
 <div id="slider_tabs">
         <ul class="ui-tabs">
-            <li class="green" ><a href="#basic">Basic Settings</a></li>
-            <li class="blue"><a href="#slider_content">Slider Content</a></li>
-	    <li class="pink" ><a href="#slider_nav">Navigation Settings</a></li>
-	    <li class="orange"><a href="#preview">Preview Settings</a></li>
+            <li class="green" ><a href="#basic"><?php _e('Basic Settings','testimonial-slider');?></a></li>
+            <li class="blue"><a href="#slider_content"><?php _e('Slider Content','testimonial-slider');?></a></li>
+	    <li class="pink" ><a href="#slider_nav"><?php _e('Navigation Settings','testimonial-slider');?></a></li>
+	    <li class="orange"><a href="#preview"><?php _e('Preview Settings','testimonial-slider');?></a></li>
 	</ul>
 
 <div id="basic">
@@ -389,7 +389,7 @@ if ($handle = opendir($directory)) {
 </tr>
 
 <tr valign="top">
-<th scope="row"><?php _e('Slide (Item) Width','testimonial-slider'); ?></th>
+<th scope="row"><?php _e('Min. Slide Item Width','testimonial-slider'); ?></th>
 <td><input type="text" name="<?php echo $testimonial_slider_options;?>[iwidth]" id="testimonial_slider_iwidth" class="small-text" value="<?php echo $testimonial_slider_curr['iwidth']; ?>" />&nbsp;<?php _e('px','testimonial-slider'); ?></td>
 </tr>
 
@@ -508,7 +508,7 @@ if ($handle = opendir($directory)) {
 
 <tr valign="top">
 <th scope="row"><?php _e('Custom Styles','testimonial-slider'); ?></th>
-<td><textarea name="<?php echo $testimonial_slider_options;?>[css]"  rows="5" cols="50" class="regular-text code"><?php echo $testimonial_slider_curr['css']; ?></textarea>
+<td><textarea name="<?php echo $testimonial_slider_options;?>[css]"  rows="5" cols="30" class="regular-text code"><?php echo $testimonial_slider_curr['css']; ?></textarea>
 <span class="moreInfo">
 	&nbsp; <span class="trigger"> ? </span>
 	<div class="tooltip">
@@ -837,6 +837,23 @@ if ($handle = opendir($directory)) {
 </tr>
 
 <tr valign="top">
+	<th scope="row"><?php _e('Star Color','testimonial-slider')?></th>
+	<td><input type="text" name="<?php echo $testimonial_slider_options;?>[star_color]" id="testimonial_slider_star_color" value="<?php echo $testimonial_slider_curr['star_color'];?>" class="wp-color-picker-field" data-default-color="#f1c40f" />
+	</td>
+</tr>
+<tr valign="top">
+	<th scope="row"><?php _e('Star Size','testimonial-slider')?></th>
+	<td><input type="number" name="<?php echo $testimonial_slider_options;?>[star_size]" id="testimonial_slider_star_size" value="<?php echo $testimonial_slider_curr['star_size'];?>" class="small-text" /> &nbsp;px
+	</td>
+</tr>
+<tr valign="top">
+	<th scope="row"><?php _e('Show Star Rating','testimonial-slider')?></th>
+	<td>
+		<input id="testimonial_slider_show_star" name="<?php echo $testimonial_slider_options;?>[show_star]" value="1" type="checkbox" <?php echo checked('1', $testimonial_slider_curr['show_star']);?> >
+	</td>
+</tr>
+
+<tr valign="top">
 <th scope="row"><?php _e('Pick content From','testimonial-slider'); ?></th>
 <td><select name="<?php echo $testimonial_slider_options;?>[content_from]" id="testimonial_slider_content_from" >
 <option value="content" <?php if ($testimonial_slider_curr['content_from'] == "content"){ echo "selected";}?> ><?php _e('From Content','testimonial-slider'); ?></option>
@@ -844,7 +861,7 @@ if ($handle = opendir($directory)) {
 </td>
 </tr>
 <tr valign="top">
-<th scope="row"><?php _e('Maximum content(testimonial) size (in words)','testimonial-slider'); ?></th>
+<th scope="row"><?php _e('Maximum content','testimonial-slider'); ?></th>
 <td><input type="text" name="<?php echo $testimonial_slider_options;?>[content_limit]" id="testimonial_slider_content_limit" class="small-text" value="<?php echo $testimonial_slider_curr['content_limit']; ?>" />&nbsp;<?php _e('words','testimonial-slider'); ?>
 <span class="moreInfo">
 	&nbsp; <span class="trigger"> ? </span>
@@ -979,7 +996,7 @@ $args=array(
 			 $scat_html =$scat_html.'<option value="'.$category->slug.'" '.$selected.'>'.$category->name.'</option>';
 		  } 
 	?>
-		  <p><label for="">Select Category for Slider: </label></p>
+		  <p><label for=""><?php _e('Select Category for Slider:','testimonial-slider'); ?> </label></p>
 <?php
 //slider names Select Option
 global $testimonial_slider;
@@ -1371,7 +1388,7 @@ for($i=1;$i<=$scounter;$i++){
 </div></div>
 
 <div class="postbox"> 
-<div style="background:#eee;line-height:200%"><a style="text-decoration:none;font-weight:bold;font-size:100%;color:#990000" href="http://guides.slidervilla.com/testimonial-slider/" title="Click here to read how to use the plugin and frequently asked questions about the plugin" target="_blank"> ==> Usage Guide and General FAQs</a></div>
+<div style="background:#eee;line-height:200%"><a style="text-decoration:none;font-weight:bold;font-size:100%;color:#990000" href="http://guides.slidervilla.com/testimonial-slider/" title="Click here to read how to use the plugin and frequently asked questions about the plugin" target="_blank"> ==> <?php _e('Usage Guide and General FAQs','testimonial-slider'); ?></a></div>
 </div>
 
 <?php if ($testimonial_slider['support'] == "1"){ ?>
@@ -1381,9 +1398,9 @@ for($i=1;$i<=$scounter;$i++){
 				<div style="margin:10px auto;">
 							<a href="http://slidervilla.com" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/banner-premium.png');?>" alt="Premium WordPress Slider Plugins" width="100%" /></a>
 				</div>
-				<p><a href="http://slidervilla.com/" title="Recommended WordPress Sliders" target="_blank">SliderVilla slider plugins</a> are feature rich and stylish plugins to embed a nice looking featured content slider in your existing or new theme template. 100% customization options available on WordPress Settings page of the plugin.</p>
-						<p><strong>Stylish Sliders, <a href="http://slidervilla.com/blog/testimonials/" target="_blank">Happy Customers</a>!</strong></p>
-                        <p><a href="http://slidervilla.com/" title="Recommended WordPress Sliders" target="_blank">For more info visit SliderVilla</a></p>
+				<p><a href="http://slidervilla.com/" title="Recommended WordPress Sliders" target="_blank"><?php _e('SliderVilla slider plugins','testimonial-slider'); ?></a> <?php _e('are feature rich and stylish plugins to embed a nice looking featured content slider in your existing or new theme template. 100% customization options available on WordPress Settings page of the plugin.','testimonial-slider'); ?></p>
+						<p><strong><?php _e('Stylish Sliders,','testimonial-slider'); ?> <a href="http://slidervilla.com/blog/testimonials/" target="_blank"><?php _e('Happy Customers','testimonial-slider'); ?></a>!</strong></p>
+                        <p><a href="http://slidervilla.com/" title="Recommended WordPress Sliders" target="_blank"><?php _e('For more info visit SliderVilla','testimonial-slider'); ?></a></p>
             </div></div>
 			
 			

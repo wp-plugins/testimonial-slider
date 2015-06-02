@@ -1,0 +1,1113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Testimonial Slider\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Tue May 26 2015 14:42:20 GMT+0530 (IST)\n"
+"PO-Revision-Date: Wed May 27 2015 10:35:07 GMT+0530 (IST)\n"
+"Last-Translator: admin <sagar.katarnaware@webfanzine.com>\n"
+"Language-Team: \n"
+"Language: Spanish (Mexico)\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Loco-Target-Locale: es_MX\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. translators: Publish box date format, see http://php.net/date
+#: ../testimonial-slider.php:626
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: ../settings/settings.php:288
+msgid "Scroll Horizontally"
+msgstr ""
+
+#: ../settings/settings.php:289
+msgid "Fade"
+msgstr ""
+
+#: ../settings/settings.php:290
+msgid "Cross Fade"
+msgstr ""
+
+#: ../settings/settings.php:291
+msgid "Cover"
+msgstr ""
+
+#: ../settings/settings.php:292
+msgid "Uncover"
+msgstr ""
+
+#: ../settings/settings.php:300
+msgid "swing"
+msgstr ""
+
+#: ../settings/settings.php:301
+msgid "easeInQuad"
+msgstr ""
+
+#: ../settings/settings.php:302
+msgid "easeOutQuad"
+msgstr ""
+
+#: ../settings/settings.php:303
+msgid "easeInOutQuad"
+msgstr ""
+
+#: ../settings/settings.php:304
+msgid "easeInCubic"
+msgstr ""
+
+#: ../settings/settings.php:305
+msgid "easeOutCubic"
+msgstr ""
+
+#: ../settings/settings.php:306
+msgid "easeInOutCubic"
+msgstr ""
+
+#: ../settings/settings.php:307
+msgid "easeInQuart"
+msgstr ""
+
+#: ../settings/settings.php:308
+msgid "easeOutQuart"
+msgstr ""
+
+#: ../settings/settings.php:309
+msgid "easeInOutQuart"
+msgstr ""
+
+#: ../settings/settings.php:310
+msgid "easeInQuint"
+msgstr ""
+
+#: ../settings/settings.php:311
+msgid "easeOutQuint"
+msgstr ""
+
+#: ../settings/settings.php:312
+msgid "easeInOutQuint"
+msgstr ""
+
+#: ../settings/settings.php:313
+msgid "easeInSine"
+msgstr ""
+
+#: ../settings/settings.php:314
+msgid "easeOutSine"
+msgstr ""
+
+#: ../settings/settings.php:315
+msgid "easeInOutSine"
+msgstr ""
+
+#: ../settings/settings.php:316
+msgid "easeInExpo"
+msgstr ""
+
+#: ../settings/settings.php:317
+msgid "easeOutExpo"
+msgstr ""
+
+#: ../settings/settings.php:318
+msgid "easeInOutExpo"
+msgstr ""
+
+#: ../settings/settings.php:319
+msgid "easeInCirc"
+msgstr ""
+
+#: ../settings/settings.php:320
+msgid "easeOutCirc"
+msgstr ""
+
+#: ../settings/settings.php:321
+msgid "easeInOutCirc"
+msgstr ""
+
+#: ../settings/settings.php:322
+msgid "easeInElastic"
+msgstr ""
+
+#: ../settings/settings.php:323
+msgid "easeOutElastic"
+msgstr ""
+
+#: ../settings/settings.php:324
+msgid "easeInOutElastic"
+msgstr ""
+
+#: ../settings/settings.php:325
+msgid "easeInBack"
+msgstr ""
+
+#: ../settings/settings.php:326
+msgid "easeOutBack"
+msgstr ""
+
+#: ../settings/settings.php:327
+msgid "easeInOutBack"
+msgstr ""
+
+#: ../settings/settings.php:328
+msgid "easeInBounce"
+msgstr ""
+
+#: ../settings/settings.php:329
+msgid "easeOutBounce"
+msgstr ""
+
+#: ../settings/settings.php:330
+msgid "easeInOutBounce"
+msgstr ""
+
+#: ../settings/settings.php:382 ../settings/settings.php:393 ../settings/settings.
+#: php:398 ../settings/settings.php:590 ../settings/settings.php:650 ..
+#: settings/settings.php:655 ../settings/settings.php:713 ../settings/settings.
+#: php:770 ../settings/settings.php:825
+msgid "px"
+msgstr ""
+
+#: ../settings/settings.php:442
+msgid "eg. target=\"_blank\" rel=\"external nofollow\""
+msgstr ""
+
+#: ../settings/settings.php:465
+msgid "Administrator"
+msgstr ""
+
+#: ../settings/settings.php:466
+msgid "Editor and Admininstrator"
+msgstr ""
+
+#: ../settings/settings.php:467
+msgid "Author, Editor and Admininstrator"
+msgstr ""
+
+#: ../settings/settings.php:468
+msgid "Contributor, Author, Editor and Admininstrator"
+msgstr ""
+
+#: ../testimonial-slider.php:371
+msgid "Testimonial Slider"
+msgstr "Slider testimonial"
+
+#: ../testimonial-slider.php:402
+msgid "Add this Testimonial to"
+msgstr "Añadir este testimonio a"
+
+#: ../testimonial-slider.php:424
+msgid "Customer's Name"
+msgstr "Nombre del cliente"
+
+#: ../testimonial-slider.php:428
+msgid "Customer's Avatar/Image URL"
+msgstr "URL de imagen/Avatar del cliente"
+
+#: ../testimonial-slider.php:429
+msgid "Upload Image"
+msgstr "Cargar imagen"
+
+#: ../testimonial-slider.php:462
+msgid "Customer's Company Name "
+msgstr "Nombre de la empresa del cliente"
+
+#: ../testimonial-slider.php:467
+msgid "Customer's Website "
+msgstr "Sitio web del cliente"
+
+#: ../testimonial-slider.php:472
+msgid "Star Rating "
+msgstr "Calificación de estrellas"
+
+#: ../testimonial-slider.php:487
+msgid "\"Read more\" URL "
+msgstr "Leer más URL"
+
+#: ../testimonial-slider.php:492
+msgid "Do not link this Testimonial to any \"Read more\" URL"
+msgstr "No vincula este testimonio a cualquier \"Read more\" URL"
+
+#: ../testimonial-slider.php:496
+msgid "Read more\" URL (anchor) attributes "
+msgstr "Leer más atributos URL (ancla)"
+
+#: ../testimonial-slider.php:497
+msgid "e.g. target=\"_blank\" rel=\"external nofollow\""
+msgstr "por ejemplo blanco = _blank rel = nofollow externo"
+
+#: ../testimonial-slider.php:545
+msgid "Settings"
+msgstr "Configuración"
+
+#: ../testimonial-slider.php:560
+msgctxt "taxonomy general name"
+msgid "Testimonial Categories"
+msgstr "Categorías testimoniales"
+
+#: ../testimonial-slider.php:561
+msgctxt "taxonomy singular name"
+msgid "Testimonial Category"
+msgstr "Categoría testimonial"
+
+#: ../testimonial-slider.php:576
+msgctxt "post type general name"
+msgid "Testimonials"
+msgstr "Testimonios"
+
+#: ../testimonial-slider.php:577
+msgctxt "post type singular name"
+msgid "Testimonial"
+msgstr "Testimonio"
+
+#: ../testimonial-slider.php:578
+msgctxt "testimonial"
+msgid "Add New"
+msgstr "Agregar nuevo"
+
+#: ../testimonial-slider.php:579
+msgid "Add New Testimonial"
+msgstr "Añadir nuevo testimonio"
+
+#: ../testimonial-slider.php:580
+msgid "Edit Testimonial"
+msgstr "Editar Testimonial"
+
+#: ../testimonial-slider.php:581
+msgid "New Testimonial"
+msgstr "Nuevo testimonio"
+
+#: ../testimonial-slider.php:582
+msgid "All Testimonials"
+msgstr "Todos testimonios"
+
+#: ../testimonial-slider.php:583
+msgid "View Testimonial"
+msgstr "Vista Testimonial"
+
+#: ../testimonial-slider.php:584
+msgid "Search Testimonials"
+msgstr "Buscar testimonios"
+
+#: ../testimonial-slider.php:585
+msgid "No testimonials found"
+msgstr "No hay testimonios encontrados"
+
+#: ../testimonial-slider.php:586
+msgid "No testimonials found in Trash"
+msgstr "No hay testimonios encontrados en la basura"
+
+#: ../testimonial-slider.php:615
+#, php-format
+msgid "Testimonial updated. <a href=\"%s\">View testimonial</a>"
+msgstr "Testimonio actualizado. <a href=\"%s\"> testimonio de visión</a>"
+
+#: ../testimonial-slider.php:616
+msgid "Custom field updated."
+msgstr "Campo personalizado actualizado."
+
+#: ../testimonial-slider.php:617
+msgid "Custom field deleted."
+msgstr "Campo personalizado eliminado."
+
+#: ../testimonial-slider.php:618
+msgid "Testimonial updated."
+msgstr "Testimonio actualizado."
+
+#. translators: %s: date and time of the revision
+#: ../testimonial-slider.php:620
+#, php-format
+msgid "Testimonial restored to revision from %s"
+msgstr "Testimonio restaurado a la revisión de %s"
+
+#: ../testimonial-slider.php:621
+#, php-format
+msgid "Testimonial published. <a href=\"%s\">View testimonial</a>"
+msgstr "Testimonio publicado. <a href=\"%s\"> testimonio de visión</a>"
+
+#: ../testimonial-slider.php:622
+msgid "Testimonial saved."
+msgstr "Testimonio guardado."
+
+#: ../testimonial-slider.php:623
+#, php-format
+msgid "Testimonial submitted. <a target=\"_blank\" href=\"%s\">Preview testimonial</a>"
+msgstr ""
+"Testimonio presentado. <a target=\"_blank\" href=\"%s\"> testimonio de vista "
+"previa</a>"
+
+#: ../testimonial-slider.php:624
+#, php-format
+msgid ""
+"Testimonial scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Preview testimonial</a>"
+msgstr ""
+"Testimonio previsto para: <strong>%1$ s</strong>. < un objetivo =  \"_blank\" "
+"testimonio de href=\"%2$s\">Preview</a>"
+
+#: ../testimonial-slider.php:627
+#, php-format
+msgid ""
+"Testimonial draft updated. <a target=\"_blank\" href=\"%s\">Preview "
+"testimonial</a>"
+msgstr ""
+"Getuigenis ontwerp bijgewerkt. < een doel =  \"_blank\" href=\"%s\">Preview "
+"getuigenis</a>"
+
+#: ../settings/settings.php:168 ../settings/settings.php:169
+msgid "Settings imported successfully "
+msgstr "Configuración importado con éxito"
+
+#: ../settings/settings.php:172 ../settings/settings.php:173
+msgid ""
+"Settings imported do not match to Testimonial Slider Settings. Please check "
+"the file."
+msgstr ""
+"Configuración importados no coinciden a Testimonial Slider Settings. "
+"Compruebe por favorel archivo."
+
+#: ../settings/settings.php:177 ../settings/settings.php:178
+msgid "Error in File, Settings not imported. Please check the file being imported. "
+msgstr ""
+"Error en el archivo, configuración no importan. Por favor, consulte el "
+"archivo importado."
+
+#: ../settings/settings.php:203
+msgid "Testimonial Slider Settings "
+msgstr "Configuración de Slider testimonial"
+
+#: ../settings/settings.php:214
+msgid "Preview"
+msgstr "Vista previa"
+
+#: ../settings/settings.php:236
+msgid "Setting Set Name"
+msgstr "Nombre del conjunto de configuración"
+
+#: ../settings/settings.php:245 ../settings/settings.php:253
+msgid "Basic Settings"
+msgstr "Ajustes básicos"
+
+#: ../settings/settings.php:246
+msgid "Slider Content"
+msgstr "Slider contenido"
+
+#: ../settings/settings.php:247
+msgid "Navigation Settings"
+msgstr "Configuración de navegación"
+
+#: ../settings/settings.php:248
+msgid "Preview Settings"
+msgstr "Configuración de vista previa"
+
+#: ../settings/settings.php:254
+msgid "Customize the looks of the Slider box wrapping the content slides from here"
+msgstr ""
+"Personalizar el aspecto de la caja de control deslizante envolviendo las "
+"diapositivas contenidas desde aquí"
+
+#: ../settings/settings.php:259
+msgid "Testimonial Slider Skin"
+msgstr "Piel testimonial Slider"
+
+#: ../settings/settings.php:277
+msgid "Type of Slider"
+msgstr "Tipo de Slider"
+
+#: ../settings/settings.php:279
+msgid "Slides Infinitely"
+msgstr "Diapositivas infinitamente"
+
+#: ../settings/settings.php:280
+msgid "Stops when either end is reached"
+msgstr "Se detiene cuando se alcanzaron los extremos"
+
+#: ../settings/settings.php:286
+msgid "Slide Transition Effect"
+msgstr "Efecto de transición de diapositiva"
+
+#: ../settings/settings.php:298
+msgid "Slide Easing Effect"
+msgstr "Deslice el efecto aliviando"
+
+#: ../settings/settings.php:336
+msgid "Speed of Transition"
+msgstr "Velocidad de transición"
+
+#: ../settings/settings.php:341
+msgid ""
+"The duration of Slide Animation in milliseconds. Lower value indicates fast "
+"animation. Enter numeric values like 5 or 7."
+msgstr ""
+"La duración de la animación diapositiva en milisegundos. Valor inferior "
+"indica rápidoanimación. Introduzca valores numéricos como 5 o 7."
+
+#: ../settings/settings.php:348
+msgid "Disable Autosliding"
+msgstr "Desactivar Autosliding"
+
+#: ../settings/settings.php:354
+msgid "Time between Transitions"
+msgstr "Tiempo entre las transiciones"
+
+#: ../settings/settings.php:359
+msgid ""
+"Enter number that you want the slider to stop before sliding to next slide "
+"like 10, 20, 30. Valid only in case auto-sliding is enabled"
+msgstr ""
+"Introduzca el número que desea el control deslizante para parar antes de "
+"deslizar a la siguiente diapositivacomo 10, 20, 30. Válido sólo en caso de "
+"deslizamiento automático está habilitado"
+
+#: ../settings/settings.php:366
+msgid "Number of Testimonials in the Testimonial Slider"
+msgstr "Número de testimonios en el deslizador Testimonial"
+
+#: ../settings/settings.php:371
+msgid "Number of Items Visible in One Set"
+msgstr "Número de elementos visibles en un sistema"
+
+#: ../settings/settings.php:376
+msgid "Number of Items To Scroll while Sliding"
+msgstr "Número de artículos para desplazarse mientras deslizante"
+
+#: ../settings/settings.php:381
+msgid "Complete Slider Width"
+msgstr "Anchura completa Slider"
+
+#: ../settings/settings.php:386
+msgid "If set to 0, will take the container's width"
+msgstr "Si se establece en 0, se llevará el ancho del contenedor"
+
+#: ../settings/settings.php:392
+msgid "Min. Slide Item Width"
+msgstr "Ancho mínimo de elemento de diapositiva"
+
+#: ../settings/settings.php:397
+msgid "Slide (Item) Height"
+msgstr "Altura de diapositiva (artículo)"
+
+#: ../settings/settings.php:402
+msgid "Slide Background Color"
+msgstr "Color de fondo de diapositiva"
+
+#: ../settings/settings.php:405
+msgid " Use Transparent Background"
+msgstr "Usar fondo transparente"
+
+#: ../settings/settings.php:409
+msgid "Slide Border Thickness"
+msgstr "Deslice el borde grueso"
+
+#: ../settings/settings.php:410
+msgid "px (put 0 if no border is required)"
+msgstr "PX (poner 0 si no hay frontera es requerida)"
+
+#: ../settings/settings.php:414
+msgid "Slide Border Color"
+msgstr "Deslice el Color del borde"
+
+#: ../settings/settings.php:422 ../settings/settings.php:605 ../settings/settings.
+#: php:671 ../settings/settings.php:728 ../settings/settings.php:785
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
+#: ../settings/settings.php:427
+msgid "Miscellaneous"
+msgstr "Misceláneo"
+
+#: ../settings/settings.php:432
+msgid "Continue Reading Text"
+msgstr "Continuar leyendo el texto"
+
+#: ../settings/settings.php:437
+msgid "Slide Link ('a' element) attributes  "
+msgstr "Deslice los atributos Link ('a' elemento)"
+
+#: ../settings/settings.php:449
+msgid "Randomize Slides in Slider"
+msgstr "Aleatorizar las diapositivas en Slider"
+
+#: ../settings/settings.php:454
+msgid "check this if you want the testimonials added to appear in random order."
+msgstr "Mira esto si quieres los testimonios agregó que aparezcan en orden aleatorio."
+
+#: ../settings/settings.php:463
+msgid "Minimum User Level to add Testimonials to the Slider"
+msgstr "Mínimo nivel de usuario para agregar testimonios a la barra deslizante"
+
+#: ../settings/settings.php:474
+msgid "Text to display in the JavaScript disabled browser"
+msgstr "Texto que se muestra en el JavaScript deshabilitado navegador"
+
+#: ../settings/settings.php:479
+msgid "Add Shortcode Support"
+msgstr "Agregar compatibilidad con Shortcode"
+
+#: ../settings/settings.php:480
+msgid ""
+"check this if you want to use Testimonial Slider Shortcode i.e "
+"[testimonialslider]"
+msgstr "Mira esto si desea usar i.e Testimonial Slider Shortcode[testimonialslider]"
+
+#: ../settings/settings.php:488
+msgid "Multiple Slider Feature"
+msgstr "Múltiples funciones de Slider"
+
+#: ../settings/settings.php:491
+msgid "Grant Multiple Slider ability to Testimonial Slider"
+msgstr "Conceder capacidad Slider múltiples testimonios Slider"
+
+#: ../settings/settings.php:496
+msgid "Enable FOUC"
+msgstr "Habilitar FOUC"
+
+#: ../settings/settings.php:501
+msgid ""
+"check this if you would not want to disable Flash of Unstyled Content in the "
+"slider when the page is loaded."
+msgstr ""
+"Mira esto si no querrá desactivar Flash de tecla contenidos en el deslizador "
+"cuando se carga la página."
+
+#: ../settings/settings.php:510
+msgid "Custom Styles"
+msgstr "Estilos personalizados"
+
+#: ../settings/settings.php:515
+msgid "custom css styles that you would want to be applied to the slider elements."
+msgstr ""
+"estilos css personalizado que te gustaría ser aplicado a los elementos de "
+"control deslizante."
+
+#: ../settings/settings.php:522
+msgid "Show Promotionals on Admin Page"
+msgstr "Promocionales de Mostrar en la página de Admin"
+
+#: ../settings/settings.php:524
+msgid "Yes"
+msgstr "Sí"
+
+#: ../settings/settings.php:525 ../settings/settings.php:889
+msgid "No"
+msgstr "No"
+
+#: ../settings/settings.php:538
+msgid "Slider Title"
+msgstr "Título Slider"
+
+#: ../settings/settings.php:539
+msgid "Customize the looks of the main title of the Slideshow from here"
+msgstr ""
+"Personalizar el aspecto del título principal de la presentación de "
+"diapositivas desde aquí"
+
+#: ../settings/settings.php:543 ../settings/settings.php:550
+msgid "Default Title Text"
+msgstr "Texto de título predeterminado"
+
+#: ../settings/settings.php:548
+msgid "Pick Slider Title From"
+msgstr "Buscar título Slider de"
+
+#: ../settings/settings.php:551
+msgid "Slider Name"
+msgstr "Nombre del control deslizante"
+
+#: ../settings/settings.php:557 ../settings/settings.php:681 ../settings/settings.
+#: php:738 ../settings/settings.php:793
+msgid "Font"
+msgstr "Fuente"
+
+#: ../settings/settings.php:582 ../settings/settings.php:706 ../settings/settings.
+#: php:763 ../settings/settings.php:818
+msgid "Font Color"
+msgstr "Color de la fuente"
+
+#: ../settings/settings.php:589 ../settings/settings.php:712 ../settings/settings.
+#: php:769 ../settings/settings.php:824
+msgid "Font Size"
+msgstr "Tamaño de la fuente"
+
+#: ../settings/settings.php:594 ../settings/settings.php:717 ../settings/settings.
+#: php:774 ../settings/settings.php:829
+msgid "Font Style"
+msgstr "Estilo de fuente"
+
+#: ../settings/settings.php:596 ../settings/settings.php:719 ../settings/settings.
+#: php:776 ../settings/settings.php:831
+msgid "Bold"
+msgstr "Negrita"
+
+#: ../settings/settings.php:597 ../settings/settings.php:720 ../settings/settings.
+#: php:777 ../settings/settings.php:832
+msgid "Bold Italic"
+msgstr "Bold Italic"
+
+#: ../settings/settings.php:598 ../settings/settings.php:721 ../settings/settings.
+#: php:778 ../settings/settings.php:833
+msgid "Italic"
+msgstr "Italic"
+
+#: ../settings/settings.php:599 ../settings/settings.php:722 ../settings/settings.
+#: php:779 ../settings/settings.php:834
+msgid "Normal"
+msgstr "Normal"
+
+#: ../settings/settings.php:610
+msgid "Gravtar/Customer Image"
+msgstr "Imagen Gravtar/cliente"
+
+#: ../settings/settings.php:614
+msgid "Default Avatar URL"
+msgstr "URL de Avatar por defecto"
+
+#: ../settings/settings.php:623
+msgid "Avatar Image"
+msgstr "Imagen de Avatar"
+
+#: ../settings/settings.php:631
+msgid "Avatar Shape"
+msgstr "Forma de Avatar"
+
+#: ../settings/settings.php:642
+msgid "Avatar Radius"
+msgstr "Radio de Avatar"
+
+#: ../settings/settings.php:649
+msgid "Image Width"
+msgstr "Ancho de imagen"
+
+#: ../settings/settings.php:654
+msgid "Max. Image Height"
+msgstr "Max. Altura de la imagen"
+
+#: ../settings/settings.php:659
+msgid "Border Thickness"
+msgstr "Borde grueso"
+
+#: ../settings/settings.php:660
+msgid "px  (put 0 if no border is required)"
+msgstr "PX (poner 0 si no hay frontera es requerida)"
+
+#: ../settings/settings.php:664
+msgid "Border Color"
+msgstr "Color del borde"
+
+#: ../settings/settings.php:676
+msgid "Customer's name"
+msgstr "Nombre del cliente"
+
+#: ../settings/settings.php:677
+msgid "Customize the Customer's Name field looks"
+msgstr "Personalizar la apariencia del cliente nombre campo"
+
+#: ../settings/settings.php:733
+msgid "Customer's Company/Site"
+msgstr "Empresa/cliente"
+
+#: ../settings/settings.php:734
+msgid "Customize the Customer's Company/Site field looks"
+msgstr "Personalizar la apariencia del cliente empresa/sitio campo"
+
+#: ../settings/settings.php:790
+msgid "Testimonial Content"
+msgstr "Contenido testimonial"
+
+#: ../settings/settings.php:840
+msgid "Star Color"
+msgstr "Estrella Color"
+
+#: ../settings/settings.php:845
+msgid "Star Size"
+msgstr "Tamaño de estrellas"
+
+#: ../settings/settings.php:850
+msgid "Show Star Rating"
+msgstr "Calificación de estrellas del espectáculo"
+
+#: ../settings/settings.php:857
+msgid "Pick content From"
+msgstr "Elige el contenido de"
+
+#: ../settings/settings.php:859
+msgid "From Content"
+msgstr "De contenido"
+
+#: ../settings/settings.php:864
+msgid "Maximum content"
+msgstr "Contenido máximo"
+
+#: ../settings/settings.php:865
+msgid "words"
+msgstr "palabras"
+
+#: ../settings/settings.php:869
+msgid "Keep empty to select complete Content"
+msgstr "Mantenga vacía para seleccionar el contenido completo"
+
+#: ../settings/settings.php:882
+msgid "Navigational Buttons"
+msgstr "Botones de navegación"
+
+#: ../settings/settings.php:887
+msgid "Show Navigation Buttons"
+msgstr "Mostrar los botones de navegación"
+
+#: ../settings/settings.php:890
+msgid "Bottom of Slider"
+msgstr "Parte inferior del control deslizante"
+
+#: ../settings/settings.php:891
+msgid "Top of Slider"
+msgstr "Parte superior del deslizador"
+
+#: ../settings/settings.php:897
+msgid "Navigation Button Width"
+msgstr "Anchura del botón de navegación"
+
+#: ../settings/settings.php:902
+msgid "Navigation Button Height"
+msgstr "Altura del botón de navegación"
+
+#: ../settings/settings.php:907
+msgid "Navigation Button Color"
+msgstr "Color del botón de navegación"
+
+#: ../settings/settings.php:916
+msgid "Navigational Arrows"
+msgstr "Flechas de navegación"
+
+#: ../settings/settings.php:925
+msgid "Hide Prev/Next navigation arrows"
+msgstr "Ocultar las flechas de navegación Prev/Next"
+
+#: ../settings/settings.php:961
+msgid "Preview on Settings Panel"
+msgstr "Previsualización en el Panel de ajustes"
+
+#: ../settings/settings.php:966
+msgid "Disable Preview Section"
+msgstr "Desactivar la sección Preview"
+
+#: ../settings/settings.php:972
+msgid "If disabled, the 'Preview' of Slider on this Settings page will be removed."
+msgstr ""
+"Si desactiva, se eliminará la 'vista previa' de Slider en esta página de "
+"configuración."
+
+#: ../settings/settings.php:979
+msgid "Testimonial Template Tag for Preview"
+msgstr "Etiqueta de plantilla testimonial para escuchar"
+
+#: ../settings/settings.php:981
+msgid "Recent Testimonials Slider"
+msgstr "Recientes testimonios Slider"
+
+#: ../settings/settings.php:982
+msgid "Category Testimonial Slider"
+msgstr "Categoría Testimonial Slider"
+
+#: ../settings/settings.php:983
+msgid "Custom Slider with Slider ID"
+msgstr "Cursor personalizado con Slider ID"
+
+#: ../settings/settings.php:999
+msgid "Select Category for Slider:"
+msgstr "Seleccione la categoría para Slider:"
+
+#: ../settings/settings.php:1015 ../settings/settings.php:1016
+msgid "Preview Slider Params"
+msgstr "Escuchar Slider Params"
+
+#: ../settings/settings.php:1018
+msgid "Slider ID in case of Custom Slider"
+msgstr "Slider ID en el caso de Custom Slider"
+
+#: ../settings/settings.php:1021
+msgid "Category Slug in case of Testimonial Category Slider"
+msgstr "Babosa de categoría en caso de testimonio categoría Slider"
+
+#: ../settings/settings.php:1030
+msgid "Shortcode for Testimonial Slider"
+msgstr "Shortcode para Slider Testimonial"
+
+#: ../settings/settings.php:1031
+msgid ""
+"Paste the below shortcode on Page/Post Edit Panel to get the slider as shown "
+"in the above Preview"
+msgstr ""
+"Pegar la continuación shortcode Page/Post editar panel para conseguir el "
+"regulador como se muestra en la vista previa de arriba"
+
+#: ../settings/settings.php:1044
+msgid "Template Tag for Testimonial Slider"
+msgstr "Etiqueta de plantilla para Slider Testimonial"
+
+#: ../settings/settings.php:1045
+msgid ""
+"Paste the below template tag in your theme template file like index.php or "
+"page.php at required location to get the slider as shown in the above Preview"
+msgstr ""
+"Pegar la debajo de la etiqueta de plantilla en el archivo de plantilla tema "
+"como index.php o page.php en posición requerida para obtener el control "
+"deslizante como se muestra en la vista previa de arriba"
+
+#: ../settings/settings.php:1057
+msgid "Shortcode for Testimonials List"
+msgstr "Shortcode para lista de testimonios"
+
+#: ../settings/settings.php:1058
+msgid ""
+"Paste the below shortcode on Page/Post Edit Panel to get the list of "
+"Testimonials in the above Preview Testimonial Slider"
+msgstr ""
+"Pegar la continuación shortcode Page/Post editar panel para obtener la lista "
+"de testimonios en el anterior escuchar testimonio Slider"
+
+#: ../settings/settings.php:1077
+msgid "Save Changes "
+msgstr "Guardar cambios"
+
+#: ../settings/settings.php:1093
+msgid "Reset Settings to"
+msgstr "Restablecer la configuración a"
+
+#: ../settings/settings.php:1095
+msgid "None"
+msgstr "Ninguno"
+
+#: ../settings/settings.php:1096
+msgid "Global Default"
+msgstr "Predeterminados globales"
+
+#: ../settings/settings.php:1111
+msgid "Default Settings Set"
+msgstr "Conjunto de ajustes por defecto"
+
+#: ../settings/settings.php:1127
+msgid "Reset Settings"
+msgstr "Restablecer la configuración"
+
+#: ../settings/settings.php:1135
+msgid "Import Settings Set by uploading a Settings File"
+msgstr "Importar configuración al cargar un archivo de configuración"
+
+#: ../settings/settings.php:1139
+msgid "Import Settings from a file"
+msgstr "Configuración de importación de un archivo"
+
+#: ../settings/settings.php:1337
+msgid "Quick Embed Shortcode"
+msgstr "Incrustar rápido Shortcode"
+
+#: ../settings/settings.php:1350
+msgid "Quick Embed Template Tag"
+msgstr "Rápido Insertar etiqueta de plantilla"
+
+#: ../settings/settings.php:1365
+msgid ""
+"Go to Sliders page where you can re-order the slide posts, delete the slides "
+"from the slider etc."
+msgstr ""
+"Ir a la página de reguladores donde puedes volver a pedir la diapositiva "
+"puestos, eliminar las diapositivas del deslizante, etc."
+
+#: ../settings/settings.php:1365
+msgid "Go to Sliders Admin"
+msgstr "Vaya a Admin Sliders"
+
+#: ../settings/settings.php:1367
+msgid "Export this Settings Set to a file"
+msgstr "Este conjunto de ajustes de exportar a un archivo"
+
+#: ../settings/settings.php:1368
+msgid "Go to Import Settings Form"
+msgstr "Ir al formulario de configuración de importación"
+
+#: ../settings/settings.php:1374
+msgid "Available Settings Sets"
+msgstr "Conjuntos de ajustes disponibles"
+
+#: ../settings/settings.php:1391
+msgid "Usage Guide and General FAQs"
+msgstr "Guía de uso y General FAQs"
+
+#: ../settings/settings.php:1401
+msgid "SliderVilla slider plugins"
+msgstr "Plugins slider SliderVilla"
+
+#: ../settings/settings.php:1401
+#, php-format
+msgid ""
+"are feature rich and stylish plugins to embed a nice looking featured "
+"content slider in your existing or new theme template. 100% customization "
+"options available on WordPress Settings page of the plugin."
+msgstr ""
+"son característica rica y elegante plugins para incrustar un agradable "
+"aspecto slider contenido recomendado en su plantilla tema nuevo o existente. "
+"100% opciones de personalización disponibles en la página de configuración "
+"de WordPress del plugin."
+
+#: ../settings/settings.php:1402
+msgid "Stylish Sliders,"
+msgstr "Sliders con estilo,"
+
+#: ../settings/settings.php:1402
+msgid "Happy Customers"
+msgstr "Clientes satisfechos"
+
+#: ../settings/settings.php:1403
+msgid "For more info visit SliderVilla"
+msgstr "Para más información visite SliderVilla"
+
+#: ../settings/settings.php:1409 ../settings/sliders.php:235
+msgid "About this Plugin:"
+msgstr "Acerca de este Plugin:"
+
+#: ../settings/settings.php:1412 ../settings/sliders.php:238
+msgid "Testimonial Slider Homepage"
+msgstr "Slider testimonial Homepage"
+
+#: ../settings/settings.php:1413 ../settings/sliders.php:239
+msgid "Plugin Homepage"
+msgstr "Plugin homepage"
+
+#: ../settings/settings.php:1414 ../settings/settings.php:1415 ..
+#: settings/sliders.php:240 ../settings/sliders.php:241
+msgid "Support Forum"
+msgstr "Foro de soporte"
+
+#: ../settings/settings.php:1416 ../settings/settings.php:1417 ..
+#: settings/sliders.php:242 ../settings/sliders.php:243
+msgid "Usage Guide"
+msgstr "Guía de uso"
+
+#: ../settings/sliders.php:8
+msgid "Sliders Created"
+msgstr "Deslizadores creados"
+
+#: ../settings/sliders.php:21 ../settings/sliders.php:142
+msgid "Remove All at Once"
+msgstr "Eliminar de una vez"
+
+#: ../settings/sliders.php:32 ../settings/sliders.php:145
+msgid "Delete Slider"
+msgstr "Eliminar Slider"
+
+#: ../settings/sliders.php:73 ../settings/sliders.php:204
+msgid "Rename"
+msgstr "Cambiar el nombre"
+
+#: ../settings/sliders.php:87
+msgid ""
+"Settings Page for Testimonial Slider where you can change the color, font "
+"etc. for the sliders"
+msgstr ""
+"Página de configuración para Slider Testimonial donde puedes cambiar el "
+"color, fuente etc. para los cursores"
+
+#: ../settings/sliders.php:87
+msgid "Go to Testimonial Slider Settings page"
+msgstr "Ir a la página Configuración del deslizador Testimonial"
+
+#: ../settings/sliders.php:97
+msgid "Create New Slider"
+msgstr "Crear nuevo Slider"
+
+#: ../settings/sliders.php:112
+msgid "Posts/Pages Added To"
+msgstr "Publicacion/Página añadida a"
+
+#: ../settings/sliders.php:112
+msgid "(Slider ID"
+msgstr "(Deslizador ID"
+
+#: ../settings/sliders.php:113
+msgid "Check the Post/Page and Press \"Remove Selected\" to remove them From"
+msgstr ""
+"Consulte la página de correos/y pulse \"Remove Selected\" para eliminarlos "
+"desde"
+
+#: ../settings/sliders.php:113
+msgid "Press \"Remove All at Once\" to remove all the posts from the"
+msgstr "Pulse \"Remove en Once\" para eliminar todos los puestos de la"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Post/Page Title"
+msgstr "Post/página de título"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Author"
+msgstr "Autor"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Post Date"
+msgstr "El post cita"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Remove Post"
+msgstr "Eliminar Post"
+
+#: ../settings/sliders.php:131
+msgid "(Edit)"
+msgstr "(Edit)"
+
+#: ../settings/sliders.php:131
+msgid "(View)"
+msgstr "(View)"
+
+#: ../settings/sliders.php:136 ../settings/sliders.php:181
+msgid ""
+"No posts/pages have been added to the Slider - You can add respective "
+"post/page to slider on the Edit screen for that Post/Page"
+msgstr ""
+"No posts/páginas web se han añadido a la barra deslizante - puede agregar "
+"post/página respectiva al cursor en la pantalla de edición para esa "
+"entrada/página"
+
+#: ../settings/sliders.php:142
+msgid "Remove Selected"
+msgstr "Eliminar seleccionados"
+
+#: ../settings/sliders.php:159
+msgid "Reorder the Posts/Pages Added To"
+msgstr "Reordenar las páginas de mensajes/agregado a"
+
+#: ../settings/sliders.php:160
+msgid ""
+"Click on and drag the post/page title to a new spot within the list, and the "
+"other items will adjust to fit."
+msgstr ""
+"Haga clic en y arrastre el título de la entrada/página a un nuevo punto "
+"dentro de la lista y los demás elementos se ajustará para adaptarse."
+
+#: ../settings/sliders.php:199
+msgid "Rename Slider to"
+msgstr "Control deslizante para cambiar el nombre"
+
+#: ../settings/sliders.php:204
+msgid "rename_slider"
+msgstr "rename_slider"
+
+#: ../settings/sliders.php:217
+msgid "Enter New Slider Name"
+msgstr "Introduzca nuevo Slider"
+
+#: ../settings/sliders.php:222
+msgid "Create New"
+msgstr "Crear un nuevo"
+
+#: ../settings/sliders.php:244
+msgid "Current Version:"
+msgstr "Versión actual:"

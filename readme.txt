@@ -3,15 +3,15 @@ Contributors: slidervilla
 Tags: testimonial, slider, slideshow, feedback, content slider, responsive, widget, content, jquery, gallery, custom post type, sidebar, wpmu
 Donate link: http://www.clickonf5.org/go/donate-wp-plugins/
 Requires at least: 3.0
-Tested up to: 4.2
-Stable tag: 1.1.4
+Tested up to: 4.2.2
+Stable tag: 1.2
 License: GPLv2 or later
 
 Display your happy customers' Testimonials in a neat Responsive Slider 
 
 == Description ==
 
-Testimonial Slider is a plugin for WordPress that will help you show the Testimonials submitted by your Happy Customers in a clean, responsive and beautiful Slider format. The "Testimonials" are a Custom Post Type. You can enter the Customer's Image/Avatar, Name, Company, Website in the Custom Fields for the Testimonial and the actual Testimonial text in the "Description". It is as simple as that!
+Testimonial Slider shows the testimonials and feedbacks submitted by your Happy Customers in a clean, responsive and beautiful Slider format. The "Testimonials" are a Custom Post Type so it is very easy to add, modify and delete testimonials. You can enter the Customer's Image/Avatar, Name, Company, Website in the Custom Fields for the Testimonial and the actual Testimonial text in the "Description". It is as simple as that!
 
 = Features: =
 
@@ -27,7 +27,27 @@ Testimonial Slider is a plugin for WordPress that will help you show the Testimo
 
 [Plugin Information and FAQs](http://slidervilla.com/testimonial-slider/) | 
 
-**Find advanced and Stylish WordPress Slider Plugins at [SliderVilla](http://www.slidervilla.com/)**
+= PRO Version =
+[Rich Testimonials - PRO version of Testimonial Slider](http://slidervilla.com/rich-testimonials/ "Documentor Premium Features") offers elegant designs and features such as
+
+* 7 Amazing Pre-designed Skins
+* List, Grid and Slider View
+* Front-end User Testimonial Submission Form
+* Star Ratings
+* Social Media Profile Icons
+* Unlimited Documentations
+* 600+ Google Fonts Integration
+* 5 TRansition Effects
+* WPML, mqTranslate Ready
+* 24x7 Dedicated Support
+
+[Visit our Premium page](http://slidervilla.com/rich-testimonials/ "Rich Testimonials - Premium version of Testimonials Slider WordPress Plugin")
+
+* Language Files Available 
+
+	* Spanish
+	* Dutch
+	* French
 
 == Installation ==
 
@@ -95,6 +115,16 @@ Visit the plugin page (http://slidervilla.com/testimonial-slider/) for recent FA
 No major issues!
 
 == Changelog ==
+
+* 1.2 (06/02/2015)
+
+1. New: Added star rating 
+2. New: Added language support for following languages
+	* Spanish
+	* Dutch
+	* French
+2. Fix: Notices on edit testimonials panel
+
 
 * 1.1.4 (11/15/2014)
 

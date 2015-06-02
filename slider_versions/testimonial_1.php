@@ -22,7 +22,7 @@ function get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slid
 	
 	//Include CSS
 	wp_enqueue_style( 'testimonial_'.$skin, testimonial_slider_plugin_url( 'css/skins/'.$skin.'/style.css' ),false,TESTIMONIAL_SLIDER_VER, 'all');
-	
+	wp_enqueue_style( 'dashicons' );
 	require_once ( dirname( dirname(__FILE__) ) . '/css/skins/'.$skin.'/functions.php');
 	
 	//Skin specific post processor and html generation
@@ -62,36 +62,37 @@ function testimonial_carousel_posts_on_slider($max_posts, $offset=0, $slider_id 
 	$r_array=testimonial_global_posts_processor( $posts, $testimonial_slider_curr, $out_echo,$set , $data );
 	return $r_array;
 }
-
-function get_testimonial_slider($slider_id='',$set='',$offset=0, $data=array() ) { 
-    global $testimonial_slider,$default_testimonial_slider_settings; 
- 	$testimonial_slider_options='testimonial_slider_options'.$set;
-    $testimonial_slider_curr=get_option($testimonial_slider_options);
-	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+if(!function_exists('get_testimonial_slider')){
+	function get_testimonial_slider($slider_id='',$set='',$offset=0, $data=array() ) { 
+	    	global $testimonial_slider,$default_testimonial_slider_settings; 
+	 	$testimonial_slider_options='testimonial_slider_options'.$set;
+	    	$testimonial_slider_curr=get_option($testimonial_slider_options);
+		if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
 	
-	foreach($default_testimonial_slider_settings as $key=>$value){
-		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
-	}
+		foreach($default_testimonial_slider_settings as $key=>$value){
+			if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+		}
 	
-	if( !$offset or empty($offset) or !is_numeric($offset)  ) {
-		$offset=0;
+		if( !$offset or empty($offset) or !is_numeric($offset)  ) {
+			$offset=0;
+		}
+		 
+		if($testimonial_slider['multiple_sliders'] == '1' and is_singular() and (empty($slider_id) or !isset($slider_id))){
+			global $post;
+			$post_id = $post->ID;
+			$slider_id = get_testimonial_slider_for_the_post($post_id);
+		}
+		if(empty($slider_id) or !isset($slider_id)){
+			$slider_id = '1';
+		}
+		if(!empty($slider_id)){
+			$data['slider_id']=$slider_id; // Added for title
+			$slider_handle='testimonial_slider_'.$slider_id;
+			$data['slider_handle']=$slider_handle;
+			$r_array = testimonial_carousel_posts_on_slider($testimonial_slider_curr['no_posts'], $offset, $slider_id, '0', $set, $data); 
+			get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data);
+		} //end of not empty slider_id condition
 	}
-	 
-	if($testimonial_slider['multiple_sliders'] == '1' and is_singular() and (empty($slider_id) or !isset($slider_id))){
-		global $post;
-		$post_id = $post->ID;
-		$slider_id = get_testimonial_slider_for_the_post($post_id);
-	}
-	if(empty($slider_id) or !isset($slider_id)){
-		$slider_id = '1';
-	}
-	if(!empty($slider_id)){
-		$data['slider_id']=$slider_id; // Added for title
-		$slider_handle='testimonial_slider_'.$slider_id;
-		$data['slider_handle']=$slider_handle;
-		$r_array = testimonial_carousel_posts_on_slider($testimonial_slider_curr['no_posts'], $offset, $slider_id, '0', $set, $data); 
-		get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data);
-	} //end of not empty slider_id condition
 }
 
 //For displaying category specific posts in chronologically reverse order
@@ -135,31 +136,32 @@ function testimonial_carousel_posts_on_slider_category($max_posts='5', $catg_slu
 	$r_array=testimonial_global_posts_processor( $posts, $testimonial_slider_curr, $out_echo,$set,$data );
 	return $r_array;
 }
-
-function get_testimonial_slider_category($catg_slug='', $set='', $offset=0, $data=array() ) {
-    global $testimonial_slider,$default_testimonial_slider_settings; 
- 	$testimonial_slider_options='testimonial_slider_options'.$set; 
-    $testimonial_slider_curr=get_option($testimonial_slider_options);
-	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+if(!function_exists('get_testimonial_slider_category')){
+	function get_testimonial_slider_category($catg_slug='', $set='', $offset=0, $data=array() ) {
+	    	global $testimonial_slider,$default_testimonial_slider_settings; 
+	 	$testimonial_slider_options='testimonial_slider_options'.$set; 
+	    	$testimonial_slider_curr=get_option($testimonial_slider_options);
+		if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
 	
-	foreach($default_testimonial_slider_settings as $key=>$value){
-		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
-	}
+		foreach($default_testimonial_slider_settings as $key=>$value){
+			if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+		}
 	
-	if( !$offset or empty($offset) or !is_numeric($offset)  ) {
-		$offset=0;
-	}
-	if(empty($slider_id) or !isset($slider_id)){
-		$slider_id = '1';
-	}
-	if(!empty($slider_id)){
-		$data['slider_id']=$slider_id; // Added for title
-	}
-	$slider_handle='testimonial_slider_'.$catg_slug;
-	$data['slider_handle']=$slider_handle;
-    $r_array = testimonial_carousel_posts_on_slider_category($testimonial_slider_curr['no_posts'], $catg_slug, $offset, '0', $set, $data); 
-	get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data);
-} 
+		if( !$offset or empty($offset) or !is_numeric($offset)  ) {
+			$offset=0;
+		}
+		if(empty($slider_id) or !isset($slider_id)){
+			$slider_id = '1';
+		}
+		if(!empty($slider_id)){
+			$data['slider_id']=$slider_id; // Added for title
+		}
+		$slider_handle='testimonial_slider_'.$catg_slug;
+		$data['slider_handle']=$slider_handle;
+	    	$r_array = testimonial_carousel_posts_on_slider_category($testimonial_slider_curr['no_posts'], $catg_slug, $offset, '0', $set, $data); 
+		get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data);
+	} 
+}
 
 //For displaying recent posts in chronologically reverse order
 function testimonial_carousel_posts_on_slider_recent($max_posts='5', $offset=0, $out_echo = '1', $set='', $data=array() ) {
@@ -188,25 +190,26 @@ function testimonial_carousel_posts_on_slider_recent($max_posts='5', $offset=0, 
 	$r_array=testimonial_global_posts_processor( $posts, $testimonial_slider_curr, $out_echo,$set,$data );
 	return $r_array;
 }
-
-function get_testimonial_slider_recent($set='', $offset=0, $data=array() ) { 
-	global $testimonial_slider,$default_testimonial_slider_settings; 
- 	$testimonial_slider_options='testimonial_slider_options'.$set;
-    $testimonial_slider_curr=get_option($testimonial_slider_options);
-	if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
+if(!function_exists('get_testimonial_slider_recent')){
+	function get_testimonial_slider_recent($set='', $offset=0, $data=array() ) { 
+		global $testimonial_slider,$default_testimonial_slider_settings; 
+	 	$testimonial_slider_options='testimonial_slider_options'.$set;
+	    $testimonial_slider_curr=get_option($testimonial_slider_options);
+		if(!isset($testimonial_slider_curr) or !is_array($testimonial_slider_curr) or empty($testimonial_slider_curr)){$testimonial_slider_curr=$testimonial_slider;$set='';}
 	
-	foreach($default_testimonial_slider_settings as $key=>$value){
-		if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
-	}
+		foreach($default_testimonial_slider_settings as $key=>$value){
+			if(!isset($testimonial_slider_curr[$key])) $testimonial_slider_curr[$key]='';
+		}
 	
-	if( !$offset or empty($offset) or !is_numeric($offset)  ) {
-		$offset=0;
-	}
+		if( !$offset or empty($offset) or !is_numeric($offset)  ) {
+			$offset=0;
+		}
 	
-	$slider_handle='testimonial_slider_recent';
-	$r_array = testimonial_carousel_posts_on_slider_recent($testimonial_slider_curr['no_posts'], $offset, '0', $set, $data);
-	get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data);
-} 
+		$slider_handle='testimonial_slider_recent';
+		$r_array = testimonial_carousel_posts_on_slider_recent($testimonial_slider_curr['no_posts'], $offset, '0', $set, $data);
+		get_global_testimonial_slider($slider_handle,$r_array,$testimonial_slider_curr,$set,$echo='1',$data);
+	} 
+}
 
 require_once (dirname (__FILE__) . '/shortcodes_1.php');
 require_once (dirname (__FILE__) . '/widgets_1.php');
@@ -436,7 +439,8 @@ function testimonial_get_inline_css($set='',$echo='0'){
 	$testimonial_slider_css['testimonial_slideri']=$style_start.'background-color:'.$testimonial_slideri_bg.';border:'.$testimonial_slider_curr['border'].'px solid '.$testimonial_slider_curr['brcolor'].';width:'. $testimonial_slider_curr['iwidth'].'px;height:'. $testimonial_slider_curr['height'].'px;'.$style_end;
 	}
 	
-	
+	// Star Rating
+	$testimonial_slider_css['dashicons-star-filled']=$style_start.'color:'.$testimonial_slider_curr['star_color'].';font-size:'. $testimonial_slider_curr['star_size'].'px;width:'. $testimonial_slider_curr['star_size'].'px;'.$style_end;
 	// Image Radius
 	if($testimonial_slider_curr['avatar_radius'] != 0 && $testimonial_slider_curr['avatar_shape'] == "circle")
 	$testimonial_slider_css['testimonial_avatar_img']=$style_start.'max-height:'.$testimonial_slider_curr['img_height'].'px;width:'.$testimonial_slider_curr['img_width'].'px;border:'.$testimonial_slider_curr['img_border'].'px solid '.$testimonial_slider_curr['img_brcolor'].';border-radius:'.$testimonial_slider_curr['avatar_radius'].'%;'.$style_end;

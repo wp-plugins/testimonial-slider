@@ -1,32 +1,34 @@
-<?php
-/*
+<?php /*******************************************************************************************************************************
 Plugin Name: Testimonial Slider
 Plugin URI: http://slidervilla.com/testimonial-slider/
 Description: Use Testimonial Slider to show the awesome testimonials you have received in a beautiful horizontal slider format.
-Version: 1.1.4	
+Version: 1.2	
 Author: SliderVilla
 Author URI: http://slidervilla.com/
 Wordpress version supported: 3.5 and above
 License: GPL2
+*-----------------------------------------*
+Copyright 2014  SliderVilla (email : support@slidervilla.com)
 
-	Copyright 2014  SliderVilla (email : tedeshpa@gmail.com)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as 
+published by the Free Software Foundation.
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
-    published by the Free Software Foundation.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*-----------------------------------------*
+* Developers: Sukhada, Tejaswini (@WebFanzine Media)
+* Tested By: Sagar (@WebFanzine Media)
+**************************************************************************************************************************************/
 //defined global variables and constants here
 global $testimonial_slider,$default_testimonial_slider_settings,$testimonial_db_version;
-$testimonial_db_version='1.1.4'; //current version of testimonial slider database 
+$testimonial_db_version='1.2'; //current version of testimonial slider database 
 $testimonial_slider = get_option('testimonial_slider_options');
 $default_testimonial_slider_settings = array('speed'=>'6', 
 	'time'=>'20',
@@ -67,6 +69,9 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 	'content_fcolor'=>'#737373',
 	'content_from'=>'content',
 	'content_limit'=>'100',
+	'show_star'=>'1',
+	'star_color'=>'#f1c40f',
+	'star_size'=>'18',
 	'allowable_tags'=>'',
 	'more'=>'',
 	'a_attr'=>'',
@@ -101,12 +106,12 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 	'show_avatar'=> '1',
 	'avatar_shape'=> 'square',
 	'avatar_radius'=>'0',
-	'noscript'=>''
+	'noscript'=>'This page is having a slideshow that uses Javascript. Your browser either doesn\'t support Javascript or you have it turned off. To see this page as it is meant to appear please use a Javascript enabled browser.'
 );
 define('TESTIMONIAL_SLIDER_TABLE','testimonial_slider'); //Slider TABLE NAME
 define('TESTIMONIAL_SLIDER_META','testimonial_slider_meta'); //Meta TABLE NAME
 define('TESTIMONIAL_SLIDER_POST_META','testimonial_slider_postmeta'); //Meta TABLE NAME
-define("TESTIMONIAL_SLIDER_VER","1.1.4",false);//Current Version of Testimonial Slider
+define("TESTIMONIAL_SLIDER_VER","1.2",false);//Current Version of Testimonial Slider
 if ( ! defined( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME' ) )
 	define( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 if ( ! defined( 'TESTIMONIAL_SLIDER_CSS_DIR' ) ){
@@ -131,7 +136,6 @@ function install_testimonial_slider() {
 					);";
 			$rs = $wpdb->query($sql);
 		}
-
 	   	$meta_table_name = $table_prefix.TESTIMONIAL_SLIDER_META;
 		if($wpdb->get_var("show tables like '$meta_table_name'") != $meta_table_name) {
 			$sql = "CREATE TABLE $meta_table_name (
@@ -185,7 +189,6 @@ function install_testimonial_slider() {
 						 $testimonial_slider_curr[$key] = $value;
 					  }
 				   }
-				   delete_option($testimonial_slider_options);	  
 				   update_option($testimonial_slider_options,$testimonial_slider_curr);
 				   update_option( "testimonial_db_version", $testimonial_db_version );
 			   }
@@ -195,10 +198,15 @@ function install_testimonial_slider() {
 register_activation_hook( __FILE__, 'install_testimonial_slider' );
 /* Added for auto update - start */
 function testimonial_update_db_check() {
-    global $testimonial_db_version;
-    if (get_option('testimonial_db_version') != $testimonial_db_version) {
-        install_testimonial_slider();
-    }
+	global $testimonial_db_version;
+	if (get_option('testimonial_db_version') != $testimonial_db_version) {
+		install_testimonial_slider();
+	}
+	/* Check whether Testimonials Options are created (if not) add options */
+	if(get_option('testimonial_slider_options') == false) {
+		global $default_testimonial_slider_settings;
+		add_option('testimonial_slider_options',$default_testimonial_slider_settings);
+	}
 }
 add_action('plugins_loaded', 'testimonial_update_db_check');
 
@@ -206,127 +214,133 @@ require_once (dirname (__FILE__) . '/includes/testimonial-slider-functions.php')
 
 //This adds the post to the slider
 function testimonial_add_to_slider($post_id) {
-global $testimonial_slider;
- if(isset($_POST['testimonial-sldr-verify']) and current_user_can( $testimonial_slider['user_level'] ) ) {
-	global $wpdb, $table_prefix, $post;
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
+	global $testimonial_slider;
+	if(isset($_POST['testimonial-sldr-verify']) and current_user_can( $testimonial_slider['user_level'] ) ) {
+		global $wpdb, $table_prefix, $post;
+		$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
 	
-	if(isset($_POST['testimonial-slider']) and !isset($_POST['testimonial_slider_name'])) {
-	  $slider_id = '1';
-	  if(is_post_on_any_testimonial_slider($post_id)){
-	     $sql = "DELETE FROM $table_name where post_id = '$post_id'";
-		 $wpdb->query($sql);
-	  }
-	  
-	  if(isset($_POST['testimonial-slider']) and $_POST['testimonial-slider'] == "testimonial-slider" and !testimonial_slider($post_id,$slider_id)) {
-		$dt = date('Y-m-d H:i:s');
-		$sql = "INSERT INTO $table_name (post_id, date, slider_id) VALUES ('$post_id', '$dt', '$slider_id')";
-		$wpdb->query($sql);
-	  }
-	}
-	if(isset($_POST['testimonial-slider']) and $_POST['testimonial-slider'] == "testimonial-slider" and isset($_POST['testimonial_slider_name'])){
-	  $slider_id_arr = $_POST['testimonial_slider_name'];
-	  $post_sliders_data = testimonial_ss_get_post_sliders($post_id);
-	  
-	  foreach($post_sliders_data as $post_slider_data){
-		if(!in_array($post_slider_data['slider_id'],$slider_id_arr)) {
-		  $sql = "DELETE FROM $table_name where post_id = '$post_id'";
-		  $wpdb->query($sql);
-		}
-	  }
-
-		foreach($slider_id_arr as $slider_id) {
-			if(!testimonial_slider($post_id,$slider_id)) {
+		if(isset($_POST['testimonial-slider']) and !isset($_POST['testimonial_slider_name'])) {
+	  		$slider_id = '1';
+			if(is_post_on_any_testimonial_slider($post_id)){
+				$sql = "DELETE FROM $table_name where post_id = '$post_id'";
+				$wpdb->query($sql);
+			}
+	  		if(isset($_POST['testimonial-slider']) and $_POST['testimonial-slider'] == "testimonial-slider" and !testimonial_slider($post_id,$slider_id)) {
 				$dt = date('Y-m-d H:i:s');
 				$sql = "INSERT INTO $table_name (post_id, date, slider_id) VALUES ('$post_id', '$dt', '$slider_id')";
 				$wpdb->query($sql);
 			}
 		}
-	}
+		if(isset($_POST['testimonial-slider']) and $_POST['testimonial-slider'] == "testimonial-slider" and isset($_POST['testimonial_slider_name'])) {
+			$slider_id_arr = $_POST['testimonial_slider_name'];
+			$post_sliders_data = testimonial_ss_get_post_sliders($post_id);
+	  
+			foreach($post_sliders_data as $post_slider_data){
+				if(!in_array($post_slider_data['slider_id'],$slider_id_arr)) {
+					$sql = "DELETE FROM $table_name where post_id = '$post_id'";
+					$wpdb->query($sql);
+				}
+			}
+
+			foreach($slider_id_arr as $slider_id) {
+				if(!testimonial_slider($post_id,$slider_id)) {
+					$dt = date('Y-m-d H:i:s');
+					$sql = "INSERT INTO $table_name (post_id, date, slider_id) VALUES ('$post_id', '$dt', '$slider_id')";
+					$wpdb->query($sql);
+				}
+			}
+		}
+		$table_name = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
+		if(isset($_POST['testimonial_display_slider']) and !isset($_POST['testimonial_display_slider_name'])) {
+			$slider_id = '1';
+		}
+		if(isset($_POST['testimonial_display_slider']) and isset($_POST['testimonial_display_slider_name'])){
+		  $slider_id = $_POST['testimonial_display_slider_name'];
+		}
+	  	if(isset($_POST['testimonial_display_slider'])){	
+			if(!testimonial_ss_post_on_slider($post_id,$slider_id)) {
+				$sql = "DELETE FROM $table_name where post_id = '$post_id'";
+				$wpdb->query($sql);
+				$sql = "INSERT INTO $table_name (post_id, slider_id) VALUES ('$post_id', '$slider_id')";
+				$wpdb->query($sql);
+			}
+		}
 	
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
-	if(isset($_POST['testimonial_display_slider']) and !isset($_POST['testimonial_display_slider_name'])) {
-	  $slider_id = '1';
-	}
-	if(isset($_POST['testimonial_display_slider']) and isset($_POST['testimonial_display_slider_name'])){
-	  $slider_id = $_POST['testimonial_display_slider_name'];
-	}
-  	if(isset($_POST['testimonial_display_slider'])){	
-		  if(!testimonial_ss_post_on_slider($post_id,$slider_id)) {
-		    $sql = "DELETE FROM $table_name where post_id = '$post_id'";
-		    $wpdb->query($sql);
-			$sql = "INSERT INTO $table_name (post_id, slider_id) VALUES ('$post_id', '$slider_id')";
-			$wpdb->query($sql);
-		  }
-	}
+		$_testimonial_by = get_post_meta($post_id,'_testimonial_by',true);
+		$post_testimonial_by = $_POST['_testimonial_by'];
+		if($_testimonial_by!= $post_testimonial_by) {
+		  update_post_meta($post_id, '_testimonial_by', $post_testimonial_by);	
+		}
+
+		$_testimonial_avatar = get_post_meta($post_id,'_testimonial_avatar',true);
+		$post_testimonial_avatar = $_POST['_testimonial_avatar'];
+		if($_testimonial_avatar!= $post_testimonial_avatar) {
+		  update_post_meta($post_id, '_testimonial_avatar', $post_testimonial_avatar);	
+		}
+
+		$_testimonial_site = get_post_meta($post_id,'_testimonial_site',true);
+		$post_testimonial_site = $_POST['_testimonial_site'];
+		if($_testimonial_site!= $post_testimonial_site) {
+		  update_post_meta($post_id, '_testimonial_site', $post_testimonial_site);	
+		}
+
+		$_testimonial_siteurl = get_post_meta($post_id,'_testimonial_siteurl',true);
+		$post_testimonial_siteurl = $_POST['_testimonial_siteurl'];
+		if($_testimonial_siteurl!= $post_testimonial_siteurl) {
+		  update_post_meta($post_id, '_testimonial_siteurl', $post_testimonial_siteurl);	
+		}
+		// Added for star rating
+		$testimonial_star = get_post_meta($post_id,'_testimonial_star',true);
+		$post_testimonial_star = $_POST['testimonial_star'];
+		if($testimonial_star!= $post_testimonial_star) {
+			update_post_meta($post_id, '_testimonial_star', $post_testimonial_star);	
+		}
+
+		$testimonial_link_attr = get_post_meta($post_id,'testimonial_link_attr',true);
+		$link_attr=htmlentities($_POST['testimonial_link_attr'],ENT_QUOTES);
+		if($testimonial_link_attr != $link_attr) {
+		  update_post_meta($post_id, 'testimonial_link_attr', $link_attr);	
+		}
+
+		$testimonial_sslider_link = get_post_meta($post_id,'testimonial_slide_redirect_url',true);
+		$link=$_POST['testimonial_sslider_link'];
+		if($testimonial_sslider_link != $link) {
+		  update_post_meta($post_id, 'testimonial_slide_redirect_url', $link);	
+		}
+
+		$_testimonial_sslider_nolink = get_post_meta($post_id,'_testimonial_sslider_nolink',true);
+		$post__testimonial_sslider_nolink = $_POST['_testimonial_sslider_nolink'];
+		if($_testimonial_sslider_nolink != $post__testimonial_sslider_nolink) {
+		  update_post_meta($post_id, '_testimonial_sslider_nolink', $post__testimonial_sslider_nolink);	
+		}
 	
-	$_testimonial_by = get_post_meta($post_id,'_testimonial_by',true);
-	$post_testimonial_by = $_POST['_testimonial_by'];
-	if($_testimonial_by!= $post_testimonial_by) {
-	  update_post_meta($post_id, '_testimonial_by', $post_testimonial_by);	
-	}
-	
-	$_testimonial_avatar = get_post_meta($post_id,'_testimonial_avatar',true);
-	$post_testimonial_avatar = $_POST['_testimonial_avatar'];
-	if($_testimonial_avatar!= $post_testimonial_avatar) {
-	  update_post_meta($post_id, '_testimonial_avatar', $post_testimonial_avatar);	
-	}
-	
-	$_testimonial_site = get_post_meta($post_id,'_testimonial_site',true);
-	$post_testimonial_site = $_POST['_testimonial_site'];
-	if($_testimonial_site!= $post_testimonial_site) {
-	  update_post_meta($post_id, '_testimonial_site', $post_testimonial_site);	
-	}
-	
-	$_testimonial_siteurl = get_post_meta($post_id,'_testimonial_siteurl',true);
-	$post_testimonial_siteurl = $_POST['_testimonial_siteurl'];
-	if($_testimonial_siteurl!= $post_testimonial_siteurl) {
-	  update_post_meta($post_id, '_testimonial_siteurl', $post_testimonial_siteurl);	
-	}
-	
-	$testimonial_link_attr = get_post_meta($post_id,'testimonial_link_attr',true);
-	$link_attr=htmlentities($_POST['testimonial_link_attr'],ENT_QUOTES);
-	if($testimonial_link_attr != $link_attr) {
-	  update_post_meta($post_id, 'testimonial_link_attr', $link_attr);	
-	}
-	
-	$testimonial_sslider_link = get_post_meta($post_id,'testimonial_slide_redirect_url',true);
-	$link=$_POST['testimonial_sslider_link'];
-	if($testimonial_sslider_link != $link) {
-	  update_post_meta($post_id, 'testimonial_slide_redirect_url', $link);	
-	}
-	
-	$_testimonial_sslider_nolink = get_post_meta($post_id,'_testimonial_sslider_nolink',true);
-	$post__testimonial_sslider_nolink = $_POST['_testimonial_sslider_nolink'];
-	if($_testimonial_sslider_nolink != $post__testimonial_sslider_nolink) {
-	  update_post_meta($post_id, '_testimonial_sslider_nolink', $post__testimonial_sslider_nolink);	
-	}
-	
-  } //testimonial-sldr-verify
+  	} //testimonial-sldr-verify
 }
 
 //Removes the post from the slider, if you uncheck the checkbox from the edit post screen
 function testimonial_remove_from_slider($post_id) {
-	global $wpdb, $table_prefix;
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
+	if(isset($_POST['testimonial-sldr-verify'])) {
+		global $wpdb, $table_prefix;
+		$table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
 	
-	// authorization
-	if (!current_user_can('edit_post', $post_id))
-		return $post_id;
-	// origination and intention
-	if (!wp_verify_nonce($_POST['testimonial-sldr-verify'], 'TestimonialSlider'))
-		return $post_id;
+		// authorization
+		if (!current_user_can('edit_post', $post_id))
+			return $post_id;
+		// origination and intention
+		if (!wp_verify_nonce($_POST['testimonial-sldr-verify'], 'TestimonialSlider'))
+			return $post_id;
 	
-    if(empty($_POST['testimonial-slider']) and is_post_on_any_testimonial_slider($post_id)) {
-		$sql = "DELETE FROM $table_name where post_id = '$post_id'";
-		$wpdb->query($sql);
-	}
+	    if(empty($_POST['testimonial-slider']) and is_post_on_any_testimonial_slider($post_id)) {
+			$sql = "DELETE FROM $table_name where post_id = '$post_id'";
+			$wpdb->query($sql);
+		}
 	
-	$display_slider = $_POST['testimonial_display_slider'];
-	$table_name = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
-	if(empty($display_slider) and testimonial_ss_slider_on_this_post($post_id)){
-	  $sql = "DELETE FROM $table_name where post_id = '$post_id'";
-		    $wpdb->query($sql);
+		$display_slider = $_POST['testimonial_display_slider'];
+		$table_name = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
+		if(empty($display_slider) and testimonial_ss_slider_on_this_post($post_id)){
+		  $sql = "DELETE FROM $table_name where post_id = '$post_id'";
+			    $wpdb->query($sql);
+		}
 	}
 } 
   
@@ -351,13 +365,12 @@ function testimonial_slider_edit_custom_box(){
 }
 
 function testimonial_slider_add_custom_box() {
- global $testimonial_slider;
- if (current_user_can( $testimonial_slider['user_level'] )) {
-	if( function_exists( 'add_meta_box' ) ) {
-		  add_meta_box( 'testimonial_slider_box', __( 'Testimonial Slider' , 'testimonial-slider'), 'testimonial_slider_edit_custom_box', 'testimonial', 'advanced' );
-		//add_meta_box( $id,   $title,     $callback,   $page, $context, $priority ); 
-	} 
- }
+	global $testimonial_slider;
+	if (current_user_can( $testimonial_slider['user_level'] )) {
+		if( function_exists( 'add_meta_box' ) ) {
+			add_meta_box( 'testimonial_slider_box', __( 'Testimonial Slider' , 'testimonial-slider'), 'testimonial_slider_edit_custom_box', 'testimonial', 'advanced' );
+		} 
+	}
 }
 /* Use the admin_menu action to define the custom boxes */
 add_action('admin_menu', 'testimonial_slider_add_custom_box');
@@ -366,29 +379,25 @@ function testimonial_add_to_slider_checkbox() {
 	global $post, $testimonial_slider;
 	if (current_user_can( $testimonial_slider['user_level'] )) {
 		$extra = "";
-		
 		$post_id = $post->ID;
 		
 		if(isset($post->ID)) {
 			$post_id = $post->ID;
 			if(is_post_on_any_testimonial_slider($post_id)) { $extra = 'checked="checked"'; }
 		} 
-		
 		$post_slider_arr = array();
-		
 		$post_sliders = testimonial_ss_get_post_sliders($post_id);
 		if($post_sliders) {
 			foreach($post_sliders as $post_slider){
 			   $post_slider_arr[] = $post_slider['slider_id'];
 			}
 		}
-		
 		$sliders = testimonial_ss_get_sliders();
-?>
-				<div class="slider_checkbox">
-		<table class="form-table">
+		?>
+		<div class="slider_checkbox">
+			<table class="form-table">
 				
-				<tr valign="top">
+			<tr valign="top">
 				<th scope="row"><input type="checkbox" class="sldr_post" name="testimonial-slider" value="testimonial-slider" <?php echo $extra;?> />
 				<label for="testimonial-slider"><?php _e('Add this Testimonial to','testimonial-slider'); ?> </label></th>
 				<td><select name="testimonial_slider_name[]" multiple="multiple" size="3" >
@@ -398,77 +407,99 @@ function testimonial_add_to_slider_checkbox() {
                 </select>
 				<input type="hidden" name="testimonial-sldr-verify" id="testimonial-sldr-verify" value="<?php echo wp_create_nonce('TestimonialSlider');?>" />
 				</td>
-				</tr>
-	    </div>
-        <div>
-        
-  <?php 		
-				$_testimonial_by=get_post_meta($post_id, '_testimonial_by', true);
-				$_testimonial_avatar=get_post_meta($post_id, '_testimonial_avatar', true);
-				$_testimonial_site=get_post_meta($post_id, '_testimonial_site', true);
-				$_testimonial_siteurl=get_post_meta($post_id, '_testimonial_siteurl', true);
-				$testimonial_sslider_link= get_post_meta($post_id, 'testimonial_slide_redirect_url', true);  
-				$_testimonial_sslider_nolink=get_post_meta($post_id, '_testimonial_sslider_nolink', true);
-				$testimonial_link_attr=get_post_meta($post_id, 'testimonial_link_attr', true);
-  ?>
-				<tr valign="top">
-                <th scope="row"><label for="_testimonial_by"><?php _e('Customer\'s Name','testimonial-slider'); ?></label></th>
-                <td><input type="text" name="_testimonial_by" class="_testimonial_by" value="<?php echo $_testimonial_by;?>" size="50" /></td>
-				</tr>
-				
-				<tr valign="top">
-                <th scope="row"><label for="_testimonial_avatar"><?php _e('Customer\'s Avatar/Image URL','testimonial-slider'); ?></label></th>
-                <td><input type="text" name="_testimonial_avatar" id="_testimonial_avatar" class="_testimonial_avatar" value="<?php echo $_testimonial_avatar;?>" size="50" /> &nbsp; <input id="testimonial_upload_avatar_button" type="button" value="<?php _e('Upload Image','testimonial-slider');?>" /></td>
-				</tr>
-				
-				<script language="JavaScript">
-					jQuery(document).ready(function() {
-						jQuery('#testimonial_upload_avatar_button').click(function() {
-							formfield = jQuery('#_testimonial_avatar').attr('name');
-							tb_show('', 'media-upload.php?type=image&TB_iframe=true');
-							return false;
-						});
+			</tr>
+	    	</div>
+       		<div>
+        	<?php 		
+			$_testimonial_by=get_post_meta($post_id, '_testimonial_by', true);
+			$_testimonial_avatar=get_post_meta($post_id, '_testimonial_avatar', true);
+			$_testimonial_site=get_post_meta($post_id, '_testimonial_site', true);
+			$_testimonial_siteurl=get_post_meta($post_id, '_testimonial_siteurl', true);
+			$testimonial_star=get_post_meta($post_id, '_testimonial_star', true);
+			$testimonial_sslider_link= get_post_meta($post_id, 'testimonial_slide_redirect_url', true);  
+			$_testimonial_sslider_nolink=get_post_meta($post_id, '_testimonial_sslider_nolink', true);
+			$testimonial_link_attr=get_post_meta($post_id, 'testimonial_link_attr', true);
+  		?>
+			<tr valign="top">
+				<th scope="row"><label for="_testimonial_by"><?php _e('Customer\'s Name','testimonial-slider'); ?></label></th>
+				<td><input type="text" name="_testimonial_by" class="_testimonial_by" value="<?php echo $_testimonial_by;?>" size="50" /></td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="_testimonial_avatar"><?php _e('Customer\'s Avatar/Image URL','testimonial-slider'); ?></label></th>
+				<td><input type="text" name="_testimonial_avatar" id="_testimonial_avatar" class="_testimonial_avatar" value="<?php echo $_testimonial_avatar;?>" size="50" /> &nbsp; <input id="testimonial_upload_avatar_button" type="button" value="<?php _e('Upload Image','testimonial-slider');?>" /></td>
+			</tr>
+			<script language="JavaScript">
+				jQuery(document).ready(function() {
+					jQuery('#testimonial_upload_avatar_button').click(function() {
+						formfield = jQuery('#_testimonial_avatar').attr('name');
+						tb_show('', 'media-upload.php?type=image&TB_iframe=true');
+						return false;
+					});
 
-						window.send_to_editor = function(html) {
-						imgurl = jQuery('img',html).attr('src');
-						jQuery('#_testimonial_avatar').val(imgurl);
-						tb_remove();
+					window.send_to_editor = function(html) {
+					imgurl = jQuery('img',html).attr('src');
+					jQuery('#_testimonial_avatar').val(imgurl);
+					tb_remove();
+					}
+					jQuery(".rt-star").click(function() {
+						var cntStar = jQuery(this).attr('id');
+						for(var i=1; i <= 5; i++) {
+							if(i <= cntStar) {
+								jQuery("#"+i).removeClass("dashicons-star-empty");
+								jQuery("#"+i).addClass("dashicons-star-filled");
+							}
+							else {
+								jQuery("#"+i).removeClass("dashicons-star-filled");
+								jQuery("#"+i).addClass("dashicons-star-empty");
+							}
 						}
+						jQuery("input[name='testimonial_star']").val(cntStar);
 
 					});
-				</script>
+				});
+			</script>
+			<tr valign="top">
+				<th scope="row"><label for="_testimonial_site"><?php _e('Customer\'s Company Name ','testimonial-slider'); ?></label></th>
+				<td><input type="text" name="_testimonial_site" class="_testimonial_site" value="<?php echo $_testimonial_site;?>" size="50" /></td>
+			</tr>
+			
+			<tr valign="top">
+				<th scope="row"><label for="_testimonial_siteurl"><?php _e('Customer\'s Website ','testimonial-slider'); ?></label></th>
+				<td><input type="text" name="_testimonial_siteurl" class="_testimonial_siteurl" value="<?php echo $_testimonial_siteurl;?>" size="50" /></td>
+			</tr>
+			
+			<tr valign="top">
+	        		<th scope="row"><label for="testimonial_star"><?php _e('Star Rating ','testimonial-slider'); ?></label></th>
+				<td>
+				<?php 		
+				for($i = 1; $i <= 5; $i++ ) {
+					if($i <= $testimonial_star) { ?>
+						<div id="<?php echo $i;?>" class="dashicons dashicons-star-filled rt-star"></div>
+					<?php } else { ?>
+						<div id="<?php echo $i;?>" class="dashicons dashicons-star-empty rt-star"></div>
+				<?php }
+				} ?>
+				 <input type="hidden" name="testimonial_star" value="<?php echo $testimonial_star;?>" />
+				</td>		
+	       		</tr>
 				
-				<tr valign="top">
-                <th scope="row"><label for="_testimonial_site"><?php _e('Customer\'s Company Name ','testimonial-slider'); ?></label></th>
-                <td><input type="text" name="_testimonial_site" class="_testimonial_site" value="<?php echo $_testimonial_site;?>" size="50" /></td>
-				</tr>
-				
-				<tr valign="top">
-                <th scope="row"><label for="_testimonial_siteurl"><?php _e('Customer\'s Website ','testimonial-slider'); ?></label></th>
-                <td><input type="text" name="_testimonial_siteurl" class="_testimonial_siteurl" value="<?php echo $_testimonial_siteurl;?>" size="50" /></td>
-				</tr>
-				
-				<tr valign="top">
-                <th scope="row"><label for="testimonial_sslider_link"><?php _e('"Read more" URL ','testimonial-slider'); ?></label></th>
-                <td><input type="text" name="testimonial_sslider_link" class="testimonial_sslider_link" value="<?php echo $testimonial_sslider_link;?>" size="50" /></td>
-				</tr>
-				
-				<tr valign="top">
+			<tr valign="top">
+				<th scope="row"><label for="testimonial_sslider_link"><?php _e('"Read more" URL ','testimonial-slider'); ?></label></th>
+				<td><input type="text" name="testimonial_sslider_link" class="testimonial_sslider_link" value="<?php echo $testimonial_sslider_link;?>" size="50" /></td>
+			</tr>
+			
+			<tr valign="top">
 				<th scope="row"><label for="_testimonial_sslider_nolink"><?php _e('Do not link this Testimonial to any "Read more" URL','testimonial-slider'); ?> </label></th>
-                <td><input type="checkbox" name="_testimonial_sslider_nolink" class="_testimonial_sslider_nolink" value="1" <?php if($_testimonial_sslider_nolink=='1'){echo "checked";}?>  /></td>
-				</tr>
-				
-				<tr valign="top">
-                <th scope="row"><label for="testimonial_link_attr"><?php _e('Read more" URL (anchor) attributes ','testimonial-slider'); ?></label></th>
-                <td><input type="text" name="testimonial_link_attr" class="testimonial_link_attr" value="<?php echo $testimonial_link_attr;?>" size="50" /><small><?php _e('e.g. target="_blank" rel="external nofollow"','testimonial-slider'); ?></small></td>
-				</tr>
-				
-				</table>
-				
-                 </div>
+		<td><input type="checkbox" name="_testimonial_sslider_nolink" class="_testimonial_sslider_nolink" value="1" <?php if($_testimonial_sslider_nolink=='1'){echo "checked";}?>  /></td>
+			</tr>
+			<tr valign="top">
+               			<th scope="row"><label for="testimonial_link_attr"><?php _e('Read more" URL (anchor) attributes ','testimonial-slider'); ?></label></th>
+                		<td><input type="text" name="testimonial_link_attr" class="testimonial_link_attr" value="<?php echo $testimonial_link_attr;?>" size="50" /><small><?php _e('e.g. target="_blank" rel="external nofollow"','testimonial-slider'); ?></small></td>
+			</tr>
+		</table>
+		</div>
 <?php }
 }
-
 //CSS for the checkbox on the admin page
 function testimonial_slider_checkbox_css() {
 ?><style type="text/css" media="screen">.slider_checkbox{margin: 5px 0 10px 0;padding:3px;font-weight:bold;}.slider_checkbox input,.slider_checkbox select{font-weight:bold;}.slider_checkbox label,.slider_checkbox input,.slider_checkbox select{vertical-align:top;}</style>
@@ -483,14 +514,6 @@ add_action('edit_post', 'testimonial_remove_from_slider');
 add_action('deleted_post','testimonial_delete_from_slider_table');
 
 function testimonial_slider_plugin_url( $path = '' ) {
-	global $wp_version;
-	if ( version_compare( $wp_version, '2.8', '<' ) ) { // Using WordPress 2.7
-		$folder = dirname( plugin_basename( __FILE__ ) );
-		if ( '.' != $folder )
-			$path = path_join( ltrim( $folder, '/' ), $path );
-
-		return plugins_url( $path );
-	}
 	return plugins_url( $path, __FILE__ );
 }
 
@@ -510,14 +533,6 @@ function testimonial_get_string_limit($output, $max_char)
    }
 }
 
-function testimonial_slider_get_first_image($post) {
-	$first_img = '';
-	ob_start();
-	ob_end_clean();
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-	$first_img = $matches [1] [0];
-	return $first_img;
-}
 add_filter( 'plugin_action_links', 'testimonial_sslider_plugin_action_links', 10, 2 );
 
 function testimonial_sslider_plugin_action_links( $links, $file ) {
@@ -557,37 +572,37 @@ function create_testimonial_taxonomies() {
 
 add_action( 'init', 'testimonial_post_type', 11 );
 function testimonial_post_type() {
-		$labels = array(
-		'name' => _x('Testimonials', 'post type general name'),
-		'singular_name' => _x('Testimonial', 'post type singular name'),
-		'add_new' => _x('Add New', 'testimonial'),
-		'add_new_item' => __('Add New Testimonial'),
-		'edit_item' => __('Edit Testimonial'),
-		'new_item' => __('New Testimonial'),
-		'all_items' => __('All Testimonials'),
-		'view_item' => __('View Testimonial'),
-		'search_items' => __('Search Testimonials'),
-		'not_found' =>  __('No testimonials found'),
-		'not_found_in_trash' => __('No testimonials found in Trash'), 
-		'parent_item_colon' => '',
-		'menu_name' => 'Testimonials'
+	$labels = array(
+	'name' => _x('Testimonials', 'post type general name'),
+	'singular_name' => _x('Testimonial', 'post type singular name'),
+	'add_new' => _x('Add New', 'testimonial'),
+	'add_new_item' => __('Add New Testimonial'),
+	'edit_item' => __('Edit Testimonial'),
+	'new_item' => __('New Testimonial'),
+	'all_items' => __('All Testimonials'),
+	'view_item' => __('View Testimonial'),
+	'search_items' => __('Search Testimonials'),
+	'not_found' =>  __('No testimonials found'),
+	'not_found_in_trash' => __('No testimonials found in Trash'), 
+	'parent_item_colon' => '',
+	'menu_name' => 'Testimonials'
 
-		);
-		$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
-		'query_var' => true,
-		'rewrite' => true,
-		'capability_type' => 'post',
-		'has_archive' => true, 
-		'hierarchical' => false,
-		'menu_position' => null,
-		'supports' => array('title','editor')
-		); 
-		register_post_type('testimonial',$args);
+	);
+	$args = array(
+	'labels' => $labels,
+	'public' => true,
+	'publicly_queryable' => true,
+	'show_ui' => true, 
+	'show_in_menu' => true, 
+	'query_var' => true,
+	'rewrite' => true,
+	'capability_type' => 'post',
+	'has_archive' => true, 
+	'hierarchical' => false,
+	'menu_position' => null,
+	'supports' => array('title','editor')
+	); 
+	register_post_type('testimonial',$args);
 }
 
 //add filter to ensure the text Testimonial, or testimonial, is displayed when user updates a testimonial 

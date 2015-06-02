@@ -37,6 +37,8 @@ function testimonial_post_processor_default( $posts, $testimonial_slider_curr,$o
 			
 		$testimonial_sldr_j++;
 		
+		
+		
 		//Slide link anchor attributes
 		$a_attr='';
 		$a_attr=get_post_meta($post_id,'testimonial_link_attr',true);
@@ -53,28 +55,18 @@ function testimonial_post_processor_default( $posts, $testimonial_slider_curr,$o
 		
 		$_testimonial_site=get_post_meta($post_id, '_testimonial_site', true);
 		$_testimonial_siteurl=get_post_meta($post_id, '_testimonial_siteurl', true);
+		
 		if(empty($_testimonial_siteurl)) $testimonial_company=$_testimonial_site;
 		else $testimonial_company='<a href="'.$_testimonial_siteurl.'" '.$a_attr.' '.$testimonial_slider_css['testimonial_site_a'].'>'.$_testimonial_site.'</a>';
 		
-		$testimonial_by_wrap='<div class="testimonial_by_wrap" '.$testimonial_slider_css['testimonial_by_wrap'].'><span class="testimonial_avatar" '.$testimonial_slider_css['testimonial_avatar'].'><img src="'.$_testimonial_avatar.'" '.$testimonial_slider_css['testimonial_avatar_img'].' /></span><span class="testimonial_by" '.$testimonial_slider_css['testimonial_by'].'>'.$_testimonial_by.'</span><span class="testimonial_site" '.$testimonial_slider_css['testimonial_site_a'].'>'.$testimonial_company.'</span></div>';
 		
-		/*$slider_content = strip_shortcodes( $slider_content );
-
-		$slider_content = stripslashes($slider_content);
-		$slider_content = str_replace(']]>', ']]&gt;', $slider_content);
-
-		$slider_content = str_replace("\n","<br />",$slider_content);
-		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);*/
-		/*if(!$testimonial_slider_curr['content_limit'] or $testimonial_slider_curr['content_limit'] == '' or $testimonial_slider_curr['content_limit'] == ' ') 
-		  $slider_excerpt = substr($slider_content,0,$testimonial_slider_curr['content_chars']);
-		else 
-		  $slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $testimonial_slider_curr['content_limit'] );
-*/
-			$content_limit=$testimonial_slider_curr['content_limit'];
-			if(!empty($content_limit)){ 
-				$slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $content_limit);
-			}
-			else { $slider_excerpt=$slider_content; }
+		$testimonial_by_wrap='<div class="testimonial_by_wrap" '.$testimonial_slider_css['testimonial_by_wrap'].'><span class="testimonial_avatar" '.$testimonial_slider_css['testimonial_avatar'].'><img src="'.$_testimonial_avatar.'" '.$testimonial_slider_css['testimonial_avatar_img'].' alt="' . esc_attr( strip_tags( $_testimonial_by ) ) . '" /></span><span class="testimonial_by" '.$testimonial_slider_css['testimonial_by'].'>'.$_testimonial_by.'</span><span class="testimonial_site" '.$testimonial_slider_css['testimonial_site_a'].'>'.$testimonial_company.'</span></div>';
+		
+		$content_limit=$testimonial_slider_curr['content_limit'];
+		if(!empty($content_limit)){ 
+			$slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $content_limit);
+		}
+		else { $slider_excerpt=$slider_content; }
 
 //filter hook
 		$slider_excerpt=apply_filters('testimonial_slide_excerpt',$slider_excerpt,$post_id,$testimonial_slider_curr,$testimonial_slider_css,$skin);
@@ -89,7 +81,15 @@ function testimonial_post_processor_default( $posts, $testimonial_slider_curr,$o
 		}
 		
 		$testimonial_quote='<div class="testimonial_quote" '.$testimonial_slider_css['testimonial_quote'].'>'.$slider_excerpt.$read_more.'</div>';
-		
+		// Star Rating
+		$_testimonial_star=get_post_meta($post_id, '_testimonial_star', true);
+		if(isset($testimonial_slider_curr['show_star']) && $testimonial_slider_curr['show_star'] == 1 && $_testimonial_star != '' && $_testimonial_star > 0 ) {
+			$testimonial_quote.="<div class='testimonial-star-outer'>";
+			for($i = 0; $i < $_testimonial_star; $i++ ) {
+				$testimonial_quote.="<div class='dashicons dashicons-star-filled' ".$testimonial_slider_css['dashicons-star-filled']." ></div>";
+			}
+			$testimonial_quote.="</div>";
+		}	
 		$html .= $testimonial_by_wrap.$testimonial_quote;
 		$html .= '	<div class="sldr_clearlt"></div><div class="sldr_clearrt"></div><!-- /testimonial_slideri -->
 		</div>'; 
@@ -193,21 +193,18 @@ function testimonial_slider_get_default($slider_handle,$r_array,$testimonial_sli
 
 	// Navigation Arrows
 		
-	//if ($testimonial_slider_curr['prev_next'] != 1){ 
-			if($testimonial_slider_curr['navnum'] == "2"){
-				$nav_buttons_bottom='';
-				$nav_buttons_top='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
-			}
-			else if($testimonial_slider_curr['navnum'] == "1"){
-				$nav_buttons_top='';
-				$nav_buttons_bottom='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
-			}
-			else {
-				$nav_buttons_bottom='';	
-				$nav_buttons_top='';
-			}
-		//} 
-
+	if($testimonial_slider_curr['navnum'] == "2"){
+		$nav_buttons_bottom='';
+		$nav_buttons_top='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
+	}
+	else if($testimonial_slider_curr['navnum'] == "1" || $testimonial_slider_curr['navnum'] == "0"){
+		$nav_buttons_top='';
+		$nav_buttons_bottom='<div class="testimonial_nav_arrow_wrap"><a class="testimonial_prev" id="'.$slider_handle.'_prev" href="#" '.$testimonial_slider_css['testimonial_prev'].'><span>prev</span></a><a class="testimonial_next" id="'.$slider_handle.'_next" href="#" '.$testimonial_slider_css['testimonial_next'].'><span>next</span></a></div>';
+	}
+	else {
+		$nav_buttons_bottom='';	
+		$nav_buttons_top='';
+	}
 	if ($testimonial_slider_curr['bg'] == '1') { $testimonial_slideri_bg = "transparent";} else { $testimonial_slideri_bg = $testimonial_slider_curr['bg_color']; }
 	$nav_color=$testimonial_slider_curr['nav_color'];
 

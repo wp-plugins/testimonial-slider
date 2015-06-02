@@ -56,7 +56,7 @@ function testimonial_post_processor_oval( $posts, $testimonial_slider_curr,$out_
 		if(empty($_testimonial_siteurl)) $testimonial_company=$_testimonial_site;
 		else $testimonial_company='<a href="'.$_testimonial_siteurl.'" '.$a_attr.' '.$testimonial_slider_css['testimonial_site_a'].'>'.$_testimonial_site.'</a>';
 		
-		$testimonial_by_wrap='<div class="testimonial_by_wrap" '.$testimonial_slider_css['testimonial_by_wrap'].'><span class="testimonial_avatar" '.$testimonial_slider_css['testimonial_avatar'].'><img src="'.$_testimonial_avatar.'" '.$testimonial_slider_css['testimonial_avatar_img'].' /></span><div class="testimonial_by_text"><span class="testimonial_by" '.$testimonial_slider_css['testimonial_by'].'>'.$_testimonial_by.'</span><span class="testimonial_site" '.$testimonial_slider_css['testimonial_site_a'].'>'.$testimonial_company.'</span></div></div>';
+		$testimonial_by_wrap='<div class="testimonial_by_wrap" '.$testimonial_slider_css['testimonial_by_wrap'].'><span class="testimonial_avatar" '.$testimonial_slider_css['testimonial_avatar'].'><img src="'.$_testimonial_avatar.'" '.$testimonial_slider_css['testimonial_avatar_img'].' alt="' . esc_attr( strip_tags( $_testimonial_by ) ) . '"  /></span><div class="testimonial_by_text"><span class="testimonial_by" '.$testimonial_slider_css['testimonial_by'].'>'.$_testimonial_by.'</span><span class="testimonial_site" '.$testimonial_slider_css['testimonial_site_a'].'>'.$testimonial_company.'</span></div></div>';
 		
 		/*$slider_content = strip_shortcodes( $slider_content );
 
@@ -82,8 +82,17 @@ function testimonial_post_processor_oval( $posts, $testimonial_slider_curr,$out_
 			$read_more='<p class="more"><a href="'.$permalink.'" '.$testimonial_slider_css['testimonial_slider_p_more'].' '.$a_attr.'>'.$testimonial_slider_curr['more'].'</a></p>';
 		}
 		// '.$testimonial_slider_css['testimonial_quote'].'
-		$testimonial_quote='<div class="testimonial_content_wrap" '.$testimonial_slider_css['testimonial_content_wrap'].'><div class="testimonial_content" '.$testimonial_slider_css['testimonial_quote'].'>'.$slider_excerpt.$read_more.'</div></div>';
-		
+		$testimonial_quote='<div class="testimonial_content_wrap" '.$testimonial_slider_css['testimonial_content_wrap'].'><div class="testimonial_content" '.$testimonial_slider_css['testimonial_quote'].'>'.$slider_excerpt.$read_more;
+		// Star Rating
+		$_testimonial_star=get_post_meta($post_id, '_testimonial_star', true);
+		if(isset($testimonial_slider_curr['show_star']) && $testimonial_slider_curr['show_star'] == 1 && $_testimonial_star != '' && $_testimonial_star > 0 ) {
+			$testimonial_quote.="<div class='testimonial-star-outer'>";
+			for($i = 0; $i < $_testimonial_star; $i++ ) {
+				$testimonial_quote.="<div class='dashicons dashicons-star-filled' ".$testimonial_slider_css['dashicons-star-filled']." ></div>";
+			}
+			$testimonial_quote.="</div>";
+		}
+		$testimonial_quote.="</div></div>";
 		$html .= $testimonial_by_wrap.$testimonial_quote;
 		$html .= '<div class="sldr_clearlt"></div><div class="sldr_clearrt"></div><!-- /testimonial_slideri -->
 		</div>'; 

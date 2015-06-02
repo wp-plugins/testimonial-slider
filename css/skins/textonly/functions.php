@@ -58,13 +58,6 @@ function testimonial_post_processor_textonly( $posts, $testimonial_slider_curr,$
 		
 		$testimonial_by_wrap='<div class="testimonial_by_wrap" '.$testimonial_slider_css['testimonial_by_wrap'].'><div class="testimonial_by_inner"><span class="testimonial_by" '.$testimonial_slider_css['testimonial_by'].'>'.$_testimonial_by.'</span><span class="testimonial_site" '.$testimonial_slider_css['testimonial_site_a'].'>'.$testimonial_company.'</span></div></div>';
 		
-		/*$slider_content = strip_shortcodes( $slider_content );
-
-		$slider_content = stripslashes($slider_content);
-		$slider_content = str_replace(']]>', ']]&gt;', $slider_content);
-
-		$slider_content = str_replace("\n","<br />",$slider_content);
-		$slider_content = strip_tags($slider_content, $testimonial_slider_curr['allowable_tags']);*/
 		$content_limit=$testimonial_slider_curr['content_limit'];
 		if(!empty($content_limit)){ 
 			$slider_excerpt = testimonial_slider_word_limiter( $slider_content, $limit = $content_limit);
@@ -82,8 +75,17 @@ function testimonial_post_processor_textonly( $posts, $testimonial_slider_curr,$
 			$read_more='<p class="more"><a href="'.$permalink.'" '.$testimonial_slider_css['testimonial_slider_p_more'].' '.$a_attr.'>'.$testimonial_slider_curr['more'].'</a></p>';
 		}
 	
-		$testimonial_quote='<div class="testimonial_content_wrap" '.$testimonial_slider_css['testimonial_content_wrap'].'><div class="testimonial_content" '.$testimonial_slider_css['testimonial_quote'].'>'.$slider_excerpt.$read_more.'</div></div>';
-		
+		$testimonial_quote='<div class="testimonial_content_wrap" '.$testimonial_slider_css['testimonial_content_wrap'].'><div class="testimonial_content" '.$testimonial_slider_css['testimonial_quote'].'>'.$slider_excerpt.$read_more;
+		// Star Rating
+		$_testimonial_star=get_post_meta($post_id, '_testimonial_star', true);
+		if(isset($testimonial_slider_curr['show_star']) && $testimonial_slider_curr['show_star'] == 1 && $_testimonial_star != '' && $_testimonial_star > 0 ) {
+			$testimonial_quote.="<div class='testimonial-star-outer'>";
+			for($i = 0; $i < $_testimonial_star; $i++ ) {
+				$testimonial_quote.="<div class='dashicons dashicons-star-filled' ".$testimonial_slider_css['dashicons-star-filled']." ></div>";
+			}
+			$testimonial_quote.="</div>";
+		}
+		$testimonial_quote.="</div></div>";
 		$html .= $testimonial_quote.$testimonial_by_wrap;
 		$html .= '	<div class="sldr_clearlt"></div><div class="sldr_clearrt"></div><!-- /testimonial_slideri -->
 		</div>'; 
