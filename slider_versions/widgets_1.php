@@ -3,7 +3,7 @@ if(!class_exists('Testimonial_Slider_Simple_Widget')){
 	class Testimonial_Slider_Simple_Widget extends WP_Widget {
 		function Testimonial_Slider_Simple_Widget() {
 			$widget_options = array('classname' => 'testimonial_slider_wclass', 'description' => 'Insert Testimonial Slider' );
-			$this->WP_Widget('testimonial_sslider_wid', 'Testimonial Slider - Simple', $widget_options);
+			parent::__construct('testimonial_sslider_wid', 'Testimonial Slider - Simple', $widget_options);
 		}
 
 		function widget($args, $instance) {
@@ -79,7 +79,7 @@ if(!class_exists('Testimonial_Slider_Category_Widget')){
 	class Testimonial_Slider_Category_Widget extends WP_Widget {
 		function Testimonial_Slider_Category_Widget() {
 			$widget_options = array('classname' => 'testimonial_sliderc_wclass', 'description' => 'Testimonial Category Slider' );
-			$this->WP_Widget('testimonial_ssliderc_wid', 'Testimonial Slider - Category', $widget_options);
+			parent::__construct('testimonial_ssliderc_wid', 'Testimonial Slider - Category', $widget_options);
 		}
 
 		function widget($args, $instance) {
@@ -153,7 +153,7 @@ if(!class_exists('Testimonial_Slider_Recent_Widget')){
 	class Testimonial_Slider_Recent_Widget extends WP_Widget {
 		function Testimonial_Slider_Recent_Widget() {
 			$widget_options = array('classname' => 'testimonial_sliderr_wclass', 'description' => 'Testimonial Recent Posts Slider' );
-			$this->WP_Widget('testimonial_ssliderr_wid', 'Testimonial Slider - Recent Posts', $widget_options);
+			parent::__construct('testimonial_ssliderr_wid', 'Testimonial Slider - Recent Posts', $widget_options);
 		}
 	
 		function widget($args, $instance) {

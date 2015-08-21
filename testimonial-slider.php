@@ -2,7 +2,7 @@
 Plugin Name: Testimonial Slider
 Plugin URI: http://slidervilla.com/testimonial-slider/
 Description: Use Testimonial Slider to show the awesome testimonials you have received in a beautiful horizontal slider format.
-Version: 1.2	
+Version: 1.2.1	
 Author: SliderVilla
 Author URI: http://slidervilla.com/
 Wordpress version supported: 3.5 and above
@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 **************************************************************************************************************************************/
 //defined global variables and constants here
 global $testimonial_slider,$default_testimonial_slider_settings,$testimonial_db_version;
-$testimonial_db_version='1.2'; //current version of testimonial slider database 
+$testimonial_db_version='1.2.1'; //current version of testimonial slider database 
 $testimonial_slider = get_option('testimonial_slider_options');
 $default_testimonial_slider_settings = array('speed'=>'6', 
 	'time'=>'20',
@@ -111,7 +111,7 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 define('TESTIMONIAL_SLIDER_TABLE','testimonial_slider'); //Slider TABLE NAME
 define('TESTIMONIAL_SLIDER_META','testimonial_slider_meta'); //Meta TABLE NAME
 define('TESTIMONIAL_SLIDER_POST_META','testimonial_slider_postmeta'); //Meta TABLE NAME
-define("TESTIMONIAL_SLIDER_VER","1.2",false);//Current Version of Testimonial Slider
+define("TESTIMONIAL_SLIDER_VER","1.2.1",false);//Current Version of Testimonial Slider
 if ( ! defined( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME' ) )
 	define( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 if ( ! defined( 'TESTIMONIAL_SLIDER_CSS_DIR' ) ){
