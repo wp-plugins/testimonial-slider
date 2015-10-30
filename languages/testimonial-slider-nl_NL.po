@@ -1,0 +1,1118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Testimonial Slider\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Tue May 26 2015 14:41:43 GMT+0530 (IST)\n"
+"PO-Revision-Date: Wed May 27 2015 10:35:51 GMT+0530 (IST)\n"
+"Last-Translator: admin <sagar.katarnaware@webfanzine.com>\n"
+"Language-Team: \n"
+"Language: Dutch\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Loco-Target-Locale: nl_NL\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. translators: Publish box date format, see http://php.net/date
+#: ../testimonial-slider.php:626
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: ../settings/settings.php:288
+msgid "Scroll Horizontally"
+msgstr ""
+
+#: ../settings/settings.php:289
+msgid "Fade"
+msgstr ""
+
+#: ../settings/settings.php:290
+msgid "Cross Fade"
+msgstr ""
+
+#: ../settings/settings.php:291
+msgid "Cover"
+msgstr ""
+
+#: ../settings/settings.php:292
+msgid "Uncover"
+msgstr ""
+
+#: ../settings/settings.php:300
+msgid "swing"
+msgstr ""
+
+#: ../settings/settings.php:301
+msgid "easeInQuad"
+msgstr ""
+
+#: ../settings/settings.php:302
+msgid "easeOutQuad"
+msgstr ""
+
+#: ../settings/settings.php:303
+msgid "easeInOutQuad"
+msgstr ""
+
+#: ../settings/settings.php:304
+msgid "easeInCubic"
+msgstr ""
+
+#: ../settings/settings.php:305
+msgid "easeOutCubic"
+msgstr ""
+
+#: ../settings/settings.php:306
+msgid "easeInOutCubic"
+msgstr ""
+
+#: ../settings/settings.php:307
+msgid "easeInQuart"
+msgstr ""
+
+#: ../settings/settings.php:308
+msgid "easeOutQuart"
+msgstr ""
+
+#: ../settings/settings.php:309
+msgid "easeInOutQuart"
+msgstr ""
+
+#: ../settings/settings.php:310
+msgid "easeInQuint"
+msgstr ""
+
+#: ../settings/settings.php:311
+msgid "easeOutQuint"
+msgstr ""
+
+#: ../settings/settings.php:312
+msgid "easeInOutQuint"
+msgstr ""
+
+#: ../settings/settings.php:313
+msgid "easeInSine"
+msgstr ""
+
+#: ../settings/settings.php:314
+msgid "easeOutSine"
+msgstr ""
+
+#: ../settings/settings.php:315
+msgid "easeInOutSine"
+msgstr ""
+
+#: ../settings/settings.php:316
+msgid "easeInExpo"
+msgstr ""
+
+#: ../settings/settings.php:317
+msgid "easeOutExpo"
+msgstr ""
+
+#: ../settings/settings.php:318
+msgid "easeInOutExpo"
+msgstr ""
+
+#: ../settings/settings.php:319
+msgid "easeInCirc"
+msgstr ""
+
+#: ../settings/settings.php:320
+msgid "easeOutCirc"
+msgstr ""
+
+#: ../settings/settings.php:321
+msgid "easeInOutCirc"
+msgstr ""
+
+#: ../settings/settings.php:322
+msgid "easeInElastic"
+msgstr ""
+
+#: ../settings/settings.php:323
+msgid "easeOutElastic"
+msgstr ""
+
+#: ../settings/settings.php:324
+msgid "easeInOutElastic"
+msgstr ""
+
+#: ../settings/settings.php:325
+msgid "easeInBack"
+msgstr ""
+
+#: ../settings/settings.php:326
+msgid "easeOutBack"
+msgstr ""
+
+#: ../settings/settings.php:327
+msgid "easeInOutBack"
+msgstr ""
+
+#: ../settings/settings.php:328
+msgid "easeInBounce"
+msgstr ""
+
+#: ../settings/settings.php:329
+msgid "easeOutBounce"
+msgstr ""
+
+#: ../settings/settings.php:330
+msgid "easeInOutBounce"
+msgstr ""
+
+#: ../settings/settings.php:382 ../settings/settings.php:393 ../settings/settings.
+#: php:398 ../settings/settings.php:590 ../settings/settings.php:650 ..
+#: settings/settings.php:655 ../settings/settings.php:713 ../settings/settings.
+#: php:770 ../settings/settings.php:825
+msgid "px"
+msgstr ""
+
+#: ../settings/settings.php:442
+msgid "eg. target=\"_blank\" rel=\"external nofollow\""
+msgstr ""
+
+#: ../settings/settings.php:465
+msgid "Administrator"
+msgstr ""
+
+#: ../settings/settings.php:466
+msgid "Editor and Admininstrator"
+msgstr ""
+
+#: ../settings/settings.php:467
+msgid "Author, Editor and Admininstrator"
+msgstr ""
+
+#: ../settings/settings.php:468
+msgid "Contributor, Author, Editor and Admininstrator"
+msgstr ""
+
+#: ../testimonial-slider.php:371
+msgid "Testimonial Slider"
+msgstr "Getuigenis schuifregelaar"
+
+#: ../testimonial-slider.php:402
+msgid "Add this Testimonial to"
+msgstr "Dit getuigenis aan toevoegen"
+
+#: ../testimonial-slider.php:424
+msgid "Customer's Name"
+msgstr "De naam van klant"
+
+#: ../testimonial-slider.php:428
+msgid "Customer's Avatar/Image URL"
+msgstr "Klant Avatar/afbeelding URL"
+
+#: ../testimonial-slider.php:429
+msgid "Upload Image"
+msgstr "Afbeelding uploaden"
+
+#: ../testimonial-slider.php:462
+msgid "Customer's Company Name "
+msgstr "Klant bedrijfsnaam"
+
+#: ../testimonial-slider.php:467
+msgid "Customer's Website "
+msgstr "Klant Website"
+
+#: ../testimonial-slider.php:472
+msgid "Star Rating "
+msgstr "Star Rating"
+
+#: ../testimonial-slider.php:487
+msgid "\"Read more\" URL "
+msgstr "Lees meer URL"
+
+#: ../testimonial-slider.php:492
+msgid "Do not link this Testimonial to any \"Read more\" URL"
+msgstr "Koppel niet dit getuigenis aan elke \"Read more\" URL"
+
+#: ../testimonial-slider.php:496
+msgid "Read more\" URL (anchor) attributes "
+msgstr "Lees more URL (anker) kenmerken "
+
+#: ../testimonial-slider.php:497
+msgid "e.g. target=\"_blank\" rel=\"external nofollow\""
+msgstr "bijvoorbeeld target = _blank rel = externe nofollow"
+
+#: ../testimonial-slider.php:545
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../testimonial-slider.php:560
+msgctxt "taxonomy general name"
+msgid "Testimonial Categories"
+msgstr "Getuigenis Categorieën"
+
+#: ../testimonial-slider.php:561
+msgctxt "taxonomy singular name"
+msgid "Testimonial Category"
+msgstr "Getuigenis categorie"
+
+#: ../testimonial-slider.php:576
+msgctxt "post type general name"
+msgid "Testimonials"
+msgstr "Getuigenissen"
+
+#: ../testimonial-slider.php:577
+msgctxt "post type singular name"
+msgid "Testimonial"
+msgstr "Getuigenis"
+
+#: ../testimonial-slider.php:578
+msgctxt "testimonial"
+msgid "Add New"
+msgstr "Nieuwe toevoegen"
+
+#: ../testimonial-slider.php:579
+msgid "Add New Testimonial"
+msgstr "Voeg nieuwe Huldeblijk toe"
+
+#: ../testimonial-slider.php:580
+msgid "Edit Testimonial"
+msgstr "Testimonial bewerken"
+
+#: ../testimonial-slider.php:581
+msgid "New Testimonial"
+msgstr "Nieuwe getuigenis"
+
+#: ../testimonial-slider.php:582
+msgid "All Testimonials"
+msgstr "Alle getuigenissen"
+
+#: ../testimonial-slider.php:583
+msgid "View Testimonial"
+msgstr "Weergave Testimonial"
+
+#: ../testimonial-slider.php:584
+msgid "Search Testimonials"
+msgstr "Zoek getuigenissen"
+
+#: ../testimonial-slider.php:585
+msgid "No testimonials found"
+msgstr "Geen testimonials gevonden"
+
+#: ../testimonial-slider.php:586
+msgid "No testimonials found in Trash"
+msgstr "Geen testimonials gevonden in Prullenbak"
+
+#: ../testimonial-slider.php:615
+#, php-format
+msgid "Testimonial updated. <a href=\"%s\">View testimonial</a>"
+msgstr "Getuigenis bijgewerkt. <a href=\"%s\"> weergave getuigenis</a>"
+
+#: ../testimonial-slider.php:616
+msgid "Custom field updated."
+msgstr "Aangepast veld bijgewerkt."
+
+#: ../testimonial-slider.php:617
+msgid "Custom field deleted."
+msgstr "Aangepaste veld verwijderd."
+
+#: ../testimonial-slider.php:618
+msgid "Testimonial updated."
+msgstr "Getuigenis bijgewerkt."
+
+#. translators: %s: date and time of the revision
+#: ../testimonial-slider.php:620
+#, php-format
+msgid "Testimonial restored to revision from %s"
+msgstr "Getuigenis herziening hersteld van %s"
+
+#: ../testimonial-slider.php:621
+#, php-format
+msgid "Testimonial published. <a href=\"%s\">View testimonial</a>"
+msgstr "Getuigenis gepubliceerd. <a href=\"%s\"> weergave getuigenis</a>"
+
+#: ../testimonial-slider.php:622
+msgid "Testimonial saved."
+msgstr "Getuigenis opgeslagen."
+
+#: ../testimonial-slider.php:623
+#, php-format
+msgid "Testimonial submitted. <a target=\"_blank\" href=\"%s\">Preview testimonial</a>"
+msgstr "Getuigenis ingediend. <a target=\"_blank\" href=\"%s\"> Preview getuigenis</a>"
+
+#: ../testimonial-slider.php:624
+#, php-format
+msgid ""
+"Testimonial scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Preview testimonial</a>"
+msgstr ""
+"Getuigenis gepland voor: <strong>%1$ s</strong>. < een doel =  \"_blank\" "
+"href=\"%2$s\">Preview getuigenis</a>"
+
+#: ../testimonial-slider.php:627
+#, php-format
+msgid ""
+"Testimonial draft updated. <a target=\"_blank\" href=\"%s\">Preview "
+"testimonial</a>"
+msgstr ""
+"Getuigenis ontwerp bijgewerkt. < een doel =  \"_blank\" href=\"%s\">Preview "
+"getuigenis</a>"
+
+#: ../settings/settings.php:168 ../settings/settings.php:169
+msgid "Settings imported successfully "
+msgstr "Instellingen geïmporteerd"
+
+#: ../settings/settings.php:172 ../settings/settings.php:173
+msgid ""
+"Settings imported do not match to Testimonial Slider Settings. Please check "
+"the file."
+msgstr ""
+"Instellingen geïmporteerd overeenkomen niet Testimonial schuifregelaar "
+"instellingen. Controleerhet bestand."
+
+#: ../settings/settings.php:177 ../settings/settings.php:178
+msgid "Error in File, Settings not imported. Please check the file being imported. "
+msgstr ""
+"Fout in bestand, instellingen niet geïmporteerd. Controleer of het bestand "
+"dat wordt geïmporteerd."
+
+#: ../settings/settings.php:203
+msgid "Testimonial Slider Settings "
+msgstr "Getuigenis schuifregelaar instellingen"
+
+#: ../settings/settings.php:214
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#: ../settings/settings.php:236
+msgid "Setting Set Name"
+msgstr "Naam van de instelling"
+
+#: ../settings/settings.php:245 ../settings/settings.php:253
+msgid "Basic Settings"
+msgstr "Basisinstellingen"
+
+#: ../settings/settings.php:246
+msgid "Slider Content"
+msgstr "Schuifregelaar inhoud"
+
+#: ../settings/settings.php:247
+msgid "Navigation Settings"
+msgstr "Instellingen voor sitenavigatie"
+
+#: ../settings/settings.php:248
+msgid "Preview Settings"
+msgstr "Voorbeeldinstellingen"
+
+#: ../settings/settings.php:254
+msgid "Customize the looks of the Slider box wrapping the content slides from here"
+msgstr ""
+"Aanpassen van het uiterlijk van het Slider-vak inwikkeling van de dia's met "
+"inhoud vanaf hier"
+
+#: ../settings/settings.php:259
+msgid "Testimonial Slider Skin"
+msgstr "Getuigenis schuifregelaar huid"
+
+#: ../settings/settings.php:277
+msgid "Type of Slider"
+msgstr "Soort schuifregelaar"
+
+#: ../settings/settings.php:279
+msgid "Slides Infinitely"
+msgstr "Dia's oneindig"
+
+#: ../settings/settings.php:280
+msgid "Stops when either end is reached"
+msgstr "Stopt wanneer beide einde wordt bereikt"
+
+#: ../settings/settings.php:286
+msgid "Slide Transition Effect"
+msgstr "Overgangseffect"
+
+#: ../settings/settings.php:298
+msgid "Slide Easing Effect"
+msgstr "Dia versnellingseffect"
+
+#: ../settings/settings.php:336
+msgid "Speed of Transition"
+msgstr "Snelheid van de overgang"
+
+#: ../settings/settings.php:341
+msgid ""
+"The duration of Slide Animation in milliseconds. Lower value indicates fast "
+"animation. Enter numeric values like 5 or 7."
+msgstr ""
+"De duur van de animatie Slide in milliseconden. Lagere waarde geeft snel "
+"aananimatie. Numerieke waarden zoals 5 of 7 invoeren."
+
+#: ../settings/settings.php:348
+msgid "Disable Autosliding"
+msgstr "Autosliding uitschakelen"
+
+#: ../settings/settings.php:354
+msgid "Time between Transitions"
+msgstr "Tijd tussen de overgangen"
+
+#: ../settings/settings.php:359
+msgid ""
+"Enter number that you want the slider to stop before sliding to next slide "
+"like 10, 20, 30. Valid only in case auto-sliding is enabled"
+msgstr ""
+"Nummer invoeren dat u de schuifregelaar om te stoppen wilt voordat glijden "
+"naar volgende dia als 10, 20, 30. Geldige alleen indien auto-sliding is "
+"ingeschakeld"
+
+#: ../settings/settings.php:366
+msgid "Number of Testimonials in the Testimonial Slider"
+msgstr "Aantal getuigenissen in de getuigenis schuifregelaar"
+
+#: ../settings/settings.php:371
+msgid "Number of Items Visible in One Set"
+msgstr "Aantal Items zichtbaar in één Set"
+
+#: ../settings/settings.php:376
+msgid "Number of Items To Scroll while Sliding"
+msgstr "Aantal Items om te scrollen terwijl glijdende"
+
+#: ../settings/settings.php:381
+msgid "Complete Slider Width"
+msgstr "Volledige schuifregelaar breedte"
+
+#: ../settings/settings.php:386
+msgid "If set to 0, will take the container's width"
+msgstr "Indien ingesteld op 0, vindt de container breedte"
+
+#: ../settings/settings.php:392
+msgid "Min. Slide Item Width"
+msgstr "Min. de breedte van het Item van de dia"
+
+#: ../settings/settings.php:397
+msgid "Slide (Item) Height"
+msgstr "De hoogte van dia (Item)"
+
+#: ../settings/settings.php:402
+msgid "Slide Background Color"
+msgstr "De kleur van de achtergrond van de dia"
+
+#: ../settings/settings.php:405
+msgid " Use Transparent Background"
+msgstr "Doorzichtige achtergrondkleur gebruiken"
+
+#: ../settings/settings.php:409
+msgid "Slide Border Thickness"
+msgstr "De dikte van de rand van de dia"
+
+#: ../settings/settings.php:410
+msgid "px (put 0 if no border is required)"
+msgstr "px (zetten 0 als geen rand vereist is)"
+
+#: ../settings/settings.php:414
+msgid "Slide Border Color"
+msgstr "De kleur van de rand van de dia"
+
+#: ../settings/settings.php:422 ../settings/settings.php:605 ../settings/settings.
+#: php:671 ../settings/settings.php:728 ../settings/settings.php:785
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
+
+#: ../settings/settings.php:427
+msgid "Miscellaneous"
+msgstr "Diversen"
+
+#: ../settings/settings.php:432
+msgid "Continue Reading Text"
+msgstr "Blijf lezend de tekst"
+
+#: ../settings/settings.php:437
+msgid "Slide Link ('a' element) attributes  "
+msgstr "Schuif koppelingkenmerken ('a' element)"
+
+#: ../settings/settings.php:449
+msgid "Randomize Slides in Slider"
+msgstr "Randomize dia's in de schuifregelaar"
+
+#: ../settings/settings.php:454
+msgid "check this if you want the testimonials added to appear in random order."
+msgstr ""
+"Schakel dit selectievakje in als u wilt dat de getuigenissen toegevoegd om "
+"te verschijnen in willekeurige volgorde."
+
+#: ../settings/settings.php:463
+msgid "Minimum User Level to add Testimonials to the Slider"
+msgstr ""
+"Minimumniveau van de gebruiker toe te voegen Getuigenissen aan de "
+"schuifregelaar"
+
+#: ../settings/settings.php:474
+msgid "Text to display in the JavaScript disabled browser"
+msgstr "Tekst weer te geven in de JavaScript uitgeschakeld browser"
+
+#: ../settings/settings.php:479
+msgid "Add Shortcode Support"
+msgstr "Shortcode ondersteuning toevoegen"
+
+#: ../settings/settings.php:480
+msgid ""
+"check this if you want to use Testimonial Slider Shortcode i.e "
+"[testimonialslider]"
+msgstr ""
+"Schakel dit in als u wilt gebruiken Testimonial schuifregelaar Shortcode "
+"dwz[testimonialslider]"
+
+#: ../settings/settings.php:488
+msgid "Multiple Slider Feature"
+msgstr "Functie voor meerdere schuifregelaar"
+
+#: ../settings/settings.php:491
+msgid "Grant Multiple Slider ability to Testimonial Slider"
+msgstr "Meerdere schuifregelaar vermogen toekennen Testimonial schuifregelaar"
+
+#: ../settings/settings.php:496
+msgid "Enable FOUC"
+msgstr "FOUC inschakelen"
+
+#: ../settings/settings.php:501
+msgid ""
+"check this if you would not want to disable Flash of Unstyled Content in the "
+"slider when the page is loaded."
+msgstr ""
+"Schakel dit in als je niet willen zou om te schakelen Flash van opgemaakte "
+"inhoud in de slider wanneer de pagina wordt geladen."
+
+#: ../settings/settings.php:510
+msgid "Custom Styles"
+msgstr "Aangepaste opmaakprofielen"
+
+#: ../settings/settings.php:515
+msgid "custom css styles that you would want to be applied to the slider elements."
+msgstr ""
+"aangepaste css-stijlen die u zou willen worden toegepast op de "
+"schuifregelaar elementen."
+
+#: ../settings/settings.php:522
+msgid "Show Promotionals on Admin Page"
+msgstr "Toon Promotionals op Admin pagina"
+
+#: ../settings/settings.php:524
+msgid "Yes"
+msgstr "Ja"
+
+#: ../settings/settings.php:525 ../settings/settings.php:889
+msgid "No"
+msgstr "Niet"
+
+#: ../settings/settings.php:538
+msgid "Slider Title"
+msgstr "Schuifregelaar titel"
+
+#: ../settings/settings.php:539
+msgid "Customize the looks of the main title of the Slideshow from here"
+msgstr ""
+"Aanpassen van het uiterlijk van de hoofdtitel van de diavoorstelling vanaf "
+"hier"
+
+#: ../settings/settings.php:543 ../settings/settings.php:550
+msgid "Default Title Text"
+msgstr "De tekst van de titel van de standaard"
+
+#: ../settings/settings.php:548
+msgid "Pick Slider Title From"
+msgstr "Kies schuifregelaar titel van"
+
+#: ../settings/settings.php:551
+msgid "Slider Name"
+msgstr "Schuifregelaar naam"
+
+#: ../settings/settings.php:557 ../settings/settings.php:681 ../settings/settings.
+#: php:738 ../settings/settings.php:793
+msgid "Font"
+msgstr "Lettertype"
+
+#: ../settings/settings.php:582 ../settings/settings.php:706 ../settings/settings.
+#: php:763 ../settings/settings.php:818
+msgid "Font Color"
+msgstr "Tekstkleur"
+
+#: ../settings/settings.php:589 ../settings/settings.php:712 ../settings/settings.
+#: php:769 ../settings/settings.php:824
+msgid "Font Size"
+msgstr "Tekengrootte"
+
+#: ../settings/settings.php:594 ../settings/settings.php:717 ../settings/settings.
+#: php:774 ../settings/settings.php:829
+msgid "Font Style"
+msgstr "Tekenstijl"
+
+#: ../settings/settings.php:596 ../settings/settings.php:719 ../settings/settings.
+#: php:776 ../settings/settings.php:831
+msgid "Bold"
+msgstr "Vet"
+
+#: ../settings/settings.php:597 ../settings/settings.php:720 ../settings/settings.
+#: php:777 ../settings/settings.php:832
+msgid "Bold Italic"
+msgstr "Vet cursief"
+
+#: ../settings/settings.php:598 ../settings/settings.php:721 ../settings/settings.
+#: php:778 ../settings/settings.php:833
+msgid "Italic"
+msgstr "Italic"
+
+#: ../settings/settings.php:599 ../settings/settings.php:722 ../settings/settings.
+#: php:779 ../settings/settings.php:834
+msgid "Normal"
+msgstr "Normaal"
+
+#: ../settings/settings.php:610
+msgid "Gravtar/Customer Image"
+msgstr "Image Gravtar/klant"
+
+#: ../settings/settings.php:614
+msgid "Default Avatar URL"
+msgstr "Standaard Avatar-URL"
+
+#: ../settings/settings.php:623
+msgid "Avatar Image"
+msgstr "Avatar afbeelding"
+
+#: ../settings/settings.php:631
+msgid "Avatar Shape"
+msgstr "Avatar vorm"
+
+#: ../settings/settings.php:642
+msgid "Avatar Radius"
+msgstr "Avatar Radius"
+
+#: ../settings/settings.php:649
+msgid "Image Width"
+msgstr "Breedte van afbeelding"
+
+#: ../settings/settings.php:654
+msgid "Max. Image Height"
+msgstr "Max. Afbeeldingshoogte"
+
+#: ../settings/settings.php:659
+msgid "Border Thickness"
+msgstr "Dikte van de rand"
+
+#: ../settings/settings.php:660
+msgid "px  (put 0 if no border is required)"
+msgstr "px (zetten 0 als geen rand vereist is)"
+
+#: ../settings/settings.php:664
+msgid "Border Color"
+msgstr "Randkleur"
+
+#: ../settings/settings.php:676
+msgid "Customer's name"
+msgstr "De naam van klant"
+
+#: ../settings/settings.php:677
+msgid "Customize the Customer's Name field looks"
+msgstr "Aanpassen van de klant naam veld uiterlijk"
+
+#: ../settings/settings.php:733
+msgid "Customer's Company/Site"
+msgstr "Klant bedrijf/Site"
+
+#: ../settings/settings.php:734
+msgid "Customize the Customer's Company/Site field looks"
+msgstr "Aanpassen van de klant bedrijf/Site veld uiterlijk"
+
+#: ../settings/settings.php:790
+msgid "Testimonial Content"
+msgstr "Getuigenis inhoud"
+
+#: ../settings/settings.php:840
+msgid "Star Color"
+msgstr "Sterren kleur"
+
+#: ../settings/settings.php:845
+msgid "Star Size"
+msgstr "Sterren grootte"
+
+#: ../settings/settings.php:850
+msgid "Show Star Rating"
+msgstr "Toon Star Rating"
+
+#: ../settings/settings.php:857
+msgid "Pick content From"
+msgstr "Kies inhoud van"
+
+#: ../settings/settings.php:859
+msgid "From Content"
+msgstr "Van inhoud"
+
+#: ../settings/settings.php:864
+msgid "Maximum content"
+msgstr "Maximumgehalte"
+
+#: ../settings/settings.php:865
+msgid "words"
+msgstr "woorden"
+
+#: ../settings/settings.php:869
+msgid "Keep empty to select complete Content"
+msgstr "Houden leeg om volledige inhoud te selecteren"
+
+#: ../settings/settings.php:882
+msgid "Navigational Buttons"
+msgstr "Navigatieknoppen"
+
+#: ../settings/settings.php:887
+msgid "Show Navigation Buttons"
+msgstr "Navigatieknoppen weergeven"
+
+#: ../settings/settings.php:890
+msgid "Bottom of Slider"
+msgstr "Onderin schuifregelaar"
+
+#: ../settings/settings.php:891
+msgid "Top of Slider"
+msgstr "Top van Slider"
+
+#: ../settings/settings.php:897
+msgid "Navigation Button Width"
+msgstr "Navigatie knop breedte"
+
+#: ../settings/settings.php:902
+msgid "Navigation Button Height"
+msgstr "Navigatie knop hoogte"
+
+#: ../settings/settings.php:907
+msgid "Navigation Button Color"
+msgstr "Navigatie knopkleur"
+
+#: ../settings/settings.php:916
+msgid "Navigational Arrows"
+msgstr "Navigatie pijlen"
+
+#: ../settings/settings.php:925
+msgid "Hide Prev/Next navigation arrows"
+msgstr "Prev/Next navigatiepijlen verbergen"
+
+#: ../settings/settings.php:961
+msgid "Preview on Settings Panel"
+msgstr "Preview op instellingenpaneel"
+
+#: ../settings/settings.php:966
+msgid "Disable Preview Section"
+msgstr "Uitschakelen van de voorbeeldsectie"
+
+#: ../settings/settings.php:972
+msgid "If disabled, the 'Preview' of Slider on this Settings page will be removed."
+msgstr ""
+"Als uitgeschakeld, zal de 'Preview' van schuifregelaar op deze "
+"instellingenpagina worden verwijderd."
+
+#: ../settings/settings.php:979
+msgid "Testimonial Template Tag for Preview"
+msgstr "Getuigenis sjabloontag voor Preview"
+
+#: ../settings/settings.php:981
+msgid "Recent Testimonials Slider"
+msgstr "Recente getuigenissen schuifregelaar"
+
+#: ../settings/settings.php:982
+msgid "Category Testimonial Slider"
+msgstr "Categorie getuigenis schuifregelaar"
+
+#: ../settings/settings.php:983
+msgid "Custom Slider with Slider ID"
+msgstr "Aangepaste Slider met schuifregelaar ID"
+
+#: ../settings/settings.php:999
+msgid "Select Category for Slider:"
+msgstr "Categorie voor schuifregelaar selecteert:"
+
+#: ../settings/settings.php:1015 ../settings/settings.php:1016
+msgid "Preview Slider Params"
+msgstr "Voorbeeld schuifregelaar Params"
+
+#: ../settings/settings.php:1018
+msgid "Slider ID in case of Custom Slider"
+msgstr "Schuifregelaar ID in het geval van aangepaste schuifregelaar"
+
+#: ../settings/settings.php:1021
+msgid "Category Slug in case of Testimonial Category Slider"
+msgstr "Categorie Slug in geval van getuigenis categorie schuifregelaar"
+
+#: ../settings/settings.php:1030
+msgid "Shortcode for Testimonial Slider"
+msgstr "Shortcode voor getuigenis schuifregelaar"
+
+#: ../settings/settings.php:1031
+msgid ""
+"Paste the below shortcode on Page/Post Edit Panel to get the slider as shown "
+"in the above Preview"
+msgstr ""
+"Plakken de hieronder shortcode op pagina/Post deelvenster bewerken om de "
+"schuifregelaar zoals in het bovenstaande voorbeeld"
+
+#: ../settings/settings.php:1044
+msgid "Template Tag for Testimonial Slider"
+msgstr "Sjabloontag voor getuigenis schuifregelaar"
+
+#: ../settings/settings.php:1045
+msgid ""
+"Paste the below template tag in your theme template file like index.php or "
+"page.php at required location to get the slider as shown in the above Preview"
+msgstr ""
+"Plakken de hieronder sjabloontag in uw thema sjabloonbestand zoals index.php "
+"of page.php op vereiste locatie om de schuifregelaar zoals in het "
+"bovenstaande voorbeeld"
+
+#: ../settings/settings.php:1057
+msgid "Shortcode for Testimonials List"
+msgstr "Shortcode voor getuigenissen-lijst"
+
+#: ../settings/settings.php:1058
+msgid ""
+"Paste the below shortcode on Page/Post Edit Panel to get the list of "
+"Testimonials in the above Preview Testimonial Slider"
+msgstr ""
+"Plakken de hieronder shortcode op pagina/Post deelvenster bewerken om de "
+"lijst van referenties in het bovenstaande voorbeeld Testimonial "
+"schuifregelaar"
+
+#: ../settings/settings.php:1077
+msgid "Save Changes "
+msgstr "Wijzigingen opslaan"
+
+#: ../settings/settings.php:1093
+msgid "Reset Settings to"
+msgstr "Instellingen te herstellen"
+
+#: ../settings/settings.php:1095
+msgid "None"
+msgstr "Geen"
+
+#: ../settings/settings.php:1096
+msgid "Global Default"
+msgstr "Wereldwijde standaard"
+
+#: ../settings/settings.php:1111
+msgid "Default Settings Set"
+msgstr "Standaard instellingen Set"
+
+#: ../settings/settings.php:1127
+msgid "Reset Settings"
+msgstr "Réinitialisation des paramètres"
+
+#: ../settings/settings.php:1135
+msgid "Import Settings Set by uploading a Settings File"
+msgstr "Ingesteld door het uploaden van een bestand met instellingen importeren"
+
+#: ../settings/settings.php:1139
+msgid "Import Settings from a file"
+msgstr "Instellingen importeren uit een bestand"
+
+#: ../settings/settings.php:1337
+msgid "Quick Embed Shortcode"
+msgstr "Snelle insluiten Shortcode"
+
+#: ../settings/settings.php:1350
+msgid "Quick Embed Template Tag"
+msgstr "Snelle insluiten sjabloontag"
+
+#: ../settings/settings.php:1365
+msgid ""
+"Go to Sliders page where you can re-order the slide posts, delete the slides "
+"from the slider etc."
+msgstr ""
+"Ga naar schuifregelaars pagina waar u de dia opnieuw kunt bestellen posten, "
+"de dia's uit de schuifregelaar enz verwijdert."
+
+#: ../settings/settings.php:1365
+msgid "Go to Sliders Admin"
+msgstr "Ga naar schuifregelaars Admin"
+
+#: ../settings/settings.php:1367
+msgid "Export this Settings Set to a file"
+msgstr "Deze instellingen ingesteld naar een bestand exporteren"
+
+#: ../settings/settings.php:1368
+msgid "Go to Import Settings Form"
+msgstr "Ga naar instellingen formulier importeert"
+
+#: ../settings/settings.php:1374
+msgid "Available Settings Sets"
+msgstr "Beschikbare instellingen Sets"
+
+#: ../settings/settings.php:1391
+msgid "Usage Guide and General FAQs"
+msgstr "Zede vleugelman en algemene veelgestelde vragen"
+
+#: ../settings/settings.php:1401
+msgid "SliderVilla slider plugins"
+msgstr "SliderVilla schuifregelaar plugins"
+
+#: ../settings/settings.php:1401
+#, php-format
+msgid ""
+"are feature rich and stylish plugins to embed a nice looking featured "
+"content slider in your existing or new theme template. 100% customization "
+"options available on WordPress Settings page of the plugin."
+msgstr ""
+"zijn functie rijke en stijlvolle plugins voor het insluiten van een leuk "
+"uitziende Aanbevolen content slider in uw bestaande of nieuwe thema-sjabloon."
+" 100% customization opties beschikbaar op de pagina van WordPress "
+"instellingen van de plugin."
+
+#: ../settings/settings.php:1402
+msgid "Stylish Sliders,"
+msgstr "Stijlvolle schuifregelaars,"
+
+#: ../settings/settings.php:1402
+msgid "Happy Customers"
+msgstr "Tevreden klanten"
+
+#: ../settings/settings.php:1403
+msgid "For more info visit SliderVilla"
+msgstr "Voor meer info bezoek SliderVilla"
+
+#: ../settings/settings.php:1409 ../settings/sliders.php:235
+msgid "About this Plugin:"
+msgstr "Over deze Plugin:"
+
+#: ../settings/settings.php:1412 ../settings/sliders.php:238
+msgid "Testimonial Slider Homepage"
+msgstr "Getuigenis schuifregelaar Homepage"
+
+#: ../settings/settings.php:1413 ../settings/sliders.php:239
+msgid "Plugin Homepage"
+msgstr "Plugin homepage"
+
+#: ../settings/settings.php:1414 ../settings/settings.php:1415 ..
+#: settings/sliders.php:240 ../settings/sliders.php:241
+msgid "Support Forum"
+msgstr "Ondersteuningsforum"
+
+#: ../settings/settings.php:1416 ../settings/settings.php:1417 ..
+#: settings/sliders.php:242 ../settings/sliders.php:243
+msgid "Usage Guide"
+msgstr "Zede vleugelman"
+
+#: ../settings/sliders.php:8
+msgid "Sliders Created"
+msgstr "Schuifregelaars gemaakt"
+
+#: ../settings/sliders.php:21 ../settings/sliders.php:142
+msgid "Remove All at Once"
+msgstr "Alles in één keer verwijderen"
+
+#: ../settings/sliders.php:32 ../settings/sliders.php:145
+msgid "Delete Slider"
+msgstr "Schuifregelaar verwijderen"
+
+#: ../settings/sliders.php:73 ../settings/sliders.php:204
+msgid "Rename"
+msgstr "Naam wijzigen"
+
+#: ../settings/sliders.php:87
+msgid ""
+"Settings Page for Testimonial Slider where you can change the color, font "
+"etc. for the sliders"
+msgstr ""
+"Pagina-instellingen voor Testimonial schuifregelaar waar kunt u de kleur, "
+"lettertype etc. voor de schuifregelaars"
+
+#: ../settings/sliders.php:87
+msgid "Go to Testimonial Slider Settings page"
+msgstr "Ga naar Testimonial schuifregelaar instellingen pagina"
+
+#: ../settings/sliders.php:97
+msgid "Create New Slider"
+msgstr "Nieuwe Slider maken"
+
+#: ../settings/sliders.php:112
+msgid "Posts/Pages Added To"
+msgstr "Berichten/pagina's toegevoegd aan"
+
+#: ../settings/sliders.php:112
+msgid "(Slider ID"
+msgstr "(Schuif ID"
+
+#: ../settings/sliders.php:113
+msgid "Check the Post/Page and Press \"Remove Selected\" to remove them From"
+msgstr ""
+"Controleer de Post/pagina en druk op \"Remove Selected\" om ze uit te "
+"verwijderen"
+
+#: ../settings/sliders.php:113
+msgid "Press \"Remove All at Once\" to remove all the posts from the"
+msgstr "Druk op \"Remove allemaal op Once\" te verwijderen alle berichten van de"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Post/Page Title"
+msgstr "Post/pagina titel"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Author"
+msgstr "Auteur"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Post Date"
+msgstr "Post datum"
+
+#: ../settings/sliders.php:116 ../settings/sliders.php:138
+msgid "Remove Post"
+msgstr "Bericht verwijderen"
+
+#: ../settings/sliders.php:131
+msgid "(Edit)"
+msgstr "(Edit)"
+
+#: ../settings/sliders.php:131
+msgid "(View)"
+msgstr "(View)"
+
+#: ../settings/sliders.php:136 ../settings/sliders.php:181
+msgid ""
+"No posts/pages have been added to the Slider - You can add respective "
+"post/page to slider on the Edit screen for that Post/Page"
+msgstr ""
+"Geen berichten/pagina's zijn toegevoegd aan de schuifregelaar - u kunt "
+"respectieve post/pagina toevoegen aan de schuifregelaar op het scherm "
+"bewerken voor die Post/pagina"
+
+#: ../settings/sliders.php:142
+msgid "Remove Selected"
+msgstr "Verwijder geselecteerde"
+
+#: ../settings/sliders.php:159
+msgid "Reorder the Posts/Pages Added To"
+msgstr "De toegevoegd aan berichten en pagina's opnieuw rangschikken"
+
+#: ../settings/sliders.php:160
+msgid ""
+"Click on and drag the post/page title to a new spot within the list, and the "
+"other items will adjust to fit."
+msgstr ""
+"Klik op en sleep de titel van de post/pagina naar een nieuwe plek binnen de "
+"lijst en de andere items zal aanpassen aan."
+
+#: ../settings/sliders.php:199
+msgid "Rename Slider to"
+msgstr "Schuifregelaar om te hernoemen"
+
+#: ../settings/sliders.php:204
+msgid "rename_slider"
+msgstr "rename_slider"
+
+#: ../settings/sliders.php:217
+msgid "Enter New Slider Name"
+msgstr "Voer nieuwe schuifregelaar naam"
+
+#: ../settings/sliders.php:222
+msgid "Create New"
+msgstr "Nieuwe maken"
+
+#: ../settings/sliders.php:244
+msgid "Current Version:"
+msgstr "Huidige versie:"
