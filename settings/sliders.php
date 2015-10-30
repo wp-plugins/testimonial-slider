@@ -13,8 +13,9 @@ if (isset ($_POST['remove_posts_slider'])) {
 	   $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
 	   $current_slider = $_POST['current_slider_id'];
 	   foreach ( $_POST['slider_posts'] as $post_id=>$val ) {
-		   $sql = "DELETE FROM $table_name WHERE post_id = '$post_id' AND slider_id = '$current_slider' LIMIT 1";
-		   $wpdb->query($sql);
+		//$sql = "DELETE FROM $table_name WHERE post_id = '$post_id' AND slider_id = '$current_slider' LIMIT 1";
+		//$wpdb->query($sql);
+		$wpdb->delete($table_name, array('post_id' => $post_id) AND array('slider_id' => $current_slider), array('%d'));
 	   }
    }
    if (isset ($_POST['remove_all'])) {
@@ -23,8 +24,9 @@ if (isset ($_POST['remove_posts_slider'])) {
 		   $table_name = $table_prefix.TESTIMONIAL_SLIDER_TABLE;
 		   $current_slider = $_POST['current_slider_id'];
 		   if(is_testimonial_slider_on_slider_table($current_slider)) {
-			   $sql = "DELETE FROM $table_name WHERE slider_id = '$current_slider';";
-			   $wpdb->query($sql);
+			//$sql = "DELETE FROM $table_name WHERE slider_id = '$current_slider';";
+			//$wpdb->query($sql);
+			$wpdb->delete($table_name, array('slider_id' => $current_slider), array('%d'));
 		   }
 	   }
    }
@@ -36,16 +38,19 @@ if (isset ($_POST['remove_posts_slider'])) {
 		   $slider_meta = $table_prefix.TESTIMONIAL_SLIDER_META;
 		   $slider_postmeta = $table_prefix.TESTIMONIAL_SLIDER_POST_META;
 		   if(is_testimonial_slider_on_slider_table($slider_id)) {
-			   $sql = "DELETE FROM $slider_table WHERE slider_id = '$slider_id';";
-			   $wpdb->query($sql);
+			//$sql = "DELETE FROM $slider_table WHERE slider_id = '$slider_id';";
+			//$wpdb->query($sql);
+			$wpdb->delete($slider_table, array('slider_id' => $slider_id), array('%d'));
 		   }
 		   if(is_testimonial_slider_on_meta_table($slider_id)) {
-			   $sql = "DELETE FROM $slider_meta WHERE slider_id = '$slider_id';";
-			   $wpdb->query($sql);
+			//$sql = "DELETE FROM $slider_meta WHERE slider_id = '$slider_id';";
+			//$wpdb->query($sql);
+			$wpdb->delete($slider_meta, array('slider_id' => $slider_id), array('%d'));
 		   }
 		   if(is_testimonial_slider_on_postmeta_table($slider_id)) {
-			   $sql = "DELETE FROM $slider_postmeta WHERE slider_id = '$slider_id';";
-			   $wpdb->query($sql);
+			//$sql = "DELETE FROM $slider_postmeta WHERE slider_id = '$slider_id';";
+			//$wpdb->query($sql);
+			$wpdb->delete($slider_postmeta, array('slider_id' => $slider_id), array('%d'));
 		   }
 	   }
    }
@@ -64,8 +69,9 @@ if (isset ($_POST['reorder_posts_slider'])) {
    $slider_id=$_POST['current_slider_id'];
    foreach ($_POST['order'] as $slide_order) {
     $slide_order = intval($slide_order);
-    $sql = 'UPDATE '.$table_name.' SET slide_order='.$i.' WHERE post_id='.$slide_order.' and slider_id='.$slider_id;
-    $wpdb->query($sql);
+    //$sql = 'UPDATE '.$table_name.' SET slide_order='.$i.' WHERE post_id='.$slide_order.' and slider_id='.$slider_id;
+    //$wpdb->query($sql);
+    $wpdb->update($table_name, array('slide_order' => $i), array('post_id' => $slide_order) AND array('slider_id' => $slider_id), array('%d'), array('%d', '%d') );
     $i++;
   }
 }
@@ -76,8 +82,9 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 	if( !empty($slider_name) ) {
 		global $wpdb,$table_prefix;
 		$slider_meta = $table_prefix.TESTIMONIAL_SLIDER_META;
-		$sql = 'UPDATE '.$slider_meta.' SET slider_name="'.$slider_name.'" WHERE slider_id='.$slider_id;
-		$wpdb->query($sql);
+		//$sql = 'UPDATE '.$slider_meta.' SET slider_name="'.$slider_name.'" WHERE slider_id='.$slider_id;
+		//$wpdb->query($sql);
+		$wpdb->update($slider_meta, array('slider_name' => $slider_name), array('slider_id' => $slider_id), array('%s'), array('%d') );
 	}
 }
 
@@ -202,8 +209,8 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 	</table>
 	<input type="hidden" name="current_slider_id" value="<?php echo $slider_id;?>" />
 	<input type="submit" value="<?php _e('Rename','testimonial-slider'); ?>"  name="<?php _e('rename_slider','testimonial-slider'); ?>" />
-	
 	<input type="hidden" name="active_tab" class="testimonial_activetab" value="0" />
+	<input type="hidden" name="testimonial_slider_options[reviewme]" id="testimonial_reviewme" value="<?php echo $testimonial_slider['reviewme']; ?>" /> 
 	
 </form>
   
@@ -235,11 +242,11 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 	<h3 class="hndle"><span><?php _e('About this Plugin:','testimonial-slider'); ?></span></h3> 
 		  <div class="inside">
 		  <ul>
-		        <li><a href="http://slidervilla.com/testimonial-slider/" title="<?php _e('Testimonial Slider Homepage','testimonial-slider'); ?>
+		        <li><a href="//slidervilla.com/testimonial-slider/" title="<?php _e('Testimonial Slider Homepage','testimonial-slider'); ?>
 	" ><?php _e('Plugin Homepage','testimonial-slider'); ?></a></li>
-			<li><a href="http://support.slidervilla.com/" title="<?php _e('Support Forum','testimonial-slider'); ?>
+			<li><a href="//support.slidervilla.com/" title="<?php _e('Support Forum','testimonial-slider'); ?>
 	" ><?php _e('Support Forum','testimonial-slider'); ?></a></li>
-			<li><a href="http://guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
+			<li><a href="//guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
 	" ><?php _e('Usage Guide','testimonial-slider'); ?></a></li>
 			<li><strong><?php _e('Current Version:','testimonial-slider'); ?> <?php echo TESTIMONIAL_SLIDER_VER;?></strong></li>
 		   </ul> 
@@ -248,15 +255,25 @@ if ((isset ($_POST['rename_slider'])) and ($_POST['rename_slider'] == __('Rename
 	<div class="postbox" style="margin:10px 0;"> 
 		<div class="inside">
 			<div style="margin:10px auto;">
-				<a href="http://slidervilla.com" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/banner-premium.png');?>" alt="Premium WordPress Slider Plugins" width="100%" /></a>
+				<a href="//slidervilla.com" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/banner-premium.png');?>" alt="Premium WordPress Slider Plugins" width="100%" /></a>
 			</div>
 		</div>
 	</div>
 <?php } ?>
      <div style="clear:left;"></div>
  </div> <!--end of poststuff --> 
-
-
+<?php 
+	$now=strtotime("now");
+	$reviewme=$testimonial_slider['reviewme'];
+        if($reviewme!=0 and $reviewme<$now) {
+		echo "<div id='reviewme' style='border:1px solid #ccc;padding:10px;background:#fff;margin-top:2%;float: left;width: 95%;'>
+		<p>".__('Hey, I noticed you have created an awesome slider using Testimonial Slider and using it for more than a week. Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.', 'testimonial-slider')."</p>
+		<p>".__("~ Tejaswini from SliderVilla","testimonial-slider")."</p>
+			<ul><li><a href='//wordpress.org/support/view/plugin-reviews/testimonial-slider?filter=5' target='_blank' title='".__('Please review and rate Testimonial Slider on WordPress.org', 'testimonial-slider')."'>".__('Ok, you deserve it', 'testimonial-slider')."</a></li>
+			<li><a id='later' href='#' title='".__('Rate Testimonial Slider at some other time!', 'testimonial-slider')."'>".__('Nope, maybe later', 'testimonial-slider')."</a></li>
+			<li><a id='already' href='#' title='".__('Click this if you have already rated us 5-star!', 'testimonial-slider')."'>".__('I already did', 'testimonial-slider'). "</a></li></ul></div>";
+   }
+?>
 </div> <!--end of float wrap -->
 <?php	
 }

@@ -386,7 +386,7 @@ function testimonial_get_inline_css($set='',$echo='0'){
 	//Added For Title sldr_title
 	$title_fontg=isset($testimonial_slider_curr['title_fontg'])?trim($testimonial_slider_curr['title_fontg']):''; // 'Squada+One'
 	if(!empty($title_fontg)) 	{
-		wp_enqueue_style( 'testimonial_title', 'http://fonts.googleapis.com/css?family='.$title_fontg,array(),TESTIMONIAL_SLIDER_VER);
+		wp_enqueue_style( 'testimonial_title', '//fonts.googleapis.com/css?family='.$title_fontg,array(),TESTIMONIAL_SLIDER_VER);
 		$title_fontg=testimonial_get_google_font($title_fontg);
 		$title_fontg=$title_fontg.',';
 	}

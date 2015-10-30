@@ -2,8 +2,9 @@
 Plugin Name: Testimonial Slider
 Plugin URI: http://slidervilla.com/testimonial-slider/
 Description: Use Testimonial Slider to show the awesome testimonials you have received in a beautiful horizontal slider format.
-Version: 1.2.1	
+Version: 1.2.2	
 Author: SliderVilla
+Text Domain: testimonial-slider
 Author URI: http://slidervilla.com/
 Wordpress version supported: 3.5 and above
 License: GPL2
@@ -28,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 **************************************************************************************************************************************/
 //defined global variables and constants here
 global $testimonial_slider,$default_testimonial_slider_settings,$testimonial_db_version;
-$testimonial_db_version='1.2.1'; //current version of testimonial slider database 
+$testimonial_db_version='1.2.2'; //current version of testimonial slider database 
 $testimonial_slider = get_option('testimonial_slider_options');
 $default_testimonial_slider_settings = array('speed'=>'6', 
 	'time'=>'20',
@@ -62,7 +63,7 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 	'img_width'=>'80',
 	'img_border'=>'1',
 	'img_brcolor'=>'#cccccc',
-	'default_avatar'=>'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y',
+	'default_avatar'=>'//www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y',
 	'content_font'=>"'Lucida Sans Unicode', 'Lucida Grand', sans-serif;",
 	'content_fsize'=>'12',
 	'content_fstyle'=>'italic',
@@ -106,12 +107,13 @@ $default_testimonial_slider_settings = array('speed'=>'6',
 	'show_avatar'=> '1',
 	'avatar_shape'=> 'square',
 	'avatar_radius'=>'0',
-	'noscript'=>'This page is having a slideshow that uses Javascript. Your browser either doesn\'t support Javascript or you have it turned off. To see this page as it is meant to appear please use a Javascript enabled browser.'
+	'noscript'=>'This page is having a slideshow that uses Javascript. Your browser either doesn\'t support Javascript or you have it turned off. To see this page as it is meant to appear please use a Javascript enabled browser.',
+	'reviewme'=>strtotime("+1 week")
 );
 define('TESTIMONIAL_SLIDER_TABLE','testimonial_slider'); //Slider TABLE NAME
 define('TESTIMONIAL_SLIDER_META','testimonial_slider_meta'); //Meta TABLE NAME
 define('TESTIMONIAL_SLIDER_POST_META','testimonial_slider_postmeta'); //Meta TABLE NAME
-define("TESTIMONIAL_SLIDER_VER","1.2.1",false);//Current Version of Testimonial Slider
+define("TESTIMONIAL_SLIDER_VER","1.2.2",false);//Current Version of Testimonial Slider
 if ( ! defined( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME' ) )
 	define( 'TESTIMONIAL_SLIDER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 if ( ! defined( 'TESTIMONIAL_SLIDER_CSS_DIR' ) ){

@@ -91,6 +91,8 @@ $scounter=get_option('testimonial_slider_scounter');
 if (isset($_GET['scounter']))$cntr = $_GET['scounter'];
 else $cntr = '';
 
+if(!empty($cntr))$cntr=intval($cntr);
+
 $new_settings_msg=$imported_settings_message='';
 
 $directory = TESTIMONIAL_SLIDER_CSS_DIR;
@@ -1085,6 +1087,7 @@ else
 <input type="hidden" name="hidden_category" id="hidden_category" value="<?php echo $testimonial_slider_curr['catg_slug']; ?>" />
 <input type="hidden" name="hidden_sliderid" id="hidden_sliderid" value="<?php echo $testimonial_slider_curr['slider_id']; ?>" />
 </form>
+<input type="hidden" name="testimonial_slider_options[reviewme]" id="testimonial_reviewme" value="<?php echo $testimonial_slider_curr['reviewme']; ?>" /> 
 <div id="saveResult"></div>
 <!--Form to reset Settings set-->
 <form style="float:left;" action="" method="post">
@@ -1139,6 +1142,19 @@ for($i=1;$i<=$scounter;$i++){
 <input type="submit" value="Import" name="import"  onclick="return confirmSettingsImport()" title="<?php _e('Import Settings from a file','testimonial-slider'); ?>" class="button-primary" />
 </form>
 </div>
+
+<?php 
+	$now=strtotime("now");
+	$reviewme=$testimonial_slider_curr['reviewme'];
+        if($reviewme!=0 and $reviewme<$now) {
+		echo "<div id='reviewme' style='border:1px solid #ccc;padding:10px;background:#fff;margin-top:2%;float: left;width: 95%;'>
+		<p>".__('Hey, I noticed you have created an awesome slider using Testimonial Slider and using it for more than a week. Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.', 'testimonial-slider')."</p>
+		<p>".__("~ Tejaswini from SliderVilla","testimonial-slider")."</p>
+			<ul><li><a href='//wordpress.org/support/view/plugin-reviews/testimonial-slider?filter=5' target='_blank' title='".__('Please review and rate Testimonial Slider on WordPress.org', 'testimonial-slider')."'>".__('Ok, you deserve it', 'testimonial-slider')."</a></li>
+			<li><a id='later' href='#' title='".__('Rate Testimonial Slider at some other time!', 'testimonial-slider')."'>".__('Nope, maybe later', 'testimonial-slider')."</a></li>
+			<li><a id='already' href='#' title='".__('Click this if you have already rated us 5-star!', 'testimonial-slider')."'>".__('I already did', 'testimonial-slider'). "</a></li></ul></div>";
+   }
+?>
 
 </div> <!--end of float left -->
 
@@ -1388,7 +1404,7 @@ for($i=1;$i<=$scounter;$i++){
 </div></div>
 
 <div class="postbox"> 
-<div style="background:#eee;line-height:200%"><a style="text-decoration:none;font-weight:bold;font-size:100%;color:#990000" href="http://guides.slidervilla.com/testimonial-slider/" title="Click here to read how to use the plugin and frequently asked questions about the plugin" target="_blank"> ==> <?php _e('Usage Guide and General FAQs','testimonial-slider'); ?></a></div>
+<div style="background:#eee;line-height:200%"><a style="text-decoration:none;font-weight:bold;font-size:100%;color:#990000" href="//guides.slidervilla.com/testimonial-slider/" title="Click here to read how to use the plugin and frequently asked questions about the plugin" target="_blank"> ==> <?php _e('Usage Guide and General FAQs','testimonial-slider'); ?></a></div>
 </div>
 
 <?php if ($testimonial_slider['support'] == "1"){ ?>
@@ -1396,11 +1412,11 @@ for($i=1;$i<=$scounter;$i++){
      		<div class="postbox" style="margin:10px 0;"> 
 				<div class="inside">
 				<div style="margin:10px auto;">
-							<a href="http://slidervilla.com" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/banner-premium.png');?>" alt="Premium WordPress Slider Plugins" width="100%" /></a>
+							<a href="//slidervilla.com" title="Premium WordPress Slider Plugins" target="_blank"><img src="<?php echo testimonial_slider_plugin_url('images/banner-premium.png');?>" alt="Premium WordPress Slider Plugins" width="100%" /></a>
 				</div>
-				<p><a href="http://slidervilla.com/" title="Recommended WordPress Sliders" target="_blank"><?php _e('SliderVilla slider plugins','testimonial-slider'); ?></a> <?php _e('are feature rich and stylish plugins to embed a nice looking featured content slider in your existing or new theme template. 100% customization options available on WordPress Settings page of the plugin.','testimonial-slider'); ?></p>
-						<p><strong><?php _e('Stylish Sliders,','testimonial-slider'); ?> <a href="http://slidervilla.com/blog/testimonials/" target="_blank"><?php _e('Happy Customers','testimonial-slider'); ?></a>!</strong></p>
-                        <p><a href="http://slidervilla.com/" title="Recommended WordPress Sliders" target="_blank"><?php _e('For more info visit SliderVilla','testimonial-slider'); ?></a></p>
+				<p><a href="//slidervilla.com/" title="Recommended WordPress Sliders" target="_blank"><?php _e('SliderVilla slider plugins','testimonial-slider'); ?></a> <?php _e('are feature rich and stylish plugins to embed a nice looking featured content slider in your existing or new theme template. 100% customization options available on WordPress Settings page of the plugin.','testimonial-slider'); ?></p>
+						<p><strong><?php _e('Stylish Sliders,','testimonial-slider'); ?> <a href="//slidervilla.com/blog/testimonials/" target="_blank"><?php _e('Happy Customers','testimonial-slider'); ?></a>!</strong></p>
+                        <p><a href="//slidervilla.com/" title="Recommended WordPress Sliders" target="_blank"><?php _e('For more info visit SliderVilla','testimonial-slider'); ?></a></p>
             </div></div>
 			
 			
@@ -1409,11 +1425,11 @@ for($i=1;$i<=$scounter;$i++){
 			  <h3 class="hndle"><span><?php _e('About this Plugin:','testimonial-slider'); ?></span></h3> 
 			  <div class="inside">
                 <ul>
-                <li><a href="http://slidervilla.com/testimonial-slider/" title="<?php _e('Testimonial Slider Homepage','testimonial-slider'); ?>
+                <li><a href="//slidervilla.com/testimonial-slider/" title="<?php _e('Testimonial Slider Homepage','testimonial-slider'); ?>
 " ><?php _e('Plugin Homepage','testimonial-slider'); ?></a></li>
-				<li><a href="http://support.slidervilla.com/" title="<?php _e('Support Forum','testimonial-slider'); ?>
+				<li><a href="//support.slidervilla.com/" title="<?php _e('Support Forum','testimonial-slider'); ?>
 " ><?php _e('Support Forum','testimonial-slider'); ?></a></li>
-				<li><a href="http://guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
+				<li><a href="//guides.slidervilla.com/testimonial-slider/" title="<?php _e('Usage Guide','testimonial-slider'); ?>
 " ><?php _e('Usage Guide','testimonial-slider'); ?></a></li>
 				<li><strong>Current Version: <?php echo TESTIMONIAL_SLIDER_VER;?></strong></li>
                 </ul> 

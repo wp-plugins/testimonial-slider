@@ -159,4 +159,18 @@ function get_testimonial_category_by_slug( $slug  ) {
 
 	return $category;
 }
+add_action( 'wp_ajax_testimonial_update_review_me', 'testimonial_update_review_me' );
+function testimonial_update_review_me() {
+	$$testimonial_slider=array();
+	$testimonial_slider = get_option('testimonial_slider_options');
+	$reviewme=(isset($_POST['reviewme']))?($_POST['reviewme']):(strtotime("now"));
+	if($reviewme>0){
+		$updated_reviewme=$testimonial_slider['reviewme']=strtotime("+1 week", $reviewme);
+	}
+	else{
+		$updated_reviewme=$testimonial_slider['reviewme']=$reviewme;	
+	}
+	update_option('testimonial_slider_options',$testimonial_slider);
+	die();
+}
 ?>

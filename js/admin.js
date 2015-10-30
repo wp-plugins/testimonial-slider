@@ -1,3 +1,28 @@
+jQuery(document).ready(function(){
+  jQuery('#later').on("click", function(){
+	var r = jQuery('#testimonial_reviewme').val();
+	var data = {};
+	data['reviewme'] = parseInt(r);
+	data['action'] = 'testimonial_update_review_me';
+	jQuery.post(ajaxurl, data, function(response) {
+		if(response) {
+			jQuery('#testimonial_reviewme').val(response);
+		}
+		jQuery('#reviewme').remove();
+	 });
+     });
+  jQuery('#already').on("click", function(){
+	var data = {};
+	data['reviewme'] = 0;
+	data['action'] = 'update_review_me';
+	jQuery.post(ajaxurl, data, function(response) {
+		if(response) {
+			jQuery('#testimonial_reviewme').val(response);
+		}
+		jQuery('#reviewme').remove();
+	 });
+   });
+});
 jQuery(function () {
   jQuery('.moreInfo').each(function () {
     // options
